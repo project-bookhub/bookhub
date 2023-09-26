@@ -9,6 +9,16 @@ exports.insertOneByUserInfo = async (userId, userPw, userNickname) => {
 
         return result
     } catch (e) {
-        throw new Error(4444)
+        throw new Error(5000)
     }
 }
+
+exports.fineOne = async (field, value) => {
+    try {
+        const sql = `select * from user where ${field}=?`;
+        const [[result]] = await pool.query(sql, [value]);
+        return result;
+    } catch (err) {
+        throw new Error(5000);
+    }
+};
