@@ -12,10 +12,12 @@ nunjucks.configure({
 })
 
 app.use(router)
+app.use((err, req, res, next) => {
 
+    // 4444: DB error
+    if (err.message === "4444") res.status(500).send("DB Error!")
 
-
-
+});
 
 
 app.listen(port, () => {
