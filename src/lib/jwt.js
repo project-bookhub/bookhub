@@ -1,11 +1,14 @@
 const Crypto = require("crypto")
+require("dotenv").config()
 
 class JWT {
     constructor() {
     }
 
-    verify(token, salt){
+    verify(token){
         try{
+            const salt = process.env["secret-key"]
+
             const [header, payload, signature] = token.split(".");
             const base64url = [header, payload].join(".");
             const newSignature = this.createSignature(base64url, salt);
@@ -27,7 +30,9 @@ class JWT {
         return JSON.parse(Buffer.from(base64, "base64url").toString("utf-8"))
     }
 
-    createSignature (base64url, salt) {
+    createSignature (base64url) {
+        const salt = process.env["secret-key"]
+
         return Crypto.createHmac("sha256", salt)
             .update(base64url)
             .digest("base64url")
