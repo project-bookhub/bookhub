@@ -36,3 +36,19 @@ exports.findOneByUserIdAndUserPassword = async (userId, userPw) => {
     throw new Error(5000);
   }
 };
+
+exports.updateUserPasswordByUserIdAndUserNickname = async (
+  password,
+  userId,
+  userNickname,
+) => {
+  try {
+    const sql = "UPDATE user SET user_pw=? WHERE user_id=? AND user_nickname=?";
+
+    const [result] = await pool.query(sql, [password, userId, userNickname]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
