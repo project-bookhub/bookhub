@@ -6,7 +6,6 @@ exports.getSignUp = (req, res) => {
 
 exports.postSignUp = async (req, res, next) => {
   try {
-    console.log(req.body);
     const data = req.body;
 
     await userService.postSignUp(data);
