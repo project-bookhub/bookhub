@@ -1,22 +1,24 @@
-const JWT = require("../lib/jwt")
+const JWT = require("../lib/jwt");
 const jwt = new JWT();
-const userService = require("../user/userService")
-require("dotenv").config()
+
+const userService = require("../user/userService");
+
+require("dotenv").config();
 
 exports.auth = async (req, res, next) => {
-    try {
-        const {authorization} = req.cookies;
+  try {
+    const { authorization } = req.cookies;
 
-        if(!Authorization) return next();
+    if (!authorization) return next();
 
-        const payload = jwt.verify(authorization, process.env["secret-key"])
-        const user = await userService.findOneByUserId(payload.userId)
+    const payload = jwt.verify(authorization, process.env["secret-key"]);
 
-        req.user = user;
-        next()
+    const user = await userService.findOneByUserId(payload.userId);
 
-    }catch(e){
+    req.user = user;
 
-        next(e)
-    }
-}
+    next();
+  } catch (e) {
+    next(e);
+  }
+};
