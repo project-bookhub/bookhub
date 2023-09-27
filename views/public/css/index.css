@@ -11,7 +11,17 @@ input {
   outline: none;
   border: none;
 }
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #ccc 1px solid;
+  border-radius: 16px;
+}
 
+.material-symbols-outlined {
+  cursor: pointer;
+}
 .bold {
   font-weight: bold;
 }
@@ -27,6 +37,7 @@ input {
   width: 336px;
   height: 460px;
   background-color: #ccc;
+  cursor: pointer;
 }
 .medium-book {
   width: 252px;
@@ -35,6 +46,7 @@ input {
   width: 252px;
   height: 345px;
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .small-book {
@@ -44,27 +56,33 @@ input {
   width: 126px;
   height: 172px;
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .book-title {
   font-size: 24px;
+  cursor: pointer;
 }
 .book-summary {
+  cursor: pointer;
 }
 
 .main-button {
-}
-.sub-button {
-  width: 160px;
-  height: 56px;
   border: #ccc 1px solid;
-  border-radius: 28px;
+  background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.button {
   margin: 64px 0;
+  cursor: pointer;
+}
+.sub-button {
+  border: #ccc 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 64px 0;
+  cursor: pointer;
 }
 
 .flex-direction-row {
@@ -83,6 +101,7 @@ input {
 .top-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 64px;
 }
 .top-wrapper .top-left {
@@ -104,19 +123,16 @@ input {
 .top-wrapper .logo {
   font-weight: bold;
   font-size: 24px;
+  cursor: pointer;
 }
 .top-wrapper .message {
 }
 .top-wrapper .board {
+  cursor: pointer;
 }
 .top-wrapper .search {
   width: 200px;
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: #ccc 1px solid;
-  border-radius: 16px;
 }
 .top-wrapper .profile {
   font-size: 24px;
@@ -138,9 +154,19 @@ input {
   justify-content: center;
   align-items: center;
 }
+.content-wrapper .book-rank .show-more {
+  width: 160px;
+  height: 56px;
+  border-radius: 28px;
+}
 .content-wrapper .recent-updated {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.content-wrapper .recent-updated .show-more {
+  width: 160px;
+  height: 56px;
+  border-radius: 28px;
 }

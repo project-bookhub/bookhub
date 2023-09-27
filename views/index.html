@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>BookHub</title>
     <link rel="stylesheet" href="css/index.css" />
     <link
       rel="stylesheet"
@@ -19,17 +19,19 @@
       </div>
       <div class="top-right">
         <div class="board">공지사항</div>
-        <div class="search">
-          <input class="search-box" type="text" placeholder="클릭해서 검색" />
+        <div class="input search">
+          <input type="text" placeholder="클릭해서 검색" />
           <span class="material-symbols-outlined"> search </span>
         </div>
-        <span class="material-symbols-outlined"> person </span>
+        <a href="/users/login"
+          ><span class="material-symbols-outlined"> person </span></a
+        >
       </div>
     </div>
     <div class="slide"></div>
     <div class="content-wrapper">
       <div class="book-rank">
-        <div class="bold title">인기 도서</div>
+        <div class="bold title">추천 도서</div>
         <div class="flex-direction-row">
           <div class="big-book">
             <div class="big-book-image"></div>
@@ -67,10 +69,10 @@
             </div>
           </div>
         </div>
-        <div class="sub-button button">모든 도서 보기</div>
+        <div class="sub-button button show-more">모든 도서 보기</div>
       </div>
       <div class="recent-updated">
-        <div class="bold title">최근 업데이트 된 도서</div>
+        <div class="bold title">신간 도서</div>
         <div class="flex-direction-row">
           <div class="small-book">
             <div class="small-book-image"></div>
@@ -91,7 +93,7 @@
             <div class="small-book-image"></div>
           </div>
         </div>
-        <div class="sub-button button">모든 도서 보기</div>
+        <div class="sub-button button show-more">모든 도서 보기</div>
       </div>
     </div>
   </body>
