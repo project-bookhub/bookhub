@@ -5,7 +5,7 @@ exports.getBookList = async (req, res, next) => {
     const result = await bookService.getBookList();
 
     res.render("index.html", {
-      user_nickname: req.user.userNickname,
+      user_nickname: req.user.user_nickname,
       bookListOrderByLikes: result[0],
       bookListOrderByDate: result[1],
     });
