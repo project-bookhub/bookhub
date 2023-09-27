@@ -41,7 +41,7 @@ exports.postSignUp = async (req, res, next) => {
 };
 
 exports.getReset = (req, res) => {
-  res.render("auth.html");
+  res.render("reset.html");
 };
 
 exports.postReset = async (req, res, next) => {
@@ -63,8 +63,23 @@ exports.postReset = async (req, res, next) => {
   }
 };
 
-exports.getAuth = () => {};
-exports.postAuth = () => {};
+exports.getAuth = (req, res) => {
+  res.render("auth.html");
+};
+exports.postAuth = async (req, res, next) => {
+  try {
+    const data = req.body;
+
+    const result = await userService.postAuth(data);
+
+    if (!result) res.redirect("/users/auth");
+
+    res.render("info.html");
+  } catch (e) {
+    next(e);
+  }
+};
+
 exports.getInfo = () => {};
 exports.postInfo = () => {};
 exports.getExit = () => {};

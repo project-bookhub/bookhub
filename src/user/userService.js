@@ -70,3 +70,23 @@ exports.postReset = async (data) => {
     throw new Error(e.message);
   }
 };
+
+exports.postAuth = async (data) => {
+  try {
+    const userId = data.userId;
+    const userPw = data.userPw;
+
+    const hashedUserPw = Crypto.createHash("sha512")
+      .update(userPw)
+      .digest("base64");
+
+    const result = await userRepository.findOneByUserIdAndUserPassword(
+      userId,
+      hashedUserPw,
+    );
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
