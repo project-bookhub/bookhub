@@ -11,6 +11,13 @@ input {
   outline: none;
   border: none;
 }
+.input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #ccc 1px solid;
+  border-radius: 16px;
+}
 
 .material-symbols-outlined {
   cursor: pointer;
@@ -61,17 +68,19 @@ input {
 }
 
 .main-button {
-}
-.sub-button {
-  width: 160px;
-  height: 56px;
   border: #ccc 1px solid;
-  border-radius: 28px;
+  background-color: #ccc;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 64px 0;
+  cursor: pointer;
 }
-.button {
+.sub-button {
+  border: #ccc 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 64px 0;
   cursor: pointer;
 }
@@ -124,11 +133,6 @@ input {
 .top-wrapper .search {
   width: 200px;
   height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: #ccc 1px solid;
-  border-radius: 16px;
 }
 .top-wrapper .profile {
   font-size: 24px;
@@ -150,9 +154,19 @@ input {
   justify-content: center;
   align-items: center;
 }
+.content-wrapper .book-rank .show-more {
+  width: 160px;
+  height: 56px;
+  border-radius: 28px;
+}
 .content-wrapper .recent-updated {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.content-wrapper .recent-updated .show-more {
+  width: 160px;
+  height: 56px;
+  border-radius: 28px;
 }
