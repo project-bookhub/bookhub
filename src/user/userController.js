@@ -1,7 +1,7 @@
 const userService = require("./userService");
 
 exports.getLogin = (req, res) => {
-  res.render("login.html");
+  res.render("user/login.html");
 };
 
 exports.postLogin = async (req, res, next) => {
@@ -16,7 +16,7 @@ exports.postLogin = async (req, res, next) => {
       result.data,
       (maxAge = 60 * 10),
       (domain = "127.0.0.1"),
-      (path = "/"),
+      (path = "/")
     );
     res.redirect("/");
   } catch (e) {

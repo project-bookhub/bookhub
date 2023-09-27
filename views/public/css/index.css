@@ -92,6 +92,7 @@ input {
 .top-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 64px;
 }
 .top-wrapper .top-left {
