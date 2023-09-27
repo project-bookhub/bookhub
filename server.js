@@ -9,9 +9,11 @@ const authMiddleware = require("./src/middlewares/jwtAuthMiddleware");
 const router = require("./src/index");
 
 app.set("view engine", "html");
-nunjucks.configure({
+nunjucks.configure("views", {
   express: app,
 });
+
+app.use(express.static("views/public"));
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
