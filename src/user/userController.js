@@ -100,4 +100,21 @@ exports.postInfo = async (req, res, next) => {
   }
 };
 
-exports.getExit = () => {};
+exports.getExit = async (req, res, next) => {
+  try {
+    const data = req.query;
+    const result = await userService.getExit(data);
+
+    if (result === 0) {
+      res.render("index.html", {
+        result: false,
+      });
+    }
+
+    res.render("index.html", {
+      result: true,
+    });
+  } catch (e) {
+    next(e);
+  }
+};

@@ -2,6 +2,7 @@ const userRepository = require("./userRepository");
 const Crypto = require("crypto");
 const JWT = require("../lib/jwt");
 const { findOneByUserNicknameAndUserId } = require("./userRepository");
+const { getExit } = require("./userController");
 const jwt = new JWT();
 
 exports.postLogin = async (data) => {
@@ -103,6 +104,18 @@ exports.postInfo = async (data) => {
       hashedUserPw,
       userId,
     );
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.getExit = async (data) => {
+  try {
+    const userId = data.userId;
+
+    const result = await userRepository.deleteUserByUserId(userId);
 
     return result;
   } catch (e) {
