@@ -1,19 +1,7 @@
 const userService = require("./userService");
 
-exports.getSignUp = (req, res) => {
-  res.render("signup");
-};
-
-exports.postSignUp = async (req, res, next) => {
-  try {
-    const data = req.body;
-
-    await userService.postSignUp(data);
-
-    res.redirect("/");
-  } catch (e) {
-    next(e);
-  }
+exports.getLogin = (req, res) => {
+  res.render("login.html");
 };
 
 exports.postLogin = async (req, res, next) => {
@@ -31,6 +19,101 @@ exports.postLogin = async (req, res, next) => {
       (path = "/"),
     );
     res.redirect("/");
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getSignUp = (req, res) => {
+  res.render("signup.html");
+};
+
+exports.postSignUp = async (req, res, next) => {
+  try {
+    const data = req.body;
+
+    await userService.postSignUp(data);
+
+    res.redirect("/");
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getReset = (req, res) => {
+  res.render("reset.html");
+};
+
+exports.postReset = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const result = await userService.postReset(data);
+
+    if (result === 0) {
+      res.render("index.html", {
+        result: false,
+      });
+    }
+
+    res.render("index.html", {
+      result: true,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getAuth = (req, res) => {
+  res.render("auth.html");
+};
+exports.postAuth = async (req, res, next) => {
+  try {
+    const data = req.body;
+
+    const result = await userService.postAuth(data);
+
+    if (!result) res.redirect("/users/auth");
+
+    res.render("info.html");
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.postInfo = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const result = await userService.postInfo(data);
+
+    console.log(result);
+    if (result === 0) {
+      res.render("index.html", {
+        result: false,
+      });
+    }
+
+    res.render("index.html", {
+      result: true,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getExit = async (req, res, next) => {
+  try {
+    const data = req.query;
+    const result = await userService.getExit(data);
+
+    if (result === 0) {
+      res.render("index.html", {
+        result: false,
+      });
+    }
+
+    res.render("index.html", {
+      result: true,
+    });
   } catch (e) {
     next(e);
   }
