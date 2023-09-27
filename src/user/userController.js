@@ -1,21 +1,38 @@
-const userService = require("./userService")
+const userService = require("./userService");
 
 exports.getSignUp = (req, res) => {
-    res.render("signup")
-}
+  res.render("signup");
+};
+
 exports.postSignUp = async (req, res, next) => {
-    try{
-        const data = req.body;
+  try {
+    console.log(req.body);
+    const data = req.body;
 
-        // const data = {
-        //     userId: "testId",
-        //     userPw: "testPw",
-        //     userNickname : "testNickname"
-        //
-        // }
+    await userService.postSignUp(data);
 
-        await userService.postSignUp(data);
-    }catch(e){
-        next(e);
-    }
-}
+    res.redirect("/");
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.postLogin = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const result = await userService.postLogin(data);
+
+    if (!result.isLogin) return res.redirect("/");
+
+    res.cookie(
+      "authorization",
+      result.data,
+      (maxAge = 60 * 10),
+      (domain = "127.0.0.1"),
+      (path = "/"),
+    );
+    res.redirect("/");
+  } catch (e) {
+    next(e);
+  }
+};
