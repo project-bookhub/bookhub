@@ -12,6 +12,9 @@ input {
   border: none;
 }
 
+.material-symbols-outlined {
+  cursor: pointer;
+}
 .bold {
   font-weight: bold;
 }
@@ -27,6 +30,7 @@ input {
   width: 336px;
   height: 460px;
   background-color: #ccc;
+  cursor: pointer;
 }
 .medium-book {
   width: 252px;
@@ -35,6 +39,7 @@ input {
   width: 252px;
   height: 345px;
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .small-book {
@@ -44,12 +49,15 @@ input {
   width: 126px;
   height: 172px;
   background-color: #ccc;
+  cursor: pointer;
 }
 
 .book-title {
   font-size: 24px;
+  cursor: pointer;
 }
 .book-summary {
+  cursor: pointer;
 }
 
 .main-button {
@@ -65,6 +73,7 @@ input {
 }
 .button {
   margin: 64px 0;
+  cursor: pointer;
 }
 
 .flex-direction-row {
@@ -104,10 +113,12 @@ input {
 .top-wrapper .logo {
   font-weight: bold;
   font-size: 24px;
+  cursor: pointer;
 }
 .top-wrapper .message {
 }
 .top-wrapper .board {
+  cursor: pointer;
 }
 .top-wrapper .search {
   width: 200px;
