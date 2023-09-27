@@ -80,6 +80,24 @@ exports.postAuth = async (req, res, next) => {
   }
 };
 
-exports.getInfo = () => {};
-exports.postInfo = () => {};
+exports.postInfo = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const result = await userService.postInfo(data);
+
+    console.log(result);
+    if (result === 0) {
+      res.render("index.html", {
+        result: false,
+      });
+    }
+
+    res.render("index.html", {
+      result: true,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 exports.getExit = () => {};

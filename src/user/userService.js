@@ -90,3 +90,22 @@ exports.postAuth = async (data) => {
     throw new Error(e.message);
   }
 };
+
+exports.postInfo = async (data) => {
+  try {
+    const userId = data.userId;
+    const targetPw = data.targetPw;
+    const hashedUserPw = Crypto.createHash("sha512")
+      .update(targetPw)
+      .digest("base64");
+
+    const result = await userRepository.updateUserPasswordByUserId(
+      hashedUserPw,
+      userId,
+    );
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};

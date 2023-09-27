@@ -14,7 +14,6 @@ userRouter.post("/reset", userController.postReset);
 userRouter.get("/auth", userController.getAuth);
 userRouter.post("/auth", userController.postAuth);
 
-userRouter.get("/info", userController.getInfo);
 userRouter.post("/info", userController.postInfo);
 
 userRouter.get("/exit", userController.getExit);
