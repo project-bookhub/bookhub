@@ -1,0 +1,146 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+.title {
+  font-size: 32px;
+  margin: 64px 0;
+}
+
+.big-book {
+  width: 336px;
+}
+.big-book-image {
+  width: 336px;
+  height: 460px;
+  background-color: #ccc;
+}
+.medium-book {
+  width: 252px;
+}
+.medium-book-image {
+  width: 252px;
+  height: 345px;
+  background-color: #ccc;
+}
+
+.small-book {
+  width: 126px;
+}
+.small-book-image {
+  width: 126px;
+  height: 172px;
+  background-color: #ccc;
+}
+
+.book-title {
+  font-size: 24px;
+}
+.book-summary {
+}
+
+.main-button {
+}
+.sub-button {
+  width: 160px;
+  height: 56px;
+  border: #ccc 1px solid;
+  border-radius: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  margin: 64px 0;
+}
+
+.flex-direction-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
+.flex-direction-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.top-wrapper {
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+}
+.top-wrapper .top-left {
+  margin-left: 64px;
+  width: 360px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 48px;
+}
+.top-wrapper .top-right {
+  margin-right: 64px;
+  width: 480px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 48px;
+}
+.top-wrapper .logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+.top-wrapper .message {
+}
+.top-wrapper .board {
+}
+.top-wrapper .search {
+  width: 200px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #ccc 1px solid;
+  border-radius: 16px;
+}
+.top-wrapper .profile {
+  font-size: 24px;
+}
+
+.slide {
+  width: 100vw;
+  height: 600px;
+  background-color: #ccc;
+}
+
+.content-wrapper {
+  width: 904px;
+  margin: 0 auto;
+}
+.content-wrapper .book-rank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.content-wrapper .recent-updated {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
