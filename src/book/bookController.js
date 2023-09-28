@@ -24,10 +24,6 @@ exports.getBookListAndCategoryCount = async (req, res, next) => {
       category,
     );
 
-    console.log(req.user.user_nickname);
-    console.log(result[0]);
-    console.log(result[1]);
-
     res.render("list.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
       bookListOrderByPage: result[0],
