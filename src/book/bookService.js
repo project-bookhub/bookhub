@@ -9,3 +9,20 @@ exports.getBookList = async () => {
     throw new Error(e.message);
   }
 };
+
+exports.getBookListAndCategoryCount = async (page, category) => {
+  try {
+    const bookListResult = await bookRepository.findBookOrderByPage(
+      page,
+      category,
+    );
+
+    const categoryCountResult = await bookRepository.getCategoryCount();
+
+    const result = [bookListResult, categoryCountResult];
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
