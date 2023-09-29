@@ -14,8 +14,11 @@
   <body>
     <div class="top-wrapper">
       <div class="top-left">
-        <div class="logo">BookHub</div>
-        <div class="message">subin님, 환영합니다!</div>
+        <a href="/"><div class="logo">BookHub</div></a>
+        <div class="message">
+          {%if user_nickname%} {{user_nickname}}님, 환영합니다! {%else%}
+          로그인이 필요합니다. {%endif%}
+        </div>
       </div>
       <div class="top-right">
         <div class="board">공지사항</div>
@@ -23,9 +26,15 @@
           <input type="text" placeholder="클릭해서 검색" />
           <span class="material-symbols-outlined"> search </span>
         </div>
+        {%if user_nickname%}
+        <a href="/users/auth"
+          ><span class="material-symbols-outlined"> person </span></a
+        >
+        {%else%}
         <a href="/users/login"
           ><span class="material-symbols-outlined"> person </span></a
         >
+        {%endif%}
       </div>
     </div>
     <div class="slide"></div>
@@ -35,22 +44,24 @@
         <div class="flex-direction-row">
           <div class="big-book">
             <div class="big-book-image"></div>
-            <div class="book-title">책 제목입니다</div>
+            <div class="book-title">{{bookListOrderByLikes[0].book_title}}</div>
             <div class="book-summary">
-              책 소개입니다.책 소개입니다.책 소개입니다.책 소개입니다.책
-              소개입니다.책 소개입니다.책 소개입니다.책 소개입니다.책
-              소개입니다.책 소개입니다.
+              {{bookListOrderByLikes[0].book_summary}}
             </div>
           </div>
           <div class="flex-direction-column">
             <div class="flex-direction-row">
               <div class="medium-book">
                 <div class="medium-book-image"></div>
-                <div class="book-title">책 제목입니다</div>
+                <div class="book-title">
+                  {{bookListOrderByLikes[1].book_title}}
+                </div>
               </div>
               <div class="medium-book">
                 <div class="medium-book-image"></div>
-                <div class="book-title">책 제목입니다</div>
+                <div class="book-title">
+                  {{bookListOrderByLikes[2].book_title}}
+                </div>
               </div>
             </div>
             <div class="flex-direction-row">
@@ -69,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="sub-button button show-more">모든 도서 보기</div>
+        <div class="sub-button show-more">모든 도서 보기</div>
       </div>
       <div class="recent-updated">
         <div class="bold title">신간 도서</div>
@@ -93,7 +104,7 @@
             <div class="small-book-image"></div>
           </div>
         </div>
-        <div class="sub-button button show-more">모든 도서 보기</div>
+        <div class="sub-button show-more">모든 도서 보기</div>
       </div>
     </div>
   </body>
