@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>board</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <script defer src="js/index.js"></script>
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="top-left">
+        <a href="/"><div class="logo">BookHub</div></a>
+        <div class="message">
+          {%if user_nickname%} {{user_nickname}}님, 환영합니다! {%else%}
+          로그인이 필요합니다. {%endif%}
+        </div>
+      </div>
+      <div class="top-right">
+        <a href="/boards" class="board">공지사항</a>
+        <div class="input search">
+          <form id="search-form" method="get" action="/search">
+            <input id="search-input" type="text" placeholder="클릭해서 검색" />
+            <button type="submit">
+              <span class="material-symbols-outlined"> search </span>
+            </button>
+          </form>
+        </div>
+        {%if user_nickname%}
+        <a href="/users/auth"
+          ><span class="material-symbols-outlined"> person </span></a
+        >
+        {%else%}
+        <a href="/users/login"
+          ><span class="material-symbols-outlined"> person </span></a
+        >
+        {%endif%}
+      </div>
+    </div>
+    <div class="slide"></div>
+    <div class="content-wrapper">
+      <div class="book-rank">
+        <div class="bold title">추천 도서</div>
+        <div class="flex-direction-row">
+          <div class="big-book">
+            <div class="big-book-image"></div>
+            <div class="book-title">{{bookListOrderByLikes[0].book_title}}</div>
+            <div class="book-summary">
+              {{bookListOrderByLikes[0].book_summary}}
+            </div>
+          </div>
+          <div class="flex-direction-column">
+            <div class="flex-direction-row">
+              <div class="medium-book">
+                <div class="medium-book-image"></div>
+                <div class="book-title">
+                  {{bookListOrderByLikes[1].book_title}}
+                </div>
+              </div>
+              <div class="medium-book">
+                <div class="medium-book-image"></div>
+                <div class="book-title">
+                  {{bookListOrderByLikes[2].book_title}}
+                </div>
+              </div>
+            </div>
+            <div class="flex-direction-row">
+              <div class="small-book">
+                <div class="small-book-image"></div>
+              </div>
+              <div class="small-book">
+                <div class="small-book-image"></div>
+              </div>
+              <div class="small-book">
+                <div class="small-book-image"></div>
+              </div>
+              <div class="small-book">
+                <div class="small-book-image"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sub-button show-more">모든 도서 보기</div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function changeAction() {
+      const inputValue = document.getElementById("search-input").value;
+      const newAction = "/search?search=" + inputValue;
+
+      location.href = newAction;
+    }
+
+    document
+      .getElementById("search-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        changeAction();
+      });
+  </script>
+</html>
