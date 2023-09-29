@@ -6,4 +6,6 @@ bookRouter.get("/list", bookController.getBookListAndCategoryCount);
 bookRouter.get("/view", bookController.getBookView);
 bookRouter.get("/delete", bookController.getBookDelete);
 
+bookRouter.get("/toc/write", bookController.getBookTocWrite);
+
 module.exports = bookRouter;

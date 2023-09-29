@@ -70,3 +70,13 @@ exports.getBookDelete = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBookTocWrite = (req, res, next) => {
+  try {
+    res.render("book/toc/write.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
