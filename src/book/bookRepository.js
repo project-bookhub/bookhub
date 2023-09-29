@@ -32,21 +32,36 @@ exports.findBookOrderByPage = async (page, category) => {
       start = (page - 1) * pageSize;
     }
 
-    const sql =
-      "SELECT " +
-      "book.*, " +
-      "user.user_id AS book_writer, " +
-      "category.category_name AS book_category " +
-      "FROM book " +
-      "JOIN user ON book.book_writer = user.user_uid " +
-      "JOIN category ON book.book_category = category.category_uid " +
-      "WHERE category.category_name = ? " +
-      "ORDER BY book_created_at DESC " +
-      `LIMIT ${start}, ${pageSize};`;
+    if (category === undefined) {
+      const sql =
+        "SELECT " +
+        "book.*, " +
+        "user.user_id AS book_writer, " +
+        "category.category_name AS book_category " +
+        "FROM book " +
+        "JOIN user ON book.book_writer = user.user_uid " +
+        "JOIN category ON book.book_category = category.category_uid " +
+        "ORDER BY book_created_at DESC " +
+        `LIMIT ${start}, ${pageSize};`;
 
-    const [result] = await pool.query(sql, [category]);
+      const [result] = await pool.query(sql);
+      return result;
+    } else {
+      const sql =
+        "SELECT " +
+        "book.*, " +
+        "user.user_id AS book_writer, " +
+        "category.category_name AS book_category " +
+        "FROM book " +
+        "JOIN user ON book.book_writer = user.user_uid " +
+        "JOIN category ON book.book_category = category.category_uid " +
+        "WHERE category.category_name = ? " +
+        "ORDER BY book_created_at DESC " +
+        `LIMIT ${start}, ${pageSize};`;
 
-    return result;
+      const [result] = await pool.query(sql, [category]);
+      return result;
+    }
   } catch (e) {
     throw new Error(5000);
   }

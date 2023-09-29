@@ -27,7 +27,7 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.getSignUp = (req, res) => {
-  res.render("signup.html");
+  res.render("user/signup.html");
 };
 
 exports.postSignUp = async (req, res, next) => {
@@ -71,7 +71,7 @@ exports.postReset = async (req, res, next) => {
 };
 
 exports.getAuth = (req, res) => {
-  res.render("auth.html");
+  res.render("user/auth.html");
 };
 exports.postAuth = async (req, res, next) => {
   try {
