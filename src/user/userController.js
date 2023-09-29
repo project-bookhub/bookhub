@@ -16,7 +16,7 @@ exports.postLogin = async (req, res, next) => {
       result.data,
       (maxAge = 60 * 10),
       (domain = "127.0.0.1"),
-      (path = "/")
+      (path = "/"),
     );
     res.redirect("/");
   } catch (e) {
@@ -25,7 +25,7 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.getSignUp = (req, res) => {
-  res.render("signup.html");
+  res.render("user/signup.html");
 };
 
 exports.postSignUp = async (req, res, next) => {
@@ -64,7 +64,7 @@ exports.postReset = async (req, res, next) => {
 };
 
 exports.getAuth = (req, res) => {
-  res.render("auth.html");
+  res.render("user/auth.html");
 };
 exports.postAuth = async (req, res, next) => {
   try {
