@@ -48,3 +48,12 @@ exports.getBookView = async (bookId, tocId) => {
     throw new Error(e.message);
   }
 };
+
+exports.getBookDelete = async (bookId, bookWriter) => {
+  try {
+    const result = await bookRepository.deleteByIdAndWriter(bookId, bookWriter);
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
