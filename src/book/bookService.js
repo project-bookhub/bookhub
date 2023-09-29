@@ -12,8 +12,18 @@ exports.getBookList = async () => {
 
 exports.getBookListAndCategoryCount = async (page, category) => {
   try {
+    let start = 0;
+    const pageSize = 5;
+
+    if (page <= 0) {
+      page = 1;
+    } else {
+      start = (page - 1) * pageSize;
+    }
+
     const bookListResult = await bookRepository.findBookOrderByPage(
-      page,
+      start,
+      pageSize,
       category,
     );
 
