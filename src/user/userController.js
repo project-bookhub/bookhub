@@ -6,8 +6,10 @@ exports.getLogin = (req, res) => {
 
 exports.postLogin = async (req, res, next) => {
   try {
-    const data = req.body;
-    const result = await userService.postLogin(data);
+    const userId = req.body.userId;
+    const userPw = req.body.userPw;
+
+    const result = await userService.postLogin(userId, userPw);
 
     if (!result.isLogin) return res.redirect("/");
 
@@ -16,7 +18,7 @@ exports.postLogin = async (req, res, next) => {
       result.data,
       (maxAge = 60 * 10),
       (domain = "127.0.0.1"),
-      (path = "/")
+      (path = "/"),
     );
     res.redirect("/");
   } catch (e) {
@@ -30,9 +32,11 @@ exports.getSignUp = (req, res) => {
 
 exports.postSignUp = async (req, res, next) => {
   try {
-    const data = req.body;
+    const userId = req.body.userId;
+    const userPw = req.body.userPw;
+    const userNickname = req.body.userNickname;
 
-    await userService.postSignUp(data);
+    await userService.postSignUp(userId, userPw, userNickname);
 
     res.redirect("/");
   } catch (e) {
@@ -46,8 +50,11 @@ exports.getReset = (req, res) => {
 
 exports.postReset = async (req, res, next) => {
   try {
-    const data = req.body;
-    const result = await userService.postReset(data);
+    const userNickname = req.body.userNickname;
+    const userId = req.body.userId;
+    const targetPw = req.body.targetPw;
+
+    const result = await userService.postReset(userNickname, userId, targetPw);
 
     if (result === 0) {
       res.render("index.html", {
@@ -68,9 +75,10 @@ exports.getAuth = (req, res) => {
 };
 exports.postAuth = async (req, res, next) => {
   try {
-    const data = req.body;
+    const userId = req.user.user_id;
+    const userPw = req.body.userPw;
 
-    const result = await userService.postAuth(data);
+    const result = await userService.postAuth(userId, userPw);
 
     if (!result) res.redirect("/users/auth");
 
@@ -82,10 +90,11 @@ exports.postAuth = async (req, res, next) => {
 
 exports.postInfo = async (req, res, next) => {
   try {
-    const data = req.body;
-    const result = await userService.postInfo(data);
+    const userId = req.body.userId;
+    const targetPw = req.body.targetPw;
 
-    console.log(result);
+    const result = await userService.postInfo(userId, targetPw);
+
     if (result === 0) {
       res.render("index.html", {
         result: false,
@@ -102,8 +111,8 @@ exports.postInfo = async (req, res, next) => {
 
 exports.getExit = async (req, res, next) => {
   try {
-    const data = req.query;
-    const result = await userService.getExit(data);
+    const userId = req.query.userId;
+    const result = await userService.getExit(userId);
 
     if (result === 0) {
       res.render("index.html", {
