@@ -5,7 +5,7 @@ const { findOneByUserNicknameAndUserId } = require("./userRepository");
 const { getExit } = require("./userController");
 const jwt = new JWT();
 
-exports.postLogin = async (userPw) => {
+exports.postLogin = async (userId, userPw) => {
   try {
     const hashedUserPw = Crypto.createHash("sha512")
       .update(userPw)
@@ -13,7 +13,7 @@ exports.postLogin = async (userPw) => {
 
     const result = await userRepository.findOneByUserIdAndUserPassword(
       userId,
-      hashedUserPw,
+      hashedUserPw
     );
     if (!result) return { isLogin: false, data: null };
 
@@ -34,7 +34,7 @@ exports.postSignUp = async (userId, userPw, userNickname) => {
     await userRepository.insertOneByUserInfo(
       userId,
       hashedUserPw,
-      userNickname,
+      userNickname
     );
   } catch (e) {
     throw new Error(e.message);
@@ -60,7 +60,7 @@ exports.postReset = async (userNickname, userId, targetPw) => {
       await userRepository.updateUserPasswordByUserIdAndUserNickname(
         hashedUserPw,
         userId,
-        userNickname,
+        userNickname
       );
 
     return result;
@@ -77,7 +77,7 @@ exports.postAuth = async (userId, userPw) => {
 
     const result = await userRepository.findOneByUserIdAndUserPassword(
       userId,
-      hashedUserPw,
+      hashedUserPw
     );
 
     return result;
@@ -94,7 +94,7 @@ exports.postInfo = async (userId, targetPw) => {
 
     const result = await userRepository.updateUserPasswordByUserId(
       hashedUserPw,
-      userId,
+      userId
     );
 
     return result;
