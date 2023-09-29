@@ -1,0 +1,38 @@
+body {
+  background-color: #eee;
+}
+input {
+  width: 800px;
+  height: 64px;
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0 16px;
+}
+.window {
+  width: 904px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #000;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.window .input {
+  width: 800px;
+  height: 64px;
+  margin: 16px 0;
+}
+.window .button-wrapper {
+  margin-bottom: 48px;
+  width: 800px;
+  display: flex;
+  font-size: 24px;
+}
+.button-wrapper .button {
+  margin: 16px 0;
+  height: 64px;
+  flex: 1;
+}
+.window .reset-password {
+}

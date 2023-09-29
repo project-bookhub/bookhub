@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Info</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/user.css" />
+  </head>
+  <body>
+    <div class="content-wrapper">
+      <div class="window">
+        <div class="bold title">회원정보</div>
+        <form method="post" action="/users/info">
+          <div class="input">
+            <input
+              type="text"
+              name="userNickname"
+              placeholder="새로운 닉네임을 입력해주세요"
+              value="{{user_nickname}}"
+            />
+          </div>
+          <div class="input">
+            <input
+              type="password"
+              name="userPw"
+              placeholder="새로운 비밀번호를 입력해주세요"
+            />
+          </div>
+          <div class="bold">가입일: {{user_created_at}}</div>
+          <div class="bold">작성한 도서 수: {{book_writer_count}}</div>
+          <div class="button-wrapper">
+            <a href="/users/exit" class="sub-button button">탈퇴하기</a>
+            <button class="main-button button" type="submit">수정완료</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
