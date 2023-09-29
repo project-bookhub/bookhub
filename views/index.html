@@ -21,10 +21,14 @@
         </div>
       </div>
       <div class="top-right">
-        <div class="board">공지사항</div>
+        <a href="/boards" class="board">공지사항</a>
         <div class="input search">
-          <input type="text" placeholder="클릭해서 검색" />
-          <span class="material-symbols-outlined"> search </span>
+          <form id="search-form" method="get" action="/search">
+            <input id="search-input" type="text" placeholder="클릭해서 검색" />
+            <button type="submit">
+              <span class="material-symbols-outlined"> search </span>
+            </button>
+          </form>
         </div>
         {%if user_nickname%}
         <a href="/users/auth"
@@ -80,7 +84,7 @@
             </div>
           </div>
         </div>
-        <div class="sub-button show-more">모든 도서 보기</div>
+        <a href="books/list" class="sub-button show-more">모든 도서 보기</a>
       </div>
       <div class="recent-updated">
         <div class="bold title">신간 도서</div>
@@ -104,8 +108,23 @@
             <div class="small-book-image"></div>
           </div>
         </div>
-        <div class="sub-button show-more">모든 도서 보기</div>
+        <a href="/books/list" class="sub-button show-more">모든 도서 보기</a>
       </div>
     </div>
   </body>
+  <script>
+    function changeAction() {
+      const inputValue = document.getElementById("search-input").value;
+      const newAction = "/search?search=" + inputValue;
+
+      location.href = newAction;
+    }
+
+    document
+      .getElementById("search-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        changeAction();
+      });
+  </script>
 </html>

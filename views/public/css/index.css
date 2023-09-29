@@ -11,6 +11,11 @@ a {
   text-decoration: none;
   color: #333;
 }
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 button {
   border: none;
   background-color: rgba(0, 0, 0, 0);
