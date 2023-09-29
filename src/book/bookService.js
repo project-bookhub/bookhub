@@ -27,10 +27,31 @@ exports.getBookListAndCategoryCount = async (page, category) => {
       category,
     );
 
-    const categoryCountResult = await bookRepository.getCategoryCount();
+    const categoryCountResult = await bookRepository.findCategoryCount();
 
     const result = [bookListResult, categoryCountResult];
 
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.getBookView = async (bookId, tocId) => {
+  try {
+    const tocListResult = await bookRepository.findTocList(bookId);
+    const tocContentResult = await bookRepository.findTocContent(tocId);
+
+    const result = [tocListResult, tocContentResult];
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.getBookDelete = async (bookId, bookWriter) => {
+  try {
+    const result = await bookRepository.deleteByIdAndWriter(bookId, bookWriter);
     return result;
   } catch (e) {
     throw new Error(e.message);

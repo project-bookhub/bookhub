@@ -33,3 +33,40 @@ exports.getBookListAndCategoryCount = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBookView = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+    const tocId = req.query.tocId;
+
+    const result = await bookService.getBookView(bookId, tocId);
+
+    res.render("book/view.html", {
+      tocList: result[0],
+      tocContent: result[1],
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getBookDelete = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+    const bookWriter = req.user.user_id;
+
+    const result = await bookService.getBookDelete(bookId, bookWriter);
+
+    if (result === 0) {
+      res.render("index.html", {
+        result: false,
+      });
+    }
+
+    res.render("index.html", {
+      result: true,
+    });
+  } catch (e) {
+    next(e);
+  }
+};

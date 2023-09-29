@@ -3,5 +3,7 @@ const bookRouter = express.Router();
 const bookController = require("./bookController");
 
 bookRouter.get("/list", bookController.getBookListAndCategoryCount);
+bookRouter.get("/view", bookController.getBookView);
+bookRouter.get("/delete", bookController.getBookDelete);
 
 module.exports = bookRouter;
