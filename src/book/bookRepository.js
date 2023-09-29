@@ -21,17 +21,8 @@ exports.findAllBook = async () => {
   }
 };
 
-exports.findBookOrderByPage = async (page, category) => {
+exports.findBookOrderByPage = async (start, pageSize, category) => {
   try {
-    let start = 0;
-    const pageSize = 5;
-
-    if (page <= 0) {
-      page = 1;
-    } else {
-      start = (page - 1) * pageSize;
-    }
-
     if (category === undefined) {
       const sql =
         "SELECT " +
