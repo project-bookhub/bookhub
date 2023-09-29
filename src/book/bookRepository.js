@@ -58,7 +58,7 @@ exports.findBookOrderByPage = async (start, pageSize, category) => {
   }
 };
 
-exports.getCategoryCount = async () => {
+exports.findCategoryCount = async () => {
   try {
     const sql =
       "SELECT category.category_name, COUNT(book.book_category) as category_count\n" +
@@ -70,6 +70,25 @@ exports.getCategoryCount = async () => {
 
     const [result] = await pool.query(sql);
 
+    return result;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.findTocList = async (bookId) => {
+  try {
+    const sql = "SELECT * FROM toc WHERE toc_book = ?";
+    const [result] = await pool.query(sql, [bookId]);
+    return result;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+exports.findTocContent = async (tocId) => {
+  try {
+    const sql = "SELECT toc_title, toc_content FROM toc WHERE toc_uid = ?";
+    const [[result]] = await pool.query(sql, [tocId]);
     return result;
   } catch (e) {
     throw new Error(5000);
