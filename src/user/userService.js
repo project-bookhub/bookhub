@@ -5,14 +5,14 @@ const { findOneByUserNicknameAndUserId } = require("./userRepository");
 const { getExit } = require("./userController");
 const jwt = new JWT();
 
-exports.postLogin = async (data) => {
+exports.postLogin = async (userPw) => {
   try {
     const hashedUserPw = Crypto.createHash("sha512")
-      .update(data.userPw)
+      .update(userPw)
       .digest("base64");
 
     const result = await userRepository.findOneByUserIdAndUserPassword(
-      data.userId,
+      userId,
       hashedUserPw,
     );
     if (!result) return { isLogin: false, data: null };
@@ -25,16 +25,16 @@ exports.postLogin = async (data) => {
   }
 };
 
-exports.postSignUp = async (data) => {
+exports.postSignUp = async (userId, userPw, userNickname) => {
   try {
     const hashedUserPw = Crypto.createHash("sha512")
-      .update(data.userPw)
+      .update(userPw)
       .digest("base64");
 
     await userRepository.insertOneByUserInfo(
-      data.userId,
+      userId,
       hashedUserPw,
-      data.userNickname,
+      userNickname,
     );
   } catch (e) {
     throw new Error(e.message);
@@ -50,11 +50,8 @@ exports.findOneByUserId = async (userId) => {
   }
 };
 
-exports.postReset = async (data) => {
+exports.postReset = async (userNickname, userId, targetPw) => {
   try {
-    const userNickname = data.userNickname;
-    const userId = data.userId;
-    const targetPw = data.targetPw;
     const hashedUserPw = Crypto.createHash("sha512")
       .update(targetPw)
       .digest("base64");
@@ -72,11 +69,8 @@ exports.postReset = async (data) => {
   }
 };
 
-exports.postAuth = async (data) => {
+exports.postAuth = async (userId, userPw) => {
   try {
-    const userId = data.userId;
-    const userPw = data.userPw;
-
     const hashedUserPw = Crypto.createHash("sha512")
       .update(userPw)
       .digest("base64");
@@ -92,10 +86,8 @@ exports.postAuth = async (data) => {
   }
 };
 
-exports.postInfo = async (data) => {
+exports.postInfo = async (userId, targetPw) => {
   try {
-    const userId = data.userId;
-    const targetPw = data.targetPw;
     const hashedUserPw = Crypto.createHash("sha512")
       .update(targetPw)
       .digest("base64");
@@ -111,10 +103,8 @@ exports.postInfo = async (data) => {
   }
 };
 
-exports.getExit = async (data) => {
+exports.getExit = async (userId) => {
   try {
-    const userId = data.userId;
-
     const result = await userRepository.deleteUserByUserId(userId);
 
     return result;
