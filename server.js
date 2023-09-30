@@ -21,11 +21,11 @@ app.use(authMiddleware.auth);
 
 app.use(router);
 app.use((err, req, res, next) => {
-  // 5000: DB error
   if (err.message === "5000") res.status(500).send("DB Error!");
-
-  // 4000: 인증 에러
-  if (err.message === "4000") res.status(500).send("인증 Error!");
+  if (err.message === "4000") res.status(400).send("Bad Request");
+  if (err.message === "4003") res.status(400).send("목차가 생성되지 않음.");
+  if (err.message === "4004") res.status(400).send("해당 uid가 존재하지 않음.");
+  if (err.message === "4005") res.status(400).send("입력 값을 확인해 주세요.");
 });
 
 app.listen(port, () => {

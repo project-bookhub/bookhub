@@ -70,3 +70,87 @@ exports.getBookDelete = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBookTocWrite = (req, res, next) => {
+  try {
+    res.render("book/toc/write.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+/**
+ * 1. category 없다면 생성.
+ * 2. book row 생성
+ * 3. 목차 입력에 따른 toc 생성
+ */
+exports.postBookTocWrite = async (req, res, next) => {
+  try {
+    const userId = req.user.user_id;
+    const bookTitle = req.body.bookTitle;
+    const bookCategory = req.body.bookCategory;
+    const bookToc = req.body.bookToc;
+    const bookSummary = req.body.bookSummary;
+
+    const createdBookInsertId = await bookService.postBookTocWrite(
+      userId,
+      bookTitle,
+      bookCategory,
+      bookToc,
+      bookSummary,
+    );
+
+    res.redirect(`/books/toc/view?bookId=${createdBookInsertId}`);
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getBookTocView = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+
+    const result = await bookService.getBookTocView(bookId);
+
+    res.render("book/toc/view.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+      ...result,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getBookTocModify = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+    const result = await bookService.getBookTocView(bookId);
+
+    res.render("book/toc/modify.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+      ...result,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.postBookTocModify = async (req, res, next) => {
+  try {
+    const bookId = req.body.bookId;
+    const bookToc = req.body.bookToc;
+    const bookSummary = req.body.bookSummary;
+
+    const result = await bookService.postBookTocModify(
+      bookId,
+      bookToc,
+      bookSummary,
+    );
+
+    res.redirect(`/books/toc/view?bookId=${bookId}`);
+  } catch (e) {
+    next(e);
+  }
+};
