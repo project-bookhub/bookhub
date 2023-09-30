@@ -7,5 +7,6 @@ bookRouter.get("/view", bookController.getBookView);
 bookRouter.get("/delete", bookController.getBookDelete);
 
 bookRouter.get("/toc/write", bookController.getBookTocWrite);
+bookRouter.post("/toc/write", bookController.postBookTocWrite);
 
 module.exports = bookRouter;

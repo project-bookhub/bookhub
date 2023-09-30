@@ -97,8 +97,6 @@ exports.findTocContent = async (tocId) => {
 
 exports.deleteByIdAndWriter = async (bookId, bookWriter) => {
   try {
-    console.log(bookId);
-    console.log(bookWriter);
     const sql =
       "DELETE b " +
       "FROM book b " +
@@ -106,6 +104,75 @@ exports.deleteByIdAndWriter = async (bookId, bookWriter) => {
       "WHERE b.book_uid = ? AND u.user_id = ?;";
 
     const [result] = await pool.query(sql, [bookId, bookWriter]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.insertCategory = async (category) => {
+  try {
+    /**
+     * category 테이블에 category_name이 없는 경우에만 INSERT 한다.
+     */
+    const sql =
+      "INSERT INTO category (category_name) " +
+      "SELECT ? WHERE NOT EXISTS (SELECT 1 FROM category WHERE category_name = ?);";
+
+    const [result] = await pool.query(sql, [category, category]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.insertBook = async (
+  userId,
+  bookTitle,
+  bookCategory,
+  bookToc,
+  bookSummary,
+) => {
+  try {
+    /**
+     * 서브 쿼리 사용
+     */
+    const sql =
+      "INSERT INTO book (book_writer, book_category, book_title, book_toc, book_summary) " +
+      "SELECT " +
+      "(SELECT user_uid FROM user WHERE user_id = ?) AS book_writer, " +
+      "(SELECT category_uid FROM category WHERE category_name = ?) AS book_category, " +
+      "?, ?, ?;";
+
+    const [result] = await pool.query(sql, [
+      userId,
+      bookCategory,
+      bookTitle,
+      bookToc,
+      bookSummary,
+    ]);
+
+    return result.insertId;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.insertToc = async (createdBookInsertId, tocArr) => {
+  try {
+    const placeholders = tocArr.map(() => "(?, ?)").join(", ");
+
+    const values = [];
+    tocArr.forEach((tocTitle) => {
+      values.push(createdBookInsertId, tocTitle);
+    });
+
+    const sql = `INSERT INTO toc(toc_book, toc_title)
+                     VALUES ${placeholders}`;
+
+    const [result] = await pool.query(sql, values);
 
     return result.affectedRows;
   } catch (e) {

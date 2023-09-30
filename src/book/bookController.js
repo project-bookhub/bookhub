@@ -80,3 +80,30 @@ exports.getBookTocWrite = (req, res, next) => {
     next(e);
   }
 };
+
+/**
+ * 1. category 없다면 생성.
+ * 2. book row 생성
+ * 3. 목차 입력에 따른 toc 생성
+ */
+exports.postBookTocWrite = async (req, res, next) => {
+  try {
+    const userId = req.user.user_id;
+    const bookTitle = req.body.bookTitle;
+    const bookCategory = req.body.bookCategory;
+    const bookToc = req.body.bookToc;
+    const bookSummary = req.body.bookSummary;
+
+    const createdBookInsertId = await bookService.postBookTocWrite(
+      userId,
+      bookTitle,
+      bookCategory,
+      bookToc,
+      bookSummary,
+    );
+
+    res.redirect(`/books/toc/view?bookId=${createdBookInsertId}`);
+  } catch (e) {
+    next(e);
+  }
+};
