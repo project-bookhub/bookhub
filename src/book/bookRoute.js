@@ -12,4 +12,8 @@ bookRouter.get("/toc/view", bookController.getBookTocView);
 bookRouter.get("/toc/modify", bookController.getBookTocModify);
 bookRouter.post("/toc/modify", bookController.postBookTocModify);
 
+bookRouter.get("/page/view", bookController.getBookPageView);
+bookRouter.get("/page/modify", bookController.getBookPageModify);
+bookRouter.post("/page/modify", bookController.postBookPageModify);
+
 module.exports = bookRouter;

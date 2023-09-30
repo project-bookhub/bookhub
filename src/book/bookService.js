@@ -142,3 +142,23 @@ exports.postBookTocModify = async (bookId, bookToc, bookSummary) => {
     throw new Error(e.message);
   }
 };
+
+exports.getBookPageView = async (bookId, tocId) => {
+  try {
+    const result = await bookRepository.findPageByBookId(bookId, tocId);
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.postBookPageModify = async (bookId, tocId, tocContent) => {
+  try {
+    const result = await bookRepository.updatePage(bookId, tocId, tocContent);
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
