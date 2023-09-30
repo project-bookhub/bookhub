@@ -136,3 +136,21 @@ exports.getBookTocModify = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.postBookTocModify = async (req, res, next) => {
+  try {
+    const bookId = req.body.bookId;
+    const bookToc = req.body.bookToc;
+    const bookSummary = req.body.bookSummary;
+
+    const result = await bookService.postBookTocModify(
+      bookId,
+      bookToc,
+      bookSummary,
+    );
+
+    res.redirect(`/books/toc/view?bookId=${bookId}`);
+  } catch (e) {
+    next(e);
+  }
+};

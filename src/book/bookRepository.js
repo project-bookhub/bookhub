@@ -198,3 +198,25 @@ exports.findBookAndToc = async (bookId) => {
     throw new Error(5000);
   }
 };
+
+exports.updateBookAndToc = async (bookId, bookToc, bookSummary) => {
+  try {
+    const sql =
+      "UPDATE book SET book_toc = ?, book_summary = ? WHERE book_uid = ?";
+
+    await pool.query(sql, [bookToc, bookSummary, bookId]);
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.deleteTocById = async (bookId) => {
+  try {
+    const sql = "DELETE FROM toc WHERE toc_book = ?";
+    const [result] = await pool.query(sql, [bookId]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};

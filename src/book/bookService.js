@@ -119,3 +119,26 @@ exports.getBookTocView = async (bookId) => {
     throw new Error(e.message);
   }
 };
+
+exports.postBookTocModify = async (bookId, bookToc, bookSummary) => {
+  try {
+    if ((!bookId?.trim() || !bookToc?.trim(), !bookSummary?.trim()))
+      throw new Error(4005);
+
+    const updatedBook = await bookRepository.updateBookAndToc(
+      bookId,
+      bookToc,
+      bookSummary,
+    );
+
+    const deleteResult = await bookRepository.deleteTocById(bookId);
+    if (deleteResult === 0) throw new Error(4004);
+
+    const tocArr = bookToc.split("\\r\\n");
+
+    const updatedToc = await bookRepository.insertToc(bookId, tocArr);
+    if (updatedToc === 0) throw new Error(4004);
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
