@@ -114,7 +114,21 @@ exports.getBookTocView = async (req, res, next) => {
 
     const result = await bookService.getBookTocView(bookId);
 
-    res.render("books/toc/view.html", {
+    res.render("book/toc/view.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+      ...result,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getBookTocModify = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+    const result = await bookService.getBookTocView(bookId);
+
+    res.render("book/toc/modify.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
       ...result,
     });
