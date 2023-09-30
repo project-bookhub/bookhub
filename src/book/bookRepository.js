@@ -220,3 +220,16 @@ exports.deleteTocById = async (bookId) => {
     throw new Error(5000);
   }
 };
+
+exports.findPageByBookId = async (bookId, tocId) => {
+  try {
+    const sql =
+      "SELECT book.book_uid, book.book_title, toc.toc_uid, toc.toc_title, toc.toc_content FROM book JOIN toc ON toc_book = book_uid WHERE book_uid = ? AND toc_uid = ?";
+
+    const [[result]] = await pool.query(sql, [bookId, tocId]);
+
+    return result;
+  } catch (e) {
+    throw Error(5000);
+  }
+};
