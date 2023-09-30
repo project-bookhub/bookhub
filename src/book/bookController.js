@@ -116,7 +116,7 @@ exports.getBookTocView = async (req, res, next) => {
 
     res.render("books/toc/view.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
-      tocView: result,
+      ...result,
     });
   } catch (e) {
     next(e);
