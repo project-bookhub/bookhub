@@ -107,3 +107,18 @@ exports.postBookTocWrite = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBookTocView = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+
+    const result = await bookService.getBookTocView(bookId);
+
+    res.render("books/toc/view.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+      tocView: result,
+    });
+  } catch (e) {
+    next(e);
+  }
+};

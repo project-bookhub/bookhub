@@ -91,3 +91,31 @@ exports.postBookTocWrite = async (
     throw new Error(e.message);
   }
 };
+
+exports.getBookTocView = async (bookId) => {
+  try {
+    const resultArr = await bookRepository.findBookAndToc(bookId);
+
+    if (resultArr.length === 0) throw new Error(4004);
+
+    const result = resultArr.reduce((acc, row) => {
+      acc.book_uid = row.book_uid;
+      acc.book_writer = row.book_writer;
+      acc.book_category = row.book_category;
+      acc.book_title = row.book_title;
+
+      if (acc.book_toc) {
+        acc.book_toc.push(row.book_toc);
+      } else {
+        acc.book_toc = [row.book_toc];
+      }
+
+      acc.book_summary = row.book_summary;
+      return acc;
+    }, {});
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
