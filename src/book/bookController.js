@@ -190,3 +190,23 @@ exports.getBookPageModify = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.postBookPageModify = async (req, res, next) => {
+  try {
+    const bookId = req.body.bookId;
+    const tocId = req.body.tocId;
+    const tocContent = req.body.tocContent;
+
+    const result = await bookService.postBookPageModify(
+      bookId,
+      tocId,
+      tocContent,
+    );
+
+    if (result === 0) throw new Error(4005);
+
+    res.redirect(`/books/page/view?bookId=${bookId}&tocId=${tocId}`);
+  } catch (e) {
+    next(e);
+  }
+};

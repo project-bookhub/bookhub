@@ -233,3 +233,16 @@ exports.findPageByBookId = async (bookId, tocId) => {
     throw Error(5000);
   }
 };
+
+exports.updatePage = async (bookId, tocId, tocContent) => {
+  try {
+    const sql =
+      "UPDATE toc SET toc_content = ? WHERE toc_uid = ? AND toc_book = ?";
+
+    const [result] = await pool.query(sql, [tocContent, tocId, bookId]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw Error(5000);
+  }
+};
