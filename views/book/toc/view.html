@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>list</title>
+    <title>목차</title>
     <link rel="stylesheet" href="../../css/index.css" />
     <link rel="stylesheet" href="../../css/book.css" />
     <link
@@ -48,31 +48,28 @@
           <div class="bold title">{{book_title}}</div>
           <div class="bold title">{{book_category}}</div>
         </div>
-        <form
-          class="flex-direction-column"
-          method="post"
-          action="/books/toc/write"
-        >
-          <div class="flex-direction-column">
-            <div class="book-content-1">목차</div>
-            <div class="book-content-2">
-              {% for toc in book_toc %}
-              <div>
-                <a
-                  href="/books/page/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}"
-                >
-                  {{ toc.title }}
-                </a>
-              </div>
-              {% endfor %}
+        <div class="flex-direction-column">
+          <div class="book-content-1">목차</div>
+          <div class="book-content-2">
+            {% for toc in book_toc %}
+            <div>
+              <a
+                href="/books/page/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}"
+              >
+                {{ toc.toc_title }}
+              </a>
             </div>
-            <div class="book-content-1">요약</div>
-            <div class="book-content-3">{{book_summary}}</div>
+            {% endfor %}
           </div>
-          <div class="flex-direction-row write-bottom">
-            <button class="main-button" type="submit">작성 완료</button>
-          </div>
-        </form>
+          <div class="book-content-1">요약</div>
+          <div class="book-content-3">{{book_summary}}</div>
+        </div>
+        <div class="flex-direction-row write-bottom">
+          <a href="/books/toc/modify?bookId={{book_uid}}" class="main-button"
+            >목차 수정하기</a
+          >
+          <a href="/books/toc/delete" class="main-button">삭제하기</a>
+        </div>
       </div>
     </div>
   </body>
