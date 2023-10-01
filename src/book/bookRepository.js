@@ -184,7 +184,8 @@ exports.findBookAndToc = async (bookId) => {
   try {
     const sql =
       "SELECT book_uid, user_id AS book_writer, " +
-      "category_name AS book_category, book_title, toc_title AS book_toc, book_summary " +
+      "category_name AS book_category, book_title, toc_title AS book_toc, book_summary, " +
+      "toc_uid " +
       "FROM book " +
       "JOIN toc ON toc_book = book_uid " +
       "JOIN user ON user_uid = book_writer " +
@@ -259,6 +260,8 @@ exports.findBookByBookTitleOrderByPage = async (
       start,
       pageSize,
     ]);
+
+    console.log(result);
 
     return result;
   } catch (e) {

@@ -104,13 +104,18 @@ exports.getBookTocView = async (bookId) => {
       acc.book_category = row.book_category;
       acc.book_title = row.book_title;
 
-      if (acc.book_toc) {
-        acc.book_toc.push(row.book_toc);
-      } else {
-        acc.book_toc = [row.book_toc];
-      }
+      const tocTempArr = {
+        toc_uid: row.toc_uid,
+        toc_title: row.book_toc,
+      };
 
+      if (acc.book_toc) {
+        acc.book_toc.push(tocTempArr);
+      } else {
+        acc.book_toc = [tocTempArr];
+      }
       acc.book_summary = row.book_summary;
+
       return acc;
     }, {});
 
