@@ -210,3 +210,14 @@ exports.postBookPageModify = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBookSearch = async (req, res, next) => {
+  try {
+    const bookSearch = req.query.bookSearch;
+    const page = req.query.page;
+
+    const result = await bookService.getBookSearch(bookSearch, page);
+  } catch (e) {
+    next(e);
+  }
+};

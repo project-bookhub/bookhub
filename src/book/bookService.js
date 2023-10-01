@@ -104,13 +104,18 @@ exports.getBookTocView = async (bookId) => {
       acc.book_category = row.book_category;
       acc.book_title = row.book_title;
 
-      if (acc.book_toc) {
-        acc.book_toc.push(row.book_toc);
-      } else {
-        acc.book_toc = [row.book_toc];
-      }
+      const tocTempArr = {
+        toc_uid: row.toc_uid,
+        toc_title: row.book_toc,
+      };
 
+      if (acc.book_toc) {
+        acc.book_toc.push(tocTempArr);
+      } else {
+        acc.book_toc = [tocTempArr];
+      }
       acc.book_summary = row.book_summary;
+
       return acc;
     }, {});
 
@@ -156,6 +161,29 @@ exports.getBookPageView = async (bookId, tocId) => {
 exports.postBookPageModify = async (bookId, tocId, tocContent) => {
   try {
     const result = await bookRepository.updatePage(bookId, tocId, tocContent);
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.getBookSearch = async (bookSearch, page) => {
+  try {
+    let start = 0;
+    const pageSize = 5;
+
+    if (page <= 0) {
+      page = 1;
+    } else {
+      start = (page - 1) * pageSize;
+    }
+
+    const result = await bookRepository.findBookByBookTitleOrderByPage(
+      bookSearch,
+      start,
+      pageSize,
+    );
 
     return result;
   } catch (e) {
