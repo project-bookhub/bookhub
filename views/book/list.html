@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>list</title>
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="../css/book.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="book-rank">
+      <div class="all-books">
         <div class="bold title">모든 도서</div>
         <div class="flex-direction-row tags">
           {%for tag in bookCategoryCount%}
@@ -71,13 +71,32 @@
           </div>
           {% endfor %}
         </div>
+        <div class="flex-direction-row list-bottom">
+          <div class="new-book"></div>
+          <div class="page-wrapper">
+            <form id="page-form" method="get" action="/books/list?page=1">
+              <input
+                id="page-input"
+                class="page input"
+                placeholder="이동할 페이지 입력"
+              />
+            </form>
+          </div>
+          <a href="/books/toc/write" class="main-button new-book">새 책 쓰기</a>
+        </div>
       </div>
     </div>
   </body>
   <script>
-    function changeAction() {
+    function searchAction() {
       const inputValue = document.getElementById("search-input").value;
       const newAction = "/search?search=" + inputValue;
+
+      location.href = newAction;
+    }
+    function pageAction() {
+      const inputValue = document.getElementById("page-input").value;
+      const newAction = "/books/list?page=" + inputValue;
 
       location.href = newAction;
     }
@@ -86,7 +105,13 @@
       .getElementById("search-form")
       .addEventListener("submit", function (event) {
         event.preventDefault();
-        changeAction();
+        searchAction();
+      });
+    document
+      .getElementById("page-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        pageAction();
       });
   </script>
 </html>
