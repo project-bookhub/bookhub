@@ -82,7 +82,7 @@ exports.postAuth = async (req, res, next) => {
 
     if (!result) res.redirect("/users/auth");
 
-    res.render("info.html");
+    res.render("user/info.html");
   } catch (e) {
     next(e);
   }
