@@ -126,7 +126,7 @@ exports.getBookTocView = async (req, res, next) => {
 exports.getBookTocModify = async (req, res, next) => {
   try {
     const bookId = req.query.bookId;
-    const result = await bookService.getBookTocView(bookId);
+    const result = await bookService.getBookTocModify(bookId);
 
     res.render("book/toc/modify.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
