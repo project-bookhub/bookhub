@@ -79,7 +79,7 @@ exports.postBookTocWrite = async (
     // 책 생성 안됨.
     if (createdBookInsertId === 0) throw new Error(4000);
 
-    const tocArr = bookToc.split("\\r\\n");
+    const tocArr = bookToc.split("\r\n");
     const createdToc = await bookRepository.insertToc(
       createdBookInsertId,
       tocArr,
