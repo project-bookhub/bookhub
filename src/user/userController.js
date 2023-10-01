@@ -45,7 +45,7 @@ exports.postSignUp = async (req, res, next) => {
 };
 
 exports.getReset = (req, res) => {
-  res.render("reset.html");
+  res.render("user/reset.html");
 };
 
 exports.postReset = async (req, res, next) => {
