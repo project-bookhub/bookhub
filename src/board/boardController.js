@@ -7,6 +7,7 @@ exports.getBoard = async (req, res, next) => {
     const result = await boardService.getBoard(page);
 
     res.render("board/index.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
       result,
     });
   } catch (e) {
