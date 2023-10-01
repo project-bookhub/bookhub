@@ -162,3 +162,26 @@ exports.postBookPageModify = async (bookId, tocId, tocContent) => {
     throw new Error(e.message);
   }
 };
+
+exports.getBookSearch = async (bookSearch, page) => {
+  try {
+    let start = 0;
+    const pageSize = 5;
+
+    if (page <= 0) {
+      page = 1;
+    } else {
+      start = (page - 1) * pageSize;
+    }
+
+    const result = await bookRepository.findBookByBookTitleOrderByPage(
+      bookSearch,
+      start,
+      pageSize,
+    );
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};

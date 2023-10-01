@@ -246,3 +246,22 @@ exports.updatePage = async (bookId, tocId, tocContent) => {
     throw Error(5000);
   }
 };
+
+exports.findBookByBookTitleOrderByPage = async (
+  bookSearch,
+  start,
+  pageSize,
+) => {
+  try {
+    const sql = "SELECT * FROM book WHERE book_title LIKE ? LIMIT ?, ?;";
+    const [result] = await pool.query(sql, [
+      "%" + bookSearch + "%",
+      start,
+      pageSize,
+    ]);
+
+    return result;
+  } catch (e) {
+    throw Error(5000);
+  }
+};
