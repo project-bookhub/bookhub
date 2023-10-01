@@ -217,6 +217,11 @@ exports.getBookSearch = async (req, res, next) => {
     const page = req.query.page;
 
     const result = await bookService.getBookSearch(bookSearch, page);
+
+    res.render("book/search.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+      result,
+    });
   } catch (e) {
     next(e);
   }
