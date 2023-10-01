@@ -13,3 +13,21 @@ exports.findAllBoardOrderByPage = async (start, pageSize) => {
     throw new Error(5000);
   }
 };
+
+exports.insertBoard = async (boardTitle, boardContent, boardWriter) => {
+  try {
+    const sql =
+      "INSERT INTO board(board_writer, board_title, board_content) " +
+      "VALUES(?, ?, ?)";
+
+    const [result] = await pool.query(sql, [
+      boardWriter,
+      boardTitle,
+      boardContent,
+    ]);
+
+    return result.insertId;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};

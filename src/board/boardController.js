@@ -24,3 +24,21 @@ exports.getBoardWrite = (req, res, next) => {
     next(e);
   }
 };
+
+exports.postBoardWrite = async (req, res, next) => {
+  try {
+    const boardTitle = req.body.boardTitle;
+    const boardContent = req.body.boardContent;
+    const boardWriter = req.user.user_uid;
+
+    const insertedId = await boardService.postBoardWrite(
+      boardTitle,
+      boardContent,
+      boardWriter,
+    );
+
+    res.redirect(`/boards/view?boardId=${insertedId}`);
+  } catch (e) {
+    next(e);
+  }
+};
