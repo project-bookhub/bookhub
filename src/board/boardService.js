@@ -1,0 +1,1 @@
+const boardRepository = require("./boardRepository");
