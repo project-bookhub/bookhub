@@ -14,3 +14,13 @@ exports.getBoard = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBoardWrite = (req, res, next) => {
+  try {
+    res.render("board/write.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
