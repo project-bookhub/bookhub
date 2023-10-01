@@ -71,7 +71,9 @@ exports.postReset = async (req, res, next) => {
 };
 
 exports.getAuth = (req, res) => {
-  res.render("user/auth.html");
+  res.render("user/auth.html", {
+    user_id: req.user ? req.user.user_id : undefined,
+  });
 };
 exports.postAuth = async (req, res, next) => {
   try {
