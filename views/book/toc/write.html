@@ -51,37 +51,39 @@
           action="/books/toc/write"
         >
           <div class="flex-direction-column">
-            <div class="flex-direction-row write-book-content-1">
+            <div class="flex-direction-row book-content-1">
               <input
                 type="text"
-                class="input write-book-title"
+                class="input book-title"
                 name="bookTitle"
                 placeholder="제목을 입력해주세요"
               />
               <input
                 type="text"
-                class="input write-book-category"
+                class="input book-category"
                 name="bookCategory"
                 placeholder="카테고리를 입력해주세요"
               />
             </div>
             <textarea
-              class="input write-book-content-2"
+              class="input book-content-2"
               name="bookToc"
               cols="30"
               rows="10"
               placeholder="목차를 입력해주세요"
             ></textarea>
             <textarea
-              class="input write-book-content-3"
+              class="input book-content-3"
               name="bookSummary"
               cols="10"
               rows="10"
               placeholder="요약을 입력해주세요"
             ></textarea>
           </div>
-          <div class="flex-direction-row write-bottom">
-            <button class="main-button" type="submit">작성 완료</button>
+          <div class="flex-direction-row book-bottom">
+            <a class="main-button write-button" type="submit"
+              ><button>작성 완료</button></a
+            >
           </div>
         </form>
       </div>
