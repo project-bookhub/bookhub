@@ -125,6 +125,18 @@ exports.getBookTocView = async (bookId) => {
   }
 };
 
+exports.getBookTocModify = async (bookId) => {
+  try {
+    const result = await bookRepository.findBookById(bookId);
+
+    if (!result) throw new Error(4004);
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 exports.postBookTocModify = async (bookId, bookToc, bookSummary) => {
   try {
     if ((!bookId?.trim() || !bookToc?.trim(), !bookSummary?.trim()))

@@ -200,6 +200,24 @@ exports.findBookAndToc = async (bookId) => {
   }
 };
 
+exports.findBookById = async (bookId) => {
+  try {
+    const sql =
+      "SELECT book_uid, user_id AS book_writer, " +
+      "category_name AS book_category, book_title, book_toc, book_summary " +
+      "FROM book " +
+      "JOIN user ON user_uid = book_writer " +
+      "JOIN category ON category_uid = book_category " +
+      "WHERE book_uid = ?";
+
+    const [[result]] = await pool.query(sql, [bookId]);
+
+    return result;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
 exports.updateBookAndToc = async (bookId, bookToc, bookSummary) => {
   try {
     const sql =
