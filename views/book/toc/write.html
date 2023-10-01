@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>list</title>
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/book.css" />
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/book.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -45,31 +45,35 @@
     <div class="content-wrapper">
       <div class="write-book">
         <div class="bold title">책 구성하기</div>
-        <form method="post" action="/books/toc/write">
+        <form
+          class="flex-direction-column"
+          method="post"
+          action="/books/toc/write"
+        >
           <div class="flex-direction-column">
-            <div class="flex-direction-row">
+            <div class="flex-direction-row write-book-content-1">
               <input
                 type="text"
-                class="input title"
+                class="input write-book-title"
                 name="bookTitle"
                 placeholder="제목을 입력해주세요"
               />
               <input
                 type="text"
-                class="input title"
+                class="input write-book-category"
                 name="bookCategory"
                 placeholder="카테고리를 입력해주세요"
               />
             </div>
             <textarea
-              class="input"
+              class="input write-book-content-2"
               name="bookToc"
               cols="30"
               rows="10"
               placeholder="목차를 입력해주세요"
             ></textarea>
             <textarea
-              class="input"
+              class="input write-book-content-3"
               name="bookSummary"
               cols="10"
               rows="10"
