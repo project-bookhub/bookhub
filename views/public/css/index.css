@@ -36,10 +36,12 @@ input {
   border: none;
 }
 textarea {
-  width: 904px;
+  width: 872px;
   height: auto;
   border: none;
   resize: none;
+  font-size: 24px;
+  padding: 16px;
 }
 
 .input {
