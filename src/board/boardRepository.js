@@ -31,3 +31,28 @@ exports.insertBoard = async (boardTitle, boardContent, boardWriter) => {
     throw new Error(5000);
   }
 };
+
+exports.findBoardById = async (boardId) => {
+  try {
+    const sql = "SELECT * FROM board WHERE board_uid = ?";
+
+    const [[result]] = await pool.query(sql, [boardId]);
+
+    return result;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.updateBoardById = async (boardId, boardTitle, boardContent) => {
+  try {
+    const sql =
+      "UPDATE board SET board_title = ?, board_content = ? WHERE board_uid = ?";
+
+    const [result] = await pool.query(sql, [boardTitle, boardContent, boardId]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};

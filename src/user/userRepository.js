@@ -74,3 +74,15 @@ exports.deleteUserByUserId = async (userId) => {
     throw new Error(5000);
   }
 };
+
+exports.findUserRole = async (userId) => {
+  try {
+    const sql = "SELECT user_role FROM user WHERE user_id = ?";
+
+    const [[result]] = await pool.query(sql, [userId]);
+
+    return result.user_role;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
