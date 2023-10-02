@@ -317,3 +317,15 @@ exports.countAllBook = async () => {
     throw Error(5000);
   }
 };
+
+exports.CountAllSearchBook = async (bookSearch) => {
+  try {
+    const sql = "SELECT COUNT(*) FROM book WHERE book_title LIKE ?";
+
+    const [[result]] = await pool.query(sql, ["%" + bookSearch + "%"]);
+
+    return result["COUNT(*)"];
+  } catch (e) {
+    throw Error(5000);
+  }
+};
