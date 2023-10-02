@@ -85,4 +85,18 @@
       </div>
     </div>
   </body>
+  <script>
+    function boardPageAction() {
+      const inputValue = document.getElementById("board-page-input").value;
+      const newAction = "/boards?page=" + inputValue;
+
+      location.href = newAction;
+    }
+    document
+      .getElementById("board-page-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        boardPageAction();
+      });
+  </script>
 </html>

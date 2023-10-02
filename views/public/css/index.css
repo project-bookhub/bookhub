@@ -73,7 +73,6 @@ textarea:focus {
 .link {
   text-decoration: underline;
   cursor: pointer;
-  margin: 4px 0;
 }
 .left-text {
   text-align: left;
