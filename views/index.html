@@ -46,43 +46,71 @@
       <div class="book-rank">
         <div class="bold title">추천 도서</div>
         <div class="flex-direction-row">
-          <div class="big-book">
-            <div class="big-book-image"></div>
-            <div class="simple-title">
-              {{bookListOrderByLikes[0].book_title}}
+          <a
+            href="/books/view?bookId={{bookListOrderByLikes[0].book_uid}}&tocId={{bookListOrderByLikes[0].toc_uid}}"
+          >
+            <div class="big-book">
+              <div class="big-book-image"></div>
+              <div class="simple-title">
+                {{bookListOrderByLikes[0].book_title}}
+              </div>
+              <div class="simple-summary">
+                {{bookListOrderByLikes[0].book_summary}}
+              </div>
             </div>
-            <div class="simple-summary">
-              {{bookListOrderByLikes[0].book_summary}}
-            </div>
-          </div>
+          </a>
           <div class="flex-direction-column">
             <div class="flex-direction-row">
-              <div class="medium-book">
-                <div class="medium-book-image"></div>
-                <div class="simple-title">
-                  {{bookListOrderByLikes[1].book_title}}
+              <a
+                href="/books/view?bookId={{bookListOrderByLikes[1].book_uid}}&tocId={{bookListOrderByLikes[1].toc_uid}}"
+              >
+                <div class="medium-book">
+                  <div class="medium-book-image"></div>
+                  <div class="simple-title">
+                    {{bookListOrderByLikes[1].book_title}}
+                  </div>
                 </div>
-              </div>
-              <div class="medium-book">
-                <div class="medium-book-image"></div>
-                <div class="simple-title">
-                  {{bookListOrderByLikes[2].book_title}}
+              </a>
+              <a
+                href="/books/view?bookId={{bookListOrderByLikes[2].book_uid}}&tocId={{bookListOrderByLikes[2].toc_uid}}"
+              >
+                <div class="medium-book">
+                  <div class="medium-book-image"></div>
+                  <div class="simple-title">
+                    {{bookListOrderByLikes[2].book_title}}
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
             <div class="flex-direction-row">
-              <div class="small-book">
-                <div class="small-book-image"></div>
-              </div>
-              <div class="small-book">
-                <div class="small-book-image"></div>
-              </div>
-              <div class="small-book">
-                <div class="small-book-image"></div>
-              </div>
-              <div class="small-book">
-                <div class="small-book-image"></div>
-              </div>
+              <a
+                href="/books/view?bookId={{bookListOrderByLikes[3].book_uid}}&tocId={{bookListOrderByLikes[3].toc_uid}}"
+              >
+                <div class="small-book">
+                  <div class="small-book-image"></div>
+                </div>
+              </a>
+              <a
+                href="/books/view?bookId={{bookListOrderByLikes[4].book_uid}}&tocId={{bookListOrderByLikes[4].toc_uid}}"
+              >
+                <div class="small-book">
+                  <div class="small-book-image"></div>
+                </div>
+              </a>
+              <a
+                href="/books/view?bookId={{bookListOrderByLikes[5].book_uid}}&tocId={{bookListOrderByLikes[5].toc_uid}}"
+              >
+                <div class="small-book">
+                  <div class="small-book-image"></div>
+                </div>
+              </a>
+              <a
+                href="/books/view?bookId={{bookListOrderByLikes[6].book_uid}}&tocId={{bookListOrderByLikes[6].toc_uid}}"
+              >
+                <div class="small-book">
+                  <div class="small-book-image"></div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -93,24 +121,48 @@
       <div class="recent-updated">
         <div class="bold title">신간 도서</div>
         <div class="flex-direction-row">
-          <div class="small-book">
-            <div class="small-book-image"></div>
-          </div>
-          <div class="small-book">
-            <div class="small-book-image"></div>
-          </div>
-          <div class="small-book">
-            <div class="small-book-image"></div>
-          </div>
-          <div class="small-book">
-            <div class="small-book-image"></div>
-          </div>
-          <div class="small-book">
-            <div class="small-book-image"></div>
-          </div>
-          <div class="small-book">
-            <div class="small-book-image"></div>
-          </div>
+          <a
+            href="/books/view?bookId={{bookListOrderByDate[0].book_uid}}&tocId={{bookListOrderByDate[0].toc_uid}}"
+          >
+            <div class="small-book">
+              <div class="small-book-image"></div>
+            </div>
+          </a>
+          <a
+            href="/books/view?bookId={{bookListOrderByDate[1].book_uid}}&tocId={{bookListOrderByDate[1].toc_uid}}"
+          >
+            <div class="small-book">
+              <div class="small-book-image"></div>
+            </div>
+          </a>
+          <a
+            href="/books/view?bookId={{bookListOrderByDate[2].book_uid}}&tocId={{bookListOrderByDate[2].toc_uid}}"
+          >
+            <div class="small-book">
+              <div class="small-book-image"></div>
+            </div>
+          </a>
+          <a
+            href="/books/view?bookId={{bookListOrderByDate[3].book_uid}}&tocId={{bookListOrderByDate[3].toc_uid}}"
+          >
+            <div class="small-book">
+              <div class="small-book-image"></div>
+            </div>
+          </a>
+          <a
+            href="/books/view?bookId={{bookListOrderByDate[4].book_uid}}&tocId={{bookListOrderByDate[4].toc_uid}}"
+          >
+            <div class="small-book">
+              <div class="small-book-image"></div>
+            </div>
+          </a>
+          <a
+            href="/books/view?bookId={{bookListOrderByDate[5].book_uid}}&tocId={{bookListOrderByDate[5].toc_uid}}"
+          >
+            <div class="small-book">
+              <div class="small-book-image"></div>
+            </div>
+          </a>
         </div>
         <a href="/books/list?page=1" class="sub-button show-more"
           >모든 도서 보기</a
