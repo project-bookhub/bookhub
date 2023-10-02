@@ -29,8 +29,14 @@ exports.getBookListAndCategoryCount = async (page, category) => {
     );
     const paginationObject = {};
 
+    let allCount = 0;
     /** 모든 책 갯수: 페이지 네이션 계산용 */
-    const allCount = await bookRepository.countAllBook();
+    if (category === undefined) {
+      allCount = await bookRepository.countAllBook();
+    } else {
+      /** 카테고리에 해당하는 책 갯수: 페이지 네이션 계산용 */
+      allCount = await bookRepository.countAllBookByCategory(category);
+    }
 
     paginationObject.currentPage = page;
     paginationObject.paginationArray = pagination.calculatePagination(

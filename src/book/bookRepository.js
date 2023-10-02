@@ -39,13 +39,15 @@ exports.findBookOrderByPage = async (start, pageSize, category) => {
   try {
     if (category === undefined) {
       const sql =
-        "SELECT " +
-        "book.*, " +
-        "user.user_id AS book_writer, " +
-        "category.category_name AS book_category " +
+        "SELECT book.*, " +
+        "user_id AS book_writer, " +
+        "category_name AS book_category, " +
+        "MIN(toc_uid) AS first_toc_uid " +
         "FROM book " +
-        "JOIN user ON book.book_writer = user.user_uid " +
-        "JOIN category ON book.book_category = category.category_uid " +
+        "JOIN user ON book_writer = user_uid " +
+        "JOIN category ON book_category = category_uid " +
+        "JOIN toc ON book_uid = toc_book " +
+        "GROUP BY book_uid " +
         "ORDER BY book_created_at DESC " +
         `LIMIT ${start}, ${pageSize};`;
 
@@ -53,14 +55,16 @@ exports.findBookOrderByPage = async (start, pageSize, category) => {
       return result;
     } else {
       const sql =
-        "SELECT " +
-        "book.*, " +
-        "user.user_id AS book_writer, " +
-        "category.category_name AS book_category " +
+        "SELECT book.*, " +
+        "user_id AS book_writer, " +
+        "category_name AS book_category, " +
+        "MIN(toc_uid) AS first_toc_uid " +
         "FROM book " +
-        "JOIN user ON book.book_writer = user.user_uid " +
-        "JOIN category ON book.book_category = category.category_uid " +
-        "WHERE category.category_name = ? " +
+        "JOIN user ON book_writer = user_uid " +
+        "JOIN category ON book_category = category_uid " +
+        "JOIN toc ON book_uid = toc_book " +
+        "WHERE category_name = ? " +
+        "GROUP BY book_uid " +
         "ORDER BY book_created_at DESC " +
         `LIMIT ${start}, ${pageSize};`;
 
@@ -311,6 +315,19 @@ exports.countAllBook = async () => {
     const sql = "SELECT COUNT(*) FROM book";
 
     const [[result]] = await pool.query(sql);
+
+    return result["COUNT(*)"];
+  } catch (e) {
+    throw Error(5000);
+  }
+};
+
+exports.countAllBookByCategory = async (category) => {
+  try {
+    const sql =
+      "SELECT COUNT(*) FROM book JOIN category ON category_uid = book_category WHERE category_name = ?";
+
+    const [[result]] = await pool.query(sql, [category]);
 
     return result["COUNT(*)"];
   } catch (e) {
