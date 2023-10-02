@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>board</title>
     <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/book.css" />
     <link rel="stylesheet" href="../css/board.css" />
     <link
       rel="stylesheet"
@@ -45,34 +44,34 @@
     <div class="content-wrapper">
       <div class="bold title">공지사항</div>
       <div class="flex-direction-column">
+        {% for board in result %}
         <div class="flex-direction-column">
           <div class="flex-direction-row">
-            <div class="bold title">{{board_title}}</div>
+            <div class="bold title">{{board.board_title}}</div>
           </div>
           <div class="flex-direction-row">
-            <div class="bold title">{{board_writer}}</div>
+            <div class="bold title">{{board.board_writer}}</div>
             <div class="flex-direction-row">
-              <div>{{board_created_at}}</div>
-              <div>{{board_views}}</div>
+              <div>{{board.board_created_at}}</div>
+              <div>{{board.board_views}}</div>
             </div>
           </div>
         </div>
+        {% endfor %}
+      </div>
+      <div class="flex-direction-row list-bottom">
+        <div class="confirm-button"></div>
+        <div class="page-wrapper">
+          <form id="board-page-form" method="get" action="/boards?page=1">
+            <input
+              id="board-page-input"
+              class="page input"
+              placeholder="이동할 페이지 입력"
+            />
+          </form>
+        </div>
+        <a href="/boards/write" class="main-button confirm-button">글쓰기</a>
       </div>
     </div>
   </body>
-  <script>
-    function searchAction() {
-      const inputValue = document.getElementById("search-input").value;
-      const newAction = "/books/search?bookSearch=" + inputValue + "&page=1";
-
-      location.href = newAction;
-    }
-
-    document
-      .getElementById("search-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        searchAction();
-      });
-  </script>
 </html>

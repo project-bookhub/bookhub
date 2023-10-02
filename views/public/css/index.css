@@ -53,6 +53,14 @@ textarea:focus {
   border: #ccc 1px solid;
   border-radius: 16px;
 }
+.page {
+  width: 200px;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 0;
+  padding: 8px;
+}
+
 .material-symbols-outlined {
   cursor: pointer;
 }
@@ -238,4 +246,21 @@ textarea:focus {
   width: 160px;
   height: 56px;
   border-radius: 28px;
+}
+
+.bottom-wrapper {
+  width: 904px;
+  justify-content: right;
+  margin-bottom: 64px;
+}
+div.flex-direction-row.bottom-wrapper {
+  width: 904px;
+  justify-content: right;
+  margin-bottom: 64px;
+}
+
+.confirm-button {
+  margin: 0;
+  width: 120px;
+  height: 32px;
 }
