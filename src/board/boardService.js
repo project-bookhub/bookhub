@@ -1,4 +1,5 @@
 const boardRepository = require("./boardRepository");
+const userRepository = require("../user/userRepository");
 
 exports.getBoard = async (page) => {
   try {
@@ -43,6 +44,24 @@ exports.getBoardModify = async (boardId) => {
     const result = await boardRepository.findBoardById(boardId);
 
     return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.postBoardModify = async (boardId, boardTitle, boardContent, userId) => {
+  try {
+    const userRole = await userRepository.findUserRole(userId);
+
+    if (userRole < 2) throw new Error(4006);
+
+    const affectedRow = await boardRepository.updateBoardById(
+      boardId,
+      boardTitle,
+      boardContent,
+    );
+
+    if (affectedRow === 0) throw new Error(4005);
   } catch (e) {
     throw new Error(e.message);
   }

@@ -56,3 +56,25 @@ exports.getBoardModify = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.postBoardModify = async (req, res, next) => {
+  try {
+    // 관리자 권한 체크
+    const userId = req.user.user_id;
+
+    const boardId = req.body.boardId;
+    const boardTitle = req.body.boardTitle;
+    const boardContent = req.body.boardContent;
+
+    await boardService.postBoardModify(
+      boardId,
+      boardTitle,
+      boardContent,
+      userId,
+    );
+
+    res.redirect(`/boards/view?boardId=${boardId}`);
+  } catch (e) {
+    next(e);
+  }
+};
