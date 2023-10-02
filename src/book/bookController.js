@@ -26,8 +26,9 @@ exports.getBookListAndCategoryCount = async (req, res, next) => {
 
     res.render("book/list.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
-      bookListOrderByPage: result[0],
-      bookCategoryCount: result[1],
+      pagination: result[0],
+      bookListOrderByPage: result[1],
+      bookCategoryCount: result[2],
     });
   } catch (e) {
     next(e);
@@ -193,8 +194,8 @@ exports.getBookPageModify = async (req, res, next) => {
 
 exports.postBookPageModify = async (req, res, next) => {
   try {
-    const bookId = req.body.bookId;
-    const tocId = req.body.tocId;
+    const bookId = req.query.bookId;
+    const tocId = req.query.tocId;
     const tocContent = req.body.tocContent;
 
     const result = await bookService.postBookPageModify(
