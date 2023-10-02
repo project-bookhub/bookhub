@@ -37,6 +37,13 @@ exports.postSignUp = async (req, res, next) => {
     const userPw = req.body.userPw;
     const userNickname = req.body.userNickname;
 
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([
+      userId,
+      userPw,
+      userNickname,
+    ]);
+    if (!isDataCheck) throw new Error(4005);
+
     await userService.postSignUp(userId, userPw, userNickname);
 
     res.redirect("/");
