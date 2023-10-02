@@ -164,7 +164,7 @@ exports.postBookTocModify = async (bookId, bookToc, bookSummary) => {
     const deleteResult = await bookRepository.deleteTocById(bookId);
     if (deleteResult === 0) throw new Error(4004);
 
-    const tocArr = bookToc.split("\\r\\n");
+    const tocArr = bookToc.split("\r\n");
 
     const updatedToc = await bookRepository.insertToc(bookId, tocArr);
     if (updatedToc === 0) throw new Error(4004);
