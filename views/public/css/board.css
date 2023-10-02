@@ -1,7 +1,11 @@
-.board-title {
+input.board-title {
   width: 904px;
   font-size: 24px;
   padding: 16px;
+}
+div.board-title {
+  width: 904px;
+  font-size: 24px;
 }
 
 .board-big-title {
