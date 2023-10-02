@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{book_title}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <script defer src="../js/index.js"></script>
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="top-left bold simple-title">{{book_title}}book_title</div>
+      <div class="top-right">
+        <a href="/" class="close"
+          ><span class="material-symbols-outlined"> close </span></a
+        >
+      </div>
+    </div>
+    <div class="flex-direction-column">
+      <div class="flex-direction-row max-width max-height">
+        <div class="flex-direction-column toc-list">
+          <div class="bold simple-title">목차</div>
+          {% for toc in book_toc %}
+          <a href="/books/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}">
+            <div class="div-button">{{toc.toc_title}}</div>
+          </a>
+          {% endfor %}
+        </div>
+        <div class="flex-direction-column book-content-area">
+          <div class="bold simple-title">{{toc_title}}toc_title</div>
+          <div class="book-content">{{toc_content}}내용</div>
+        </div>
+      </div>
+      <div class="flex-direction-row max-width">
+        <a class="main-button confirm-button">추천하기</a>
+        <div class="flex-direction-row">
+          <a class="main-button confirm-button">책 수정하기</a>
+          <a class="main-button confirm-button">삭제하기</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
