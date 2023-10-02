@@ -18,6 +18,7 @@ exports.getBoard = async (req, res, next) => {
 
 exports.getBoardWrite = (req, res, next) => {
   try {
+    if (!req.user) throw new Error(4008);
     res.render("board/write.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
     });

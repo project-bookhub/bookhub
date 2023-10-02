@@ -37,6 +37,13 @@ exports.postSignUp = async (req, res, next) => {
     const userPw = req.body.userPw;
     const userNickname = req.body.userNickname;
 
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([
+      userId,
+      userPw,
+      userNickname,
+    ]);
+    if (!isDataCheck) throw new Error(4005);
+
     await userService.postSignUp(userId, userPw, userNickname);
 
     res.redirect("/");
@@ -78,16 +85,23 @@ exports.getAuth = (req, res) => {
 };
 exports.postAuth = async (req, res, next) => {
   try {
+    const userUid = req.user.user_uid;
     const userId = req.user.user_id;
     const userPw = req.body.userPw;
-    const isDataCheck = dataCheck.checkNullUndefinedSpace([userId, userPw]);
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([
+      userUid,
+      userId,
+      userPw,
+    ]);
     if (!isDataCheck) throw new Error(4005);
 
-    const result = await userService.postAuth(userId, userPw);
+    const bookWriterCount = await userService.postAuth(userUid, userId, userPw);
 
-    if (!result) return res.redirect("/users/auth");
-
-    res.render("user/info.html");
+    res.render("user/info.html", {
+      user_nickname: req.user.user_nickname,
+      user_created_at: req.user.user_created_at,
+      book_writer_count: bookWriterCount,
+    });
   } catch (e) {
     next(e);
   }

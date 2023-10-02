@@ -74,6 +74,8 @@ exports.getBookDelete = async (req, res, next) => {
 
 exports.getBookTocWrite = (req, res, next) => {
   try {
+    if (!req.user) throw new Error(4008);
+
     res.render("book/toc/write.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
     });

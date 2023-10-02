@@ -3,6 +3,7 @@ exports.checkNullUndefinedSpace = (dataArray) => {
 
   let isDataCheck = false;
   dataArray.every((item) => {
+    if (typeof item === "number") return true;
     isDataCheck = !!item?.trim();
     return isDataCheck;
   });

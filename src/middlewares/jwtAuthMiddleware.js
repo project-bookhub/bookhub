@@ -14,6 +14,7 @@ exports.auth = async (req, res, next) => {
     const payload = jwt.verify(authorization, process.env["secret-key"]);
 
     const user = await userService.findOneByUserId(payload.userId);
+
     user["user_pw"] = null;
 
     req.user = user;

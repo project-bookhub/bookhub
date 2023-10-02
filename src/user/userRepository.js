@@ -13,12 +13,13 @@ exports.insertOneByUserInfo = async (userId, userPw, userNickname) => {
   }
 };
 
-exports.fineOne = async (field, value) => {
+exports.findOne = async (field, value) => {
   try {
-    const sql = `SELECT *
+    const sql = `SELECT *, DATE_FORMAT(user_created_at, '%Y-%m-%d') AS user_created_at
                      FROM user
                      WHERE ${field} = ?`;
     const [[result]] = await pool.query(sql, [value]);
+
     return result;
   } catch (err) {
     throw new Error(5000);

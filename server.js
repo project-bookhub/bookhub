@@ -29,6 +29,8 @@ app.use((err, req, res, next) => {
   if (err.message === "4006") res.status(400).send("권한이 없는 사용자입니다.");
   if (err.message === "4007")
     res.status(400).send("이미 존재하는 사용자입니다.");
+  if (err.message === "4008") res.status(400).send("로그인 후 이용해 주세요.");
+  if (err.message === "4020") res.redirect("/users/auth");
   if (err === "4444") res.redirect("/");
 });
 

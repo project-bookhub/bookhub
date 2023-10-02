@@ -4,6 +4,7 @@ const JWT = require("../lib/jwt");
 const { findOneByUserNicknameAndUserId } = require("./userRepository");
 const { getExit } = require("./userController");
 const jwt = new JWT();
+const bookRepository = require("../book/bookRepository");
 
 exports.postLogin = async (userId, userPw) => {
   try {
@@ -31,7 +32,7 @@ exports.postSignUp = async (userId, userPw, userNickname) => {
       .update(userPw)
       .digest("base64");
 
-    const userDuplicationCheck = await userRepository.fineOne(
+    const userDuplicationCheck = await userRepository.findOne(
       "user_id",
       userId,
     );
@@ -50,7 +51,7 @@ exports.postSignUp = async (userId, userPw, userNickname) => {
 
 exports.findOneByUserId = async (userId) => {
   try {
-    const result = await userRepository.fineOne("user_id", userId);
+    const result = await userRepository.findOne("user_id", userId);
     return result;
   } catch (e) {
     throw new Error(e.message);
@@ -76,7 +77,7 @@ exports.postReset = async (userNickname, userId, targetPw) => {
   }
 };
 
-exports.postAuth = async (userId, userPw) => {
+exports.postAuth = async (userUid, userId, userPw) => {
   try {
     const hashedUserPw = Crypto.createHash("sha512")
       .update(userPw)
@@ -86,8 +87,11 @@ exports.postAuth = async (userId, userPw) => {
       userId,
       hashedUserPw,
     );
+    if (!result) throw new Error(4020);
 
-    return result;
+    const bookWriterCount = await bookRepository.countAllBookByWriter(userUid);
+
+    return bookWriterCount;
   } catch (e) {
     throw new Error(e.message);
   }
