@@ -112,6 +112,7 @@ exports.postInfo = async (userId, targetPw) => {
 
 exports.getExit = async (userId) => {
   try {
+    // 사용자 정보 삭제
     const result = await userRepository.deleteUserByUserId(userId);
 
     return result;
