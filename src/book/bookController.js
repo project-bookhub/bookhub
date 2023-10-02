@@ -221,6 +221,7 @@ exports.getBookSearch = async (req, res, next) => {
 
     res.render("book/search.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
+      book_search: bookSearch,
       result: result[1],
       pagination: result[0],
     });
