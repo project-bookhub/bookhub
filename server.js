@@ -27,6 +27,8 @@ app.use((err, req, res, next) => {
   if (err.message === "4004") res.status(400).send("해당 uid가 존재하지 않음.");
   if (err.message === "4005") res.status(400).send("입력 값을 확인해 주세요.");
   if (err.message === "4006") res.status(400).send("권한이 없는 사용자입니다.");
+  if (err.message === "4007")
+    res.status(400).send("이미 존재하는 사용자입니다.");
 });
 
 app.listen(port, () => {
