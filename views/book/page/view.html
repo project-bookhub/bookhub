@@ -43,22 +43,20 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="book-wrapper">
-        <div class="bold title">{{book_title}}</div>
-        <div class="flex-direction-column">
-          <div class="flex-direction-row">
-            <div class="book-title book-content-1">{{toc_title}}</div>
-            <div class="book-category book-content-1"></div>
-          </div>
-          <div class="book-content-2">{{toc_content}}</div>
+      <div class="bold title">{{book_title}}</div>
+      <div class="flex-direction-column">
+        <div class="flex-direction-row">
+          <div class="book-title book-content-1">{{toc_title}}</div>
+          <div class="book-category book-content-1"></div>
         </div>
-        <div class="flex-direction-row bottom-wrapper">
-          <a
-            href="/books/page/modify?bookId={{book_uid}}&tocId={{toc_uid}}"
-            class="main-button confirm-button"
-            >내용 수정하기</a
-          >
-        </div>
+        <div class="book-content-2">{{toc_content}}</div>
+      </div>
+      <div class="flex-direction-row bottom-wrapper">
+        <a
+          href="/books/page/modify?bookId={{book_uid}}&tocId={{toc_uid}}"
+          class="main-button confirm-button"
+          >내용 수정하기</a
+        >
       </div>
     </div>
   </body>

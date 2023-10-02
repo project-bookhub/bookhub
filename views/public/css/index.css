@@ -208,6 +208,15 @@ textarea:focus {
   width: 904px;
   margin: 0 auto;
 }
+.content-wrapper .title {
+  text-align: left;
+  justify-content: space-around;
+}
+.content-wrapper .list-bottom {
+  justify-content: space-around;
+  align-items: center;
+  margin: 64px 0;
+}
 .content-wrapper .book-rank {
   display: flex;
   flex-direction: column;

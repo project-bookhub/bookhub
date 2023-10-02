@@ -43,35 +43,33 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="book-wrapper">
-        <div class="bold title">내용 수정하기</div>
-        <form
-          class="flex-direction-column"
-          method="post"
-          action="/books/toc/modify?bookId={{book_uid}}&tocId={{toc_uid}}"
-        >
-          <div class="flex-direction-column">
-            <div class="flex-direction-row">
-              <div class="book-title book-content-1">{{toc_title}}</div>
-              <div class="book-category book-content-1"></div>
-            </div>
-            <textarea
-              class="input book-content-2"
-              name="bookToc"
-              cols="30"
-              rows="10"
-              placeholder="내용을 입력해주세요"
-            >
+      <div class="bold title">내용 수정하기</div>
+      <form
+        class="flex-direction-column"
+        method="post"
+        action="/books/toc/modify?bookId={{book_uid}}&tocId={{toc_uid}}"
+      >
+        <div class="flex-direction-column">
+          <div class="flex-direction-row">
+            <div class="book-title book-content-1">{{toc_title}}</div>
+            <div class="book-category book-content-1"></div>
+          </div>
+          <textarea
+            class="input book-content-2"
+            name="bookToc"
+            cols="30"
+            rows="10"
+            placeholder="내용을 입력해주세요"
+          >
 {{toc_content}}</textarea
-            >
-          </div>
-          <div class="flex-direction-row bottom-wrapper">
-            <a class="main-button confirm-button" type="submit"
-              ><button>수정완료</button></a
-            >
-          </div>
-        </form>
-      </div>
+          >
+        </div>
+        <div class="flex-direction-row bottom-wrapper">
+          <a class="main-button confirm-button" type="submit"
+            ><button>수정완료</button></a
+          >
+        </div>
+      </form>
     </div>
   </body>
 </html>

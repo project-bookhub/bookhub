@@ -43,52 +43,50 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="book-wrapper">
-        <div class="bold title">모든 도서</div>
-        <div class="flex-direction-row tags">
-          {%for tag in bookCategoryCount%}
-          <div class="tag">{{tag.category_name}} {{tag.category_count}}</div>
-          {% endfor %}
-        </div>
-        <div class="flex-direction-column">
-          {%for book in bookListOrderByPage%}
-          <div class="flex-direction-row content-wrapper">
-            <div class="big-book-image"></div>
-            <div class="flex-direction-column">
-              <div class="flex-direction-row book-content-wrapper">
-                <div class="title">{{book.book_title}}</div>
-                <div class="title">{{book.book_category}}</div>
-              </div>
-              <div class="flex-direction-row book-content-wrapper">
-                {{book.book_summary}}
-              </div>
-              <div class="flex-direction-row book-content-wrapper">
-                <div class="simple-title">저자: {{book.book_writer}}</div>
-                <div class="flex-direction-row">
-                  <div class="simple-title">추천수: {{book.book_likes}}</div>
-                  <div class="simple-title">조회수: {{book.book_views}}</div>
-                </div>
+      <div class="bold title">모든 도서</div>
+      <div class="flex-direction-row tags">
+        {%for tag in bookCategoryCount%}
+        <div class="tag">{{tag.category_name}} {{tag.category_count}}</div>
+        {% endfor %}
+      </div>
+      <div class="flex-direction-column">
+        {%for book in bookListOrderByPage%}
+        <div class="flex-direction-row content-wrapper">
+          <div class="big-book-image"></div>
+          <div class="flex-direction-column">
+            <div class="flex-direction-row book-content-wrapper">
+              <div class="title">{{book.book_title}}</div>
+              <div class="title">{{book.book_category}}</div>
+            </div>
+            <div class="flex-direction-row book-content-wrapper">
+              {{book.book_summary}}
+            </div>
+            <div class="flex-direction-row book-content-wrapper">
+              <div class="simple-title">저자: {{book.book_writer}}</div>
+              <div class="flex-direction-row">
+                <div class="simple-title">추천수: {{book.book_likes}}</div>
+                <div class="simple-title">조회수: {{book.book_views}}</div>
               </div>
             </div>
           </div>
-          <div class="sep-line"></div>
-          {% endfor %}
         </div>
-        <div class="flex-direction-row list-bottom">
-          <div class="new-book"></div>
-          <div class="page-wrapper">
-            <form id="page-form" method="get" action="/books/list?page=1">
-              <input
-                id="page-input"
-                class="page input"
-                placeholder="이동할 페이지 입력"
-              />
-            </form>
-          </div>
-          <a href="/books/toc/write" class="main-button confirm-button"
-            >새 책 쓰기</a
-          >
+        <div class="sep-line"></div>
+        {% endfor %}
+      </div>
+      <div class="flex-direction-row list-bottom">
+        <div class="new-book"></div>
+        <div class="page-wrapper">
+          <form id="page-form" method="get" action="/books/list?page=1">
+            <input
+              id="page-input"
+              class="page input"
+              placeholder="이동할 페이지 입력"
+            />
+          </form>
         </div>
+        <a href="/books/toc/write" class="main-button confirm-button"
+          >새 책 쓰기</a
+        >
       </div>
     </div>
   </body>
