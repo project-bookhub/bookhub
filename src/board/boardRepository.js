@@ -57,3 +57,15 @@ exports.updateBoardById = async (boardId, boardTitle, boardContent) => {
     throw new Error(5000);
   }
 };
+
+exports.countAllBoard = async () => {
+  try {
+    const sql = "SELECT COUNT(*) FROM board";
+
+    const [[result]] = await pool.query(sql);
+
+    return result["COUNT(*)"];
+  } catch (e) {
+    throw Error(5000);
+  }
+};
