@@ -236,3 +236,32 @@ div.flex-direction-row.bottom-wrapper {
   width: 904px;
   height: 128px;
 }
+
+.max-width {
+  width: 100vw;
+}
+.max-height {
+  height: 80vh;
+}
+
+.toc-list {
+  flex: 1;
+}
+
+.div-button {
+  min-width: 30vw;
+  min-height: 64px;
+}
+
+.book-content-area {
+  flex: 2;
+}
+
+.book-content-area .book-content {
+  min-width: 60vw;
+  text-align: left;
+}
+
+.max-width .flex-direction-column {
+  justify-content: start;
+}
