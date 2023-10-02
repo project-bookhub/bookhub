@@ -139,7 +139,7 @@ exports.getBookTocModify = async (req, res, next) => {
 
 exports.postBookTocModify = async (req, res, next) => {
   try {
-    const bookId = req.body.bookId;
+    const bookId = req.query.bookId;
     const bookToc = req.body.bookToc;
     const bookSummary = req.body.bookSummary;
 
