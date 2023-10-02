@@ -182,7 +182,7 @@ exports.getBookPageModify = async (req, res, next) => {
 
     if (!result) throw new Error(4005);
 
-    res.render("book/page/view.html", {
+    res.render("book/page/modify.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
       ...result,
     });
