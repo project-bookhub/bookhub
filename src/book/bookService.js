@@ -158,7 +158,7 @@ exports.getBookTocModify = async (bookId) => {
 
 exports.postBookTocModify = async (bookId, bookToc, bookSummary) => {
   try {
-    if ((!bookId?.trim() || !bookToc?.trim(), !bookSummary?.trim()))
+    if (!bookId?.trim() || !bookToc?.trim() || !bookSummary?.trim())
       throw new Error(4005);
 
     const updatedBook = await bookRepository.updateBookAndToc(

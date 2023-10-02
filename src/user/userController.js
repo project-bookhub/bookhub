@@ -1,4 +1,5 @@
 const userService = require("./userService");
+const dataCheck = require("../lib/dataCheck");
 
 exports.getLogin = (req, res) => {
   res.render("user/login.html");
@@ -79,10 +80,12 @@ exports.postAuth = async (req, res, next) => {
   try {
     const userId = req.user.user_id;
     const userPw = req.body.userPw;
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([userId, userPw]);
+    if (!isDataCheck) throw new Error(4005);
 
     const result = await userService.postAuth(userId, userPw);
 
-    if (!result) res.redirect("/users/auth");
+    if (!result) return res.redirect("/users/auth");
 
     res.render("user/info.html");
   } catch (e) {
