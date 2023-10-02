@@ -193,8 +193,8 @@ exports.getBookPageModify = async (req, res, next) => {
 
 exports.postBookPageModify = async (req, res, next) => {
   try {
-    const bookId = req.body.bookId;
-    const tocId = req.body.tocId;
+    const bookId = req.query.bookId;
+    const tocId = req.query.tocId;
     const tocContent = req.body.tocContent;
 
     const result = await bookService.postBookPageModify(
