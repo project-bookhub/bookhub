@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내용 수정하기</title>
+    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/book.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+  </head>
+  <body>
+    <div class="top-wrapper">
+      <div class="top-left">
+        <a href="/"><div class="logo">BookHub</div></a>
+        <div class="message">
+          {%if user_nickname%} {{user_nickname}}님, 환영합니다! {%else%}
+          로그인이 필요합니다. {%endif%}
+        </div>
+      </div>
+      <div class="top-right">
+        <a href="/boards" class="board">공지사항</a>
+        <div class="input search">
+          <form id="search-form" method="get" action="/search">
+            <input id="search-input" type="text" placeholder="클릭해서 검색" />
+            <button type="submit">
+              <span class="material-symbols-outlined"> search </span>
+            </button>
+          </form>
+        </div>
+        {%if user_nickname%}
+        <a href="/users/auth"
+          ><span class="material-symbols-outlined"> person </span></a
+        >
+        {%else%}
+        <a href="/users/login"
+          ><span class="material-symbols-outlined"> person </span></a
+        >
+        {%endif%}
+      </div>
+    </div>
+    <div class="content-wrapper">
+      <div class="modify-book">
+        <div class="bold title">내용 수정하기</div>
+        <form
+          class="flex-direction-column"
+          method="post"
+          action="/books/toc/modify?bookId={{book_uid}}&tocId={{toc_uid}}"
+        >
+          <div class="flex-direction-column">
+            <div class="book-title book-content-1">{{toc_title}}</div>
+            <textarea
+              class="input book-content-2"
+              name="bookToc"
+              cols="30"
+              rows="10"
+              placeholder="내용을 입력해주세요"
+            >
+{{toc_content}}</textarea
+            >
+          </div>
+          <div class="flex-direction-row bottom-wrapper">
+            <a class="main-button confirm-button" type="submit"
+              ><button>수정완료</button></a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    function searchAction() {
+      const inputValue = document.getElementById("search-input").value;
+      const newAction = "/books/search?bookSearch=" + inputValue + "&page=1";
+
+      location.href = newAction;
+    }
+
+    document
+      .getElementById("search-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        searchAction();
+      });
+  </script>
+</html>
