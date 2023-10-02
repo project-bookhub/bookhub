@@ -13,11 +13,6 @@
   border-radius: 0;
   padding: 8px;
 }
-.new-book {
-  margin: 0;
-  width: 120px;
-  height: 32px;
-}
 .write-button {
   margin: 0;
   width: 120px;
@@ -45,11 +40,14 @@
   height: 128px;
 }
 
-.flex-direction-column .book-bottom {
+.bottom-wrapper {
   width: 904px;
   justify-content: right;
+  margin-bottom: 64px;
 }
 
-.write-button {
-  margin-bottom: 64px;
+.confirm-button {
+  margin: 0;
+  width: 120px;
+  height: 32px;
 }
