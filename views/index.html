@@ -48,8 +48,10 @@
         <div class="flex-direction-row">
           <div class="big-book">
             <div class="big-book-image"></div>
-            <div class="book-title">{{bookListOrderByLikes[0].book_title}}</div>
-            <div class="book-summary">
+            <div class="simple-title">
+              {{bookListOrderByLikes[0].book_title}}
+            </div>
+            <div class="simple-summary">
               {{bookListOrderByLikes[0].book_summary}}
             </div>
           </div>
@@ -57,13 +59,13 @@
             <div class="flex-direction-row">
               <div class="medium-book">
                 <div class="medium-book-image"></div>
-                <div class="book-title">
+                <div class="simple-title">
                   {{bookListOrderByLikes[1].book_title}}
                 </div>
               </div>
               <div class="medium-book">
                 <div class="medium-book-image"></div>
-                <div class="book-title">
+                <div class="simple-title">
                   {{bookListOrderByLikes[2].book_title}}
                 </div>
               </div>
@@ -116,19 +118,4 @@
       </div>
     </div>
   </body>
-  <script>
-    function searchAction() {
-      const inputValue = document.getElementById("search-input").value;
-      const newAction = "/books/search?bookSearch=" + inputValue + "&page=1";
-
-      location.href = newAction;
-    }
-
-    document
-      .getElementById("search-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        searchAction();
-      });
-  </script>
 </html>

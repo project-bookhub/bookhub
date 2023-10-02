@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <script defer src="../../js/index.js"></script>
   </head>
   <body>
     <div class="top-wrapper">
@@ -42,18 +43,19 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="read-book">
-        <div class="flex-direction-row">
-          <div class="bold title">{{book_title}}</div>
-          <div class="bold title">{{book_category}}</div>
+      <div class="book-wrapper">
+        <div class="flex-direction-row title">
+          <div class="bold book-title">{{book_title}}</div>
+          <div class="bold book-category">{{book_category}}</div>
         </div>
         <div class="flex-direction-column">
           <div class="book-content-1">목차</div>
-          <div class="book-content-2">
+          <div class="flex-direction-column book-content-2">
             {% for toc in book_toc %}
-            <div>
+            <div class="flex-direction-row">
               <a
                 href="/books/page/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}"
+                class="link"
               >
                 {{ toc.toc_title }}
               </a>
@@ -78,19 +80,4 @@
       </div>
     </div>
   </body>
-  <script>
-    function searchAction() {
-      const inputValue = document.getElementById("search-input").value;
-      const newAction = "/books/search?bookSearch=" + inputValue + "&page=1";
-
-      location.href = newAction;
-    }
-
-    document
-      .getElementById("search-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        searchAction();
-      });
-  </script>
 </html>

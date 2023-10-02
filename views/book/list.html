@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <script defer src="../js/index.js"></script>
   </head>
   <body>
     <div class="top-wrapper">
@@ -42,7 +43,7 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="all-books">
+      <div class="book-wrapper">
         <div class="bold title">모든 도서</div>
         <div class="flex-direction-row tags">
           {%for tag in bookCategoryCount%}
@@ -51,23 +52,26 @@
         </div>
         <div class="flex-direction-column">
           {%for book in bookListOrderByPage%}
-          <div class="flex-direction-row">
+          <div class="flex-direction-row content-wrapper">
             <div class="big-book-image"></div>
             <div class="flex-direction-column">
-              <div class="flex-direction-row">
-                <div>{{book.book_title}}</div>
-                <div>{{book.book_category}}</div>
+              <div class="flex-direction-row book-content-wrapper">
+                <div class="title">{{book.book_title}}</div>
+                <div class="title">{{book.book_category}}</div>
               </div>
-              <div class="flex-direction-row">{{book.book_summary}}</div>
-              <div class="flex-direction-row">
-                <div>{{book.book_writer}}</div>
+              <div class="flex-direction-row book-content-wrapper">
+                {{book.book_summary}}
+              </div>
+              <div class="flex-direction-row book-content-wrapper">
+                <div class="simple-title">저자: {{book.book_writer}}</div>
                 <div class="flex-direction-row">
-                  <div>{{book.book_likes}}</div>
-                  <div>{{book.book_views}}</div>
+                  <div class="simple-title">추천수: {{book.book_likes}}</div>
+                  <div class="simple-title">조회수: {{book.book_views}}</div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="sep-line"></div>
           {% endfor %}
         </div>
         <div class="flex-direction-row list-bottom">
@@ -88,31 +92,4 @@
       </div>
     </div>
   </body>
-  <script>
-    function searchAction() {
-      const inputValue = document.getElementById("search-input").value;
-      const newAction = "/books/search?bookSearch=" + inputValue + "&page=1";
-
-      location.href = newAction;
-    }
-    function pageAction() {
-      const inputValue = document.getElementById("page-input").value;
-      const newAction = "/books/list?page=" + inputValue;
-
-      location.href = newAction;
-    }
-
-    document
-      .getElementById("search-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        searchAction();
-      });
-    document
-      .getElementById("page-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        pageAction();
-      });
-  </script>
 </html>

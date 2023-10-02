@@ -5,7 +5,7 @@ body {
   font-size: 16px;
   color: #333;
   text-align: center;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 a {
   text-decoration: none;
@@ -68,6 +68,21 @@ textarea:focus {
   cursor: pointer;
   margin: 4px 0;
 }
+.left-text {
+  text-align: left;
+}
+.sep-line {
+  width: 904px;
+  height: 2px;
+  background-color: #eee;
+}
+
+.book-content-wrapper {
+  width: 552px;
+}
+.book-content-wrapper .title {
+  padding: 0;
+}
 
 .big-book {
   width: 336px;
@@ -98,11 +113,11 @@ textarea:focus {
   cursor: pointer;
 }
 
-.book-title {
+.simple-title {
   font-size: 24px;
   cursor: pointer;
 }
-.book-summary {
+.simple-summary {
   cursor: pointer;
 }
 
@@ -132,9 +147,15 @@ textarea:focus {
 .flex-direction-column {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   gap: 16px;
+}
+.flex-direction-column .flex-direction-row {
+  justify-content: space-around;
+}
+.flex-direction-row .left-text {
+  justify-content: left;
 }
 
 .top-wrapper {
