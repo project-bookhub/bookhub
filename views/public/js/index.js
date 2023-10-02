@@ -10,12 +10,6 @@ function bookPageAction() {
 
   location.href = newAction;
 }
-function boardPageAction() {
-  const inputValue = document.getElementById("board-page-input").value;
-  const newAction = "/boards?page=" + inputValue;
-
-  location.href = newAction;
-}
 
 document
   .getElementById("search-form")
@@ -28,10 +22,4 @@ document
   .addEventListener("submit", function (event) {
     event.preventDefault();
     bookPageAction();
-  });
-document
-  .getElementById("board-page-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
-    boardPageAction();
   });

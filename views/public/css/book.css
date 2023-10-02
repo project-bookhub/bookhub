@@ -65,3 +65,7 @@ div.book-category {
   font-size: 24px;
   text-align: center;
 }
+
+div.flex-direction-column.content-2.show-toc {
+  justify-content: start;
+}
