@@ -51,7 +51,10 @@
           action="/books/toc/modify?bookId={{book_uid}}&tocId={{toc_uid}}"
         >
           <div class="flex-direction-column">
-            <div class="book-title book-content-1">{{toc_title}}</div>
+            <div class="flex-direction-row">
+              <div class="book-title book-content-1">{{toc_title}}</div>
+              <div class="book-category book-content-1"></div>
+            </div>
             <textarea
               class="input book-content-2"
               name="bookToc"

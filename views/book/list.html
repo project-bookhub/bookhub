@@ -52,23 +52,26 @@
         </div>
         <div class="flex-direction-column">
           {%for book in bookListOrderByPage%}
-          <div class="flex-direction-row">
+          <div class="flex-direction-row content-wrapper">
             <div class="big-book-image"></div>
             <div class="flex-direction-column">
-              <div class="flex-direction-row">
-                <div>{{book.book_title}}</div>
-                <div>{{book.book_category}}</div>
+              <div class="flex-direction-row book-content-wrapper">
+                <div class="title">{{book.book_title}}</div>
+                <div class="title">{{book.book_category}}</div>
               </div>
-              <div class="flex-direction-row">{{book.book_summary}}</div>
-              <div class="flex-direction-row">
-                <div>{{book.book_writer}}</div>
+              <div class="flex-direction-row book-content-wrapper">
+                {{book.book_summary}}
+              </div>
+              <div class="flex-direction-row book-content-wrapper">
+                <div class="simple-title">저자: {{book.book_writer}}</div>
                 <div class="flex-direction-row">
-                  <div>{{book.book_likes}}</div>
-                  <div>{{book.book_views}}</div>
+                  <div class="simple-title">추천수: {{book.book_likes}}</div>
+                  <div class="simple-title">조회수: {{book.book_views}}</div>
                 </div>
               </div>
             </div>
           </div>
+          <div class="sep-line"></div>
           {% endfor %}
         </div>
         <div class="flex-direction-row list-bottom">
