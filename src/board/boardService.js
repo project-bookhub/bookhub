@@ -1,5 +1,6 @@
 const boardRepository = require("./boardRepository");
 const userRepository = require("../user/userRepository");
+const pagination = require("../lib/pagination");
 
 exports.getBoard = async (page) => {
   try {
@@ -17,7 +18,19 @@ exports.getBoard = async (page) => {
       pageSize,
     );
 
-    return result;
+    const paginationObject = {};
+
+    /** 해당 검색 결과에 맞는 공지사항 갯수: 페이지 네이션 계산용 */
+    const allCount = await boardRepository.countAllBoard();
+
+    paginationObject.currentPage = page;
+    paginationObject.paginationArray = pagination.calculatePagination(
+      allCount,
+      pageSize,
+      page,
+    );
+
+    return [paginationObject, result];
   } catch (e) {
     throw new Error(e.message);
   }

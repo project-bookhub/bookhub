@@ -213,7 +213,7 @@ exports.getBookSearch = async (bookSearch, page) => {
     const paginationObject = {};
 
     /** 해당 검색 결과에 맞는 책 갯수: 페이지 네이션 계산용 */
-    const allCount = await bookRepository.CountAllSearchBook(bookSearch);
+    const allCount = await bookRepository.countAllSearchBook(bookSearch);
 
     paginationObject.currentPage = page;
     paginationObject.paginationArray = pagination.calculatePagination(

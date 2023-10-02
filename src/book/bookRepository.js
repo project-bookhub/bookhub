@@ -318,7 +318,7 @@ exports.countAllBook = async () => {
   }
 };
 
-exports.CountAllSearchBook = async (bookSearch) => {
+exports.countAllSearchBook = async (bookSearch) => {
   try {
     const sql = "SELECT COUNT(*) FROM book WHERE book_title LIKE ?";
 
