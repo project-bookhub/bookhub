@@ -7,5 +7,6 @@ boardRouter.get("/write", boardController.getBoardWrite);
 boardRouter.post("/write", boardController.postBoardWrite);
 boardRouter.get("/modify", boardController.getBoardModify);
 boardRouter.post("/modify", boardController.postBoardModify);
+boardRouter.get("/view", boardController.getBoardView);
 
 module.exports = boardRouter;

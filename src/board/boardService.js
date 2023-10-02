@@ -66,3 +66,13 @@ exports.postBoardModify = async (boardId, boardTitle, boardContent, userId) => {
     throw new Error(e.message);
   }
 };
+
+exports.getBoardView = async (boardId) => {
+  try {
+    const result = await boardRepository.findBoardById(boardId);
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
