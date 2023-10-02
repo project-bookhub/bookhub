@@ -63,7 +63,7 @@ exports.postBoardModify = async (req, res, next) => {
     // 관리자 권한 체크
     const userId = req.user.user_id;
 
-    const boardId = req.body.boardId;
+    const boardId = req.query.boardId;
     const boardTitle = req.body.boardTitle;
     const boardContent = req.body.boardContent;
 
