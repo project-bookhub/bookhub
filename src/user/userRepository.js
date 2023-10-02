@@ -66,12 +66,37 @@ exports.updateUserPasswordByUserId = async (password, userId) => {
 };
 
 exports.deleteUserByUserId = async (userId) => {
+  let connection;
   try {
-    const sql = "DELETE FROM user WHERE user_id=?";
-    const [result] = await pool.query(sql, [userId]);
-    return result.affectedRows;
+    connection = await pool.getConnection();
+
+    await connection.beginTransaction();
+
+    // 사용자가 작성한 목차 정보 삭제
+    const deleteTOCsSQL =
+      "DELETE FROM toc WHERE toc_book IN (SELECT book_uid FROM book WHERE book_writer=?)";
+    await connection.query(deleteTOCsSQL, [userId]);
+
+    // 사용자가 작성한 책 정보 삭제
+    const deleteBooksSQL = "DELETE FROM book WHERE book_writer = ?;";
+    await connection.query(deleteBooksSQL, [userId]);
+
+    // 사용자가 작성한 게시글 정보 삭제
+    const deleteBoardsSQL = "DELETE FROM board WHERE board_writer=?";
+    await connection.query(deleteBoardsSQL, [userId]);
+
+    // 사용자 정보 삭제
+    const deleteUserSQL = "DELETE FROM user WHERE user_uid=?";
+    await connection.query(deleteUserSQL, [userId]);
+
+    await connection.commit();
+    return true;
   } catch (e) {
+    await connection.rollback();
+    return false;
     throw new Error(5000);
+  } finally {
+    connection.release();
   }
 };
 

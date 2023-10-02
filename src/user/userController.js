@@ -113,7 +113,7 @@ exports.postInfo = async (req, res, next) => {
 
 exports.getExit = async (req, res, next) => {
   try {
-    const userId = req.query.userId;
+    const userId = req.user.user_uid;
     const result = await userService.getExit(userId);
 
     if (result === 0) {
