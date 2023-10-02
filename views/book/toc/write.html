@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="top-right">
-        <a href="/boards" class="board">공지사항</a>
+        <a href="/boards?page=1" class="board">공지사항</a>
         <div class="input search">
           <form id="search-form" method="get" action="/search">
             <input id="search-input" type="text" placeholder="클릭해서 검색" />
@@ -43,50 +43,48 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="book-wrapper">
-        <div class="bold title">책 구성하기</div>
-        <form
-          class="flex-direction-column"
-          method="post"
-          action="/books/toc/write"
-        >
-          <div class="flex-direction-column">
-            <div class="flex-direction-row book-content-1">
-              <input
-                type="text"
-                class="input book-title"
-                name="bookTitle"
-                placeholder="제목을 입력해주세요"
-              />
-              <input
-                type="text"
-                class="input book-category"
-                name="bookCategory"
-                placeholder="카테고리를 입력해주세요"
-              />
-            </div>
-            <textarea
-              class="input book-content-2"
-              name="bookToc"
-              cols="30"
-              rows="10"
-              placeholder="목차를 입력해주세요"
-            ></textarea>
-            <textarea
-              class="input book-content-3"
-              name="bookSummary"
-              cols="10"
-              rows="10"
-              placeholder="요약을 입력해주세요"
-            ></textarea>
+      <div class="bold title">책 구성하기</div>
+      <form
+        class="flex-direction-column"
+        method="post"
+        action="/books/toc/write"
+      >
+        <div class="flex-direction-column">
+          <div class="flex-direction-row content-1">
+            <input
+              type="text"
+              class="input book-title"
+              name="bookTitle"
+              placeholder="제목을 입력해주세요"
+            />
+            <input
+              type="text"
+              class="input book-category"
+              name="bookCategory"
+              placeholder="카테고리를 입력해주세요"
+            />
           </div>
-          <div class="flex-direction-row bottom-wrapper">
-            <a class="main-button confirm-button" type="submit"
-              ><button>작성 완료</button></a
-            >
-          </div>
-        </form>
-      </div>
+          <textarea
+            class="input content-2"
+            name="bookToc"
+            cols="30"
+            rows="10"
+            placeholder="목차를 입력해주세요"
+          ></textarea>
+          <textarea
+            class="input content-3"
+            name="bookSummary"
+            cols="10"
+            rows="10"
+            placeholder="요약을 입력해주세요"
+          ></textarea>
+        </div>
+        <div class="flex-direction-row bottom-wrapper">
+          <a class="main-button confirm-button" type="submit"
+            ><button>작성 완료</button></a
+          >
+        </div>
+      </form>
     </div>
   </body>
 </html>

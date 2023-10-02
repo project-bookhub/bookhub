@@ -1,29 +1,59 @@
-.book-wrapper .title {
-  text-align: left;
-  justify-content: space-around;
-}
-.book-wrapper .list-bottom {
-  justify-content: space-around;
+.content-wrapper .book-rank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 64px 0;
 }
-.page {
-  width: 200px;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 0;
-  padding: 8px;
+.content-wrapper .book-rank .show-more {
+  width: 160px;
+  height: 56px;
+  border-radius: 28px;
+}
+.book-content-wrapper {
+  width: 552px;
+}
+.book-content-wrapper .title {
+  padding: 0;
+}
+
+.big-book {
+  width: 336px;
+}
+.big-book-image {
+  width: 336px;
+  height: 460px;
+  background-color: #ccc;
+  cursor: pointer;
+}
+.medium-book {
+  width: 252px;
+}
+.medium-book-image {
+  width: 252px;
+  height: 345px;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.small-book {
+  width: 126px;
+}
+.small-book-image {
+  width: 126px;
+  height: 172px;
+  background-color: #ccc;
+  cursor: pointer;
 }
 
 input.book-title {
-  width: 552px;
+  width: 568px;
   font-size: 24px;
-  padding: 8px;
+  padding: 16px;
 }
 input.book-category {
-  width: 304px;
+  width: 320px;
   font-size: 24px;
-  padding: 8px;
+  padding: 16px;
 }
 div.book-title {
   width: 552px;
@@ -36,42 +66,4 @@ div.book-category {
   font-size: 24px;
   text-align: center;
   padding: 8px;
-}
-
-.flex-direction-column .book-content-1 {
-  font-size: 24px;
-  font-weight: bold;
-  height: 64px;
-}
-.flex-direction-column .book-content-2 {
-  width: 872px;
-  font-size: 24px;
-  min-height: 240px;
-}
-.book-content-2 .flex-direction-row {
-  width: 872px;
-  justify-content: left;
-  align-items: left;
-  text-align: left;
-}
-.flex-direction-column .book-content-3 {
-  width: 872px;
-  height: 128px;
-}
-
-.bottom-wrapper {
-  width: 904px;
-  justify-content: right;
-  margin-bottom: 64px;
-}
-div.flex-direction-row.bottom-wrapper {
-  width: 904px;
-  justify-content: right;
-  margin-bottom: 64px;
-}
-
-.confirm-button {
-  margin: 0;
-  width: 120px;
-  height: 32px;
 }

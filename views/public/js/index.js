@@ -4,9 +4,15 @@ function searchAction() {
 
   location.href = newAction;
 }
-function pageAction() {
-  const inputValue = document.getElementById("page-input").value;
+function bookPageAction() {
+  const inputValue = document.getElementById("book-page-input").value;
   const newAction = "/books/list?page=" + inputValue;
+
+  location.href = newAction;
+}
+function boardPageAction() {
+  const inputValue = document.getElementById("board-page-input").value;
+  const newAction = "/boards?page=" + inputValue;
 
   location.href = newAction;
 }
@@ -18,8 +24,14 @@ document
     searchAction();
   });
 document
-  .getElementById("page-form")
+  .getElementById("book-page-form")
   .addEventListener("submit", function (event) {
     event.preventDefault();
-    pageAction();
+    bookPageAction();
+  });
+document
+  .getElementById("board-page-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+    boardPageAction();
   });

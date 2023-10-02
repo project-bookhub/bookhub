@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="top-right">
-        <a href="/boards" class="board">공지사항</a>
+        <a href="/boards?page=1" class="board">공지사항</a>
         <div class="input search">
           <form id="search-form" method="get" action="/search">
             <input id="search-input" type="text" placeholder="클릭해서 검색" />
@@ -43,40 +43,38 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="book-wrapper">
-        <div class="flex-direction-row title">
-          <div class="bold book-title">{{book_title}}</div>
-          <div class="bold book-category">{{book_category}}</div>
-        </div>
-        <div class="flex-direction-column">
-          <div class="book-content-1">목차</div>
-          <div class="flex-direction-column book-content-2">
-            {% for toc in book_toc %}
-            <div class="flex-direction-row">
-              <a
-                href="/books/page/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}"
-                class="link"
-              >
-                {{ toc.toc_title }}
-              </a>
-            </div>
-            {% endfor %}
+      <div class="flex-direction-row title">
+        <div class="bold book-title">{{book_title}}</div>
+        <div class="bold book-category">{{book_category}}</div>
+      </div>
+      <div class="flex-direction-column">
+        <div class="content-1">목차</div>
+        <div class="flex-direction-column content-2">
+          {% for toc in book_toc %}
+          <div class="flex-direction-row">
+            <a
+              href="/books/page/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}"
+              class="link"
+            >
+              {{ toc.toc_title }}
+            </a>
           </div>
-          <div class="book-content-1">요약</div>
-          <div class="book-content-3">{{book_summary}}</div>
+          {% endfor %}
         </div>
-        <div class="flex-direction-row bottom-wrapper">
-          <a
-            href="/books/toc/modify?bookId={{book_uid}}"
-            class="main-button confirm-button"
-            >목차 수정하기</a
-          >
-          <a
-            href="/books/delete?bookId={{book_uid}}"
-            class="main-button confirm-button"
-            >책 삭제하기</a
-          >
-        </div>
+        <div class="content-1">요약</div>
+        <div class="content-3">{{book_summary}}</div>
+      </div>
+      <div class="flex-direction-row bottom-wrapper">
+        <a
+          href="/books/toc/modify?bookId={{book_uid}}"
+          class="main-button confirm-button"
+          >목차 수정하기</a
+        >
+        <a
+          href="/books/delete?bookId={{book_uid}}"
+          class="main-button confirm-button"
+          >책 삭제하기</a
+        >
       </div>
     </div>
   </body>

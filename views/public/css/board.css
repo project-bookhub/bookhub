@@ -1,0 +1,20 @@
+.board-title {
+  width: 904px;
+  font-size: 24px;
+  padding: 16px;
+}
+
+.board-big-title {
+  width: 904px;
+  font-size: 40px;
+  padding: 16px 0;
+}
+.flex-direction-row.board-bottom {
+  justify-content: space-between;
+}
+.board-left {
+  padding-left: 32px;
+}
+.board-right {
+  padding-right: 32px;
+}
