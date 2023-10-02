@@ -210,7 +210,19 @@ exports.getBookSearch = async (bookSearch, page) => {
       pageSize,
     );
 
-    return result;
+    const paginationObject = {};
+
+    /** 해당 검색 결과에 맞는 책 갯수: 페이지 네이션 계산용 */
+    const allCount = await bookRepository.CountAllSearchBook(bookSearch);
+
+    paginationObject.currentPage = page;
+    paginationObject.paginationArray = pagination.calculatePagination(
+      allCount,
+      pageSize,
+      page,
+    );
+
+    return [paginationObject, result];
   } catch (e) {
     throw new Error(e.message);
   }
