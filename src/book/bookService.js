@@ -1,4 +1,5 @@
 const bookRepository = require("./bookRepository");
+const pagination = require("../lib/pagination");
 
 exports.getBookList = async () => {
   try {
@@ -26,10 +27,22 @@ exports.getBookListAndCategoryCount = async (page, category) => {
       pageSize,
       category,
     );
+    const paginationObject = {};
 
+    /** 모든 책 갯수: 페이지 네이션 계산용 */
+    const allCount = await bookRepository.countAllBook();
+
+    paginationObject.currentPage = page;
+    paginationObject.paginationArray = pagination.calculatePagination(
+      allCount,
+      pageSize,
+      page,
+    );
+
+    /** category_name, category_count */
     const categoryCountResult = await bookRepository.findCategoryCount();
 
-    const result = [bookListResult, categoryCountResult];
+    const result = [paginationObject, bookListResult, categoryCountResult];
 
     return result;
   } catch (e) {

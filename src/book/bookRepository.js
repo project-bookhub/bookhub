@@ -291,3 +291,15 @@ exports.findBookByBookTitleOrderByPage = async (
     throw Error(5000);
   }
 };
+
+exports.countAllBook = async () => {
+  try {
+    const sql = "SELECT COUNT(*) FROM book";
+
+    const [[result]] = await pool.query(sql);
+
+    return result["COUNT(*)"];
+  } catch (e) {
+    throw Error(5000);
+  }
+};
