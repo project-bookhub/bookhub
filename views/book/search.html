@@ -51,7 +51,7 @@
     <div class="content-wrapper">
       <div class="bold title">{{book_search}} 검색 결과</div>
       <div class="flex-direction-column">
-        {%for book in bookListOrderByPage%}
+        {%for book in result%}
         <a
           href="/books/view?bookId={{book.book_uid}}&tocId={{book.first_toc_uid}}"
         >
