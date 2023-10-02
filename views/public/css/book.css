@@ -1,7 +1,8 @@
-.all-books .title {
+.book-wrapper .title {
   text-align: left;
+  justify-content: space-between;
 }
-.all-books .list-bottom {
+.book-wrapper .list-bottom {
   justify-content: space-around;
   align-items: center;
   margin: 64px 0;
@@ -12,11 +13,6 @@
   font-size: 16px;
   border-radius: 0;
   padding: 8px;
-}
-.write-button {
-  margin: 0;
-  width: 120px;
-  height: 32px;
 }
 
 .book-title {
@@ -31,10 +27,19 @@
 }
 
 .flex-direction-column .book-content-1 {
+  font-size: 24px;
+  font-weight: bold;
   height: 64px;
 }
 .flex-direction-column .book-content-2 {
-  height: 240px;
+  font-size: 24px;
+  min-height: 240px;
+}
+.book-content-2 .flex-direction-row {
+  width: 904px;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
 }
 .flex-direction-column .book-content-3 {
   height: 128px;

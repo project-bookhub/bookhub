@@ -42,18 +42,19 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <div class="read-book">
-        <div class="flex-direction-row">
+      <div class="book-wrapper">
+        <div class="flex-direction-row title">
           <div class="bold title">{{book_title}}</div>
           <div class="bold title">{{book_category}}</div>
         </div>
         <div class="flex-direction-column">
           <div class="book-content-1">목차</div>
-          <div class="book-content-2">
+          <div class="flex-direction-column book-content-2">
             {% for toc in book_toc %}
-            <div>
+            <div class="flex-direction-row">
               <a
                 href="/books/page/view?bookId={{book_uid}}&tocId={{toc.toc_uid}}"
+                class="link"
               >
                 {{ toc.toc_title }}
               </a>
