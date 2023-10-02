@@ -85,42 +85,6 @@ textarea:focus {
   background-color: #eee;
 }
 
-.book-content-wrapper {
-  width: 552px;
-}
-.book-content-wrapper .title {
-  padding: 0;
-}
-
-.big-book {
-  width: 336px;
-}
-.big-book-image {
-  width: 336px;
-  height: 460px;
-  background-color: #ccc;
-  cursor: pointer;
-}
-.medium-book {
-  width: 252px;
-}
-.medium-book-image {
-  width: 252px;
-  height: 345px;
-  background-color: #ccc;
-  cursor: pointer;
-}
-
-.small-book {
-  width: 126px;
-}
-.small-book-image {
-  width: 126px;
-  height: 172px;
-  background-color: #ccc;
-  cursor: pointer;
-}
-
 .simple-title {
   font-size: 24px;
   cursor: pointer;
@@ -225,17 +189,6 @@ textarea:focus {
   align-items: center;
   margin: 64px 0;
 }
-.content-wrapper .book-rank {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.content-wrapper .book-rank .show-more {
-  width: 160px;
-  height: 56px;
-  border-radius: 28px;
-}
 .content-wrapper .recent-updated {
   display: flex;
   flex-direction: column;
@@ -263,4 +216,25 @@ div.flex-direction-row.bottom-wrapper {
   margin: 0;
   width: 120px;
   height: 32px;
+}
+
+.flex-direction-column .content-1 {
+  font-size: 24px;
+  font-weight: bold;
+  height: 64px;
+}
+.flex-direction-column .content-2 {
+  width: 872px;
+  font-size: 24px;
+  min-height: 240px;
+}
+.content-2 .flex-direction-row {
+  width: 872px;
+  justify-content: left;
+  align-items: left;
+  text-align: left;
+}
+.flex-direction-column .content-3 {
+  width: 872px;
+  height: 128px;
 }
