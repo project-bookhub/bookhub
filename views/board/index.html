@@ -45,18 +45,23 @@
       <div class="bold title">공지사항</div>
       <div class="flex-direction-column">
         {% for board in result %}
-        <div class="flex-direction-column">
-          <div class="flex-direction-row">
-            <div class="bold title">{{board.board_title}}</div>
-          </div>
-          <div class="flex-direction-row">
-            <div class="bold title">{{board.board_writer}}</div>
+        <a href="/boards/view?boardId={{board.board_uid}}">
+          <div class="flex-direction-column">
             <div class="flex-direction-row">
-              <div>{{board.board_created_at}}</div>
-              <div>{{board.board_views}}</div>
+              <div class="bold board-big-title left-text">
+                {{board.board_title}}
+              </div>
+            </div>
+            <div class="flex-direction-row board-bottom content-wrapper">
+              <div class="simple-title">{{board.board_writer}}</div>
+              <div class="flex-direction-row">
+                <div class="board-left">작성일: {{board.board_created_at}}</div>
+                <div class="board-right">조회수: {{board.board_views}}</div>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
+        <div class="sep-line"></div>
         {% endfor %}
       </div>
       <div class="flex-direction-row list-bottom">

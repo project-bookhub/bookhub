@@ -1,10 +1,8 @@
-html,
-body {
+* {
   padding: 0;
   margin: 0;
   font-size: 16px;
   color: #333;
-  text-align: center;
   box-sizing: border-box;
 }
 a {
@@ -35,7 +33,7 @@ input {
   border: none;
 }
 textarea {
-  width: 872px;
+  width: 904px;
   height: auto;
   border: none;
   resize: none;
@@ -163,7 +161,7 @@ textarea:focus {
   cursor: pointer;
 }
 .top-wrapper .search {
-  width: 200px;
+  width: 216px;
   height: 40px;
 }
 .top-wrapper .profile {
@@ -224,17 +222,17 @@ div.flex-direction-row.bottom-wrapper {
   height: 64px;
 }
 .flex-direction-column .content-2 {
-  width: 872px;
+  width: 904px;
   font-size: 24px;
   min-height: 240px;
 }
 .content-2 .flex-direction-row {
-  width: 872px;
+  width: 904px;
   justify-content: left;
   align-items: left;
   text-align: left;
 }
 .flex-direction-column .content-3 {
-  width: 872px;
+  width: 904px;
   height: 128px;
 }

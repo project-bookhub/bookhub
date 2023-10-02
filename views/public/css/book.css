@@ -46,14 +46,14 @@
 }
 
 input.book-title {
-  width: 552px;
+  width: 568px;
   font-size: 24px;
-  padding: 8px;
+  padding: 16px;
 }
 input.book-category {
-  width: 304px;
+  width: 320px;
   font-size: 24px;
-  padding: 8px;
+  padding: 16px;
 }
 div.book-title {
   width: 552px;
