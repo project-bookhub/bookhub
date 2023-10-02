@@ -37,3 +37,13 @@ exports.postBoardWrite = async (boardTitle, boardContent, boardWriter) => {
     throw new Error(e.message);
   }
 };
+
+exports.getBoardModify = async (boardId) => {
+  try {
+    const result = await boardRepository.findBoardById(boardId);
+
+    return result;
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};

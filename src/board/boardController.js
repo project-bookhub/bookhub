@@ -42,3 +42,17 @@ exports.postBoardWrite = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBoardModify = async (req, res, next) => {
+  try {
+    const boardId = req.query.boardId;
+    const result = await boardService.getBoardModify(boardId);
+
+    res.render("board/modify.html", {
+      user_nickname: req.user ? req.user.user_nickname : undefined,
+      ...result,
+    });
+  } catch (e) {
+    next(e);
+  }
+};
