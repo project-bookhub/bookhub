@@ -10,7 +10,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <script defer src="js/index.js"></script>
   </head>
   <body>
     <div class="top-wrapper">
@@ -68,7 +67,9 @@
           <a href="/books/toc/modify?bookId={{book_uid}}" class="main-button"
             >목차 수정하기</a
           >
-          <a href="/books/toc/delete" class="main-button">삭제하기</a>
+          <a href="/books/delete?bookId={{book_uid}}" class="main-button"
+            >책 삭제하기</a
+          >
         </div>
       </div>
     </div>
@@ -76,7 +77,7 @@
   <script>
     function searchAction() {
       const inputValue = document.getElementById("search-input").value;
-      const newAction = "/books/search?bookSearch=" + inputValue;
+      const newAction = "/books/search?bookSearch=" + inputValue + "&page=1";
 
       location.href = newAction;
     }
