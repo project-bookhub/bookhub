@@ -29,6 +29,7 @@ app.use((err, req, res, next) => {
   if (err.message === "4006") res.status(400).send("권한이 없는 사용자입니다.");
   if (err.message === "4007")
     res.status(400).send("이미 존재하는 사용자입니다.");
+  if (err === "4444") res.redirect("/");
 });
 
 app.listen(port, () => {

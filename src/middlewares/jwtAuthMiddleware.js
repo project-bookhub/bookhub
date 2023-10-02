@@ -20,6 +20,7 @@ exports.auth = async (req, res, next) => {
 
     next();
   } catch (e) {
-    next(e);
+    res.clearCookie("authorization");
+    next("4444");
   }
 };
