@@ -349,3 +349,15 @@ exports.countAllSearchBook = async (bookSearch) => {
     throw Error(5000);
   }
 };
+
+exports.countAllBookByWriter = async (userId) => {
+  try {
+    const sql = "SELECT COUNT(*) FROM book WHERE book_writer = ?";
+
+    const [[result]] = await pool.query(sql, [userId]);
+
+    return result["COUNT(*)"];
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
