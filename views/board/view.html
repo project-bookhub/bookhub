@@ -54,6 +54,7 @@
         <div class="board-title content-1">{{board_title}}</div>
         <div class="content-2">{{board_content}}</div>
       </div>
+      {% if user_id === board_writer %}
       <div class="flex-direction-row bottom-wrapper">
         <a
           href="/boards/modify?boardId={{board_uid}}"
@@ -66,6 +67,7 @@
           >삭제하기</a
         >
       </div>
+      {% endif %}
     </div>
   </body>
 </html>
