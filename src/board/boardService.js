@@ -62,12 +62,8 @@ exports.getBoardModify = async (boardId) => {
   }
 };
 
-exports.postBoardModify = async (boardId, boardTitle, boardContent, userId) => {
+exports.postBoardModify = async (boardId, boardTitle, boardContent) => {
   try {
-    const userRole = await userRepository.findUserRole(userId);
-
-    if (userRole < 2) throw new Error(4006);
-
     const affectedRow = await boardRepository.updateBoardById(
       boardId,
       boardTitle,

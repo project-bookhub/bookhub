@@ -74,6 +74,7 @@ exports.getBookDelete = async (req, res, next) => {
 
 exports.getBookTocWrite = (req, res, next) => {
   try {
+    // 로그인 체크
     if (!req.user) throw new Error(4008);
 
     res.render("book/toc/write.html", {
