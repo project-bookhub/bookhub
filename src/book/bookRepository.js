@@ -312,7 +312,7 @@ exports.findBookByBookTitleOrderByPage = async (
     const sql =
       "SELECT book_uid, user_nickname AS book_writer," +
       "category_name AS book_category, book_title, book_toc, book_views, book_likes," +
-      "book_created_at, book_summary, MIN(toc_uid) AS first_toc_uid FROM book " +
+      "book_created_at, book_summary, MIN(toc_uid) AS first_toc_uid, book_image FROM book " +
       "JOIN user ON user_uid = book_writer " +
       "JOIN category ON category_uid = book_category " +
       "JOIN toc ON book_uid = toc_book " +
