@@ -1,4 +1,5 @@
 const bookService = require("./bookService");
+const dataCheck = require("../lib/dataCheck");
 
 exports.getBookList = async (req, res, next) => {
   try {
@@ -39,10 +40,21 @@ exports.getBookView = async (req, res, next) => {
   try {
     const bookId = req.query.bookId;
     const tocId = req.query.tocId;
+    const userId = req.user ? req.user.user_id : undefined;
 
-    const result = await bookService.getBookView(bookId, tocId);
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([
+      bookId,
+      tocId,
+      userId,
+    ]);
+    if (!isDataCheck) throw new Error(4005);
+
+    const result = await bookService.getBookView(bookId, tocId, userId);
 
     res.render("book/view.html", {
+      user_id: userId,
+      toc_uid: parseInt(tocId),
+      book_writer: result[2],
       tocList: result[0],
       tocContent: result[1],
     });
