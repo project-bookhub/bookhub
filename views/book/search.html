@@ -85,9 +85,17 @@
         <div class="page-wrapper">
           {% for page in pagination.paginationArray %} {% if page ===
           currentPage %}
-          <a class="bold page-button" href="/boards?page={{page}}">{{page}}</a>
+          <a
+            class="bold page-button"
+            href="/books/list?search={{book_search}}&page={{page}}"
+            >{{page}}</a
+          >
           {% else %}
-          <a class="page-button" href="/boards?page={{page}}">{{page}}</a>
+          <a
+            class="page-button"
+            href="/books/list?search={{book_search}}&page={{page}}"
+            >{{page}}</a
+          >
           {% endif %} {% endfor %}
         </div>
         <a href="/books/toc/write" class="main-button confirm-button"
