@@ -49,12 +49,13 @@ exports.getBookView = async (req, res, next) => {
     ]);
     if (!isDataCheck) throw new Error(4005);
 
-    const result = await bookService.getBookView(bookId, tocId, userId);
+    const result = await bookService.getBookView(bookId, tocId);
 
     res.render("book/view.html", {
       user_id: userId,
       toc_uid: parseInt(tocId),
-      book_writer: result[2],
+      book_writer: result[2].book_writer,
+      book_title: result[2].book_title,
       tocList: result[0],
       tocContent: result[1],
     });
