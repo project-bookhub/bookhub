@@ -379,14 +379,14 @@ exports.countAllBookByWriter = async (userId) => {
   }
 };
 
-exports.findBookWriterById = async (bookId, userId) => {
+exports.findBookByUserId = async (bookId) => {
   try {
     const sql =
-      "SELECT user_id AS book_writer FROM book JOIN user ON user_uid = book_writer WHERE user_id = ? AND book_uid = ?";
+      "SELECT book_title, user_id AS book_writer FROM book JOIN user ON user_uid = book_writer WHERE book_uid = ?";
 
-    const [[result]] = await pool.query(sql, [userId, bookId]);
+    const [[result]] = await pool.query(sql, [bookId]);
 
-    return result.book_writer;
+    return result;
   } catch (e) {
     throw new Error(5000);
   }

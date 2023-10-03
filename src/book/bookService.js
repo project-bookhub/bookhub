@@ -56,13 +56,14 @@ exports.getBookListAndCategoryCount = async (page, category) => {
   }
 };
 
-exports.getBookView = async (bookId, tocId, userId) => {
+exports.getBookView = async (bookId, tocId) => {
   try {
     const tocListResult = await bookRepository.findTocList(bookId);
     const tocContentResult = await bookRepository.findTocContent(tocId);
-    const bookWriter = await bookRepository.findBookWriterById(bookId, userId);
 
-    const result = [tocListResult, tocContentResult, bookWriter];
+    const bookData = await bookRepository.findBookByUserId(bookId);
+
+    const result = [tocListResult, tocContentResult, bookData];
     return result;
   } catch (e) {
     throw new Error(e.message);
