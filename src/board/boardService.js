@@ -23,7 +23,7 @@ exports.getBoard = async (page) => {
     /** 해당 검색 결과에 맞는 공지사항 갯수: 페이지 네이션 계산용 */
     const allCount = await boardRepository.countAllBoard();
 
-    paginationObject.currentPage = page;
+    paginationObject.currentPage = parseInt(page);
     paginationObject.paginationArray = pagination.calculatePagination(
       allCount,
       pageSize,

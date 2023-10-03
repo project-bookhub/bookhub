@@ -38,7 +38,7 @@ exports.getBookListAndCategoryCount = async (page, category) => {
       allCount = await bookRepository.countAllBookByCategory(category);
     }
 
-    paginationObject.currentPage = page;
+    paginationObject.currentPage = parseInt(page);
     paginationObject.paginationArray = pagination.calculatePagination(
       allCount,
       pageSize,
@@ -221,7 +221,7 @@ exports.getBookSearch = async (bookSearch, page) => {
     /** 해당 검색 결과에 맞는 책 갯수: 페이지 네이션 계산용 */
     const allCount = await bookRepository.countAllSearchBook(bookSearch);
 
-    paginationObject.currentPage = page;
+    paginationObject.currentPage = parseInt(page);
     paginationObject.paginationArray = pagination.calculatePagination(
       allCount,
       pageSize,
