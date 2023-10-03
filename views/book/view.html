@@ -33,9 +33,9 @@
           {% for toc in tocList %}
           <a href="/books/view?bookId={{toc.toc_book}}&tocId={{toc.toc_uid}}">
             {% if toc.toc_uid === toc_uid %}
-            <div class="highlight div-button">{{toc.toc_title}}</div>
+            <div class="highlight div-button"><pre>{{toc.toc_title}}</pre></div>
             {% else %}
-            <div class="div-button">{{toc.toc_title}}</div>
+            <div class="div-button"><pre>{{toc.toc_title}}</pre></div>
             {% endif %}
           </a>
           {% endfor %}

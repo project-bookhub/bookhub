@@ -286,12 +286,6 @@ div.flex-direction-row.bottom-wrapper {
   background-color: #eee;
 }
 .image-wrapper {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(0, 0, 0, 1) 100%
-  );
   pointer-events: none;
 }
 
@@ -306,7 +300,9 @@ div.flex-direction-row.bottom-wrapper {
 
 .highlight-circle {
   color: orange;
+  font-size: 8px;
 }
 .circle {
   color: rgba(224, 224, 224, 0.3);
+  font-size: 8px;
 }
