@@ -47,6 +47,9 @@ exports.postBoardWrite = async (req, res, next) => {
 
 exports.getBoardModify = async (req, res, next) => {
   try {
+    if (!req.user) throw new Error(4008); // 로그인 체크
+    if (req.user.user_role < 2) throw new Error(4006); // 관리자 권한 체크
+
     const boardId = req.query.boardId;
     const result = await boardService.getBoardModify(boardId);
 
@@ -61,19 +64,14 @@ exports.getBoardModify = async (req, res, next) => {
 
 exports.postBoardModify = async (req, res, next) => {
   try {
-    // 관리자 권한 체크
-    const userId = req.user.user_id;
+    if (!req.user) throw new Error(4008); // 로그인 체크
+    if (req.user.user_role < 2) throw new Error(4006); // 관리자 권한 체크
 
     const boardId = req.query.boardId;
     const boardTitle = req.body.boardTitle;
     const boardContent = req.body.boardContent;
 
-    await boardService.postBoardModify(
-      boardId,
-      boardTitle,
-      boardContent,
-      userId,
-    );
+    await boardService.postBoardModify(boardId, boardTitle, boardContent);
 
     res.redirect(`/boards/view?boardId=${boardId}`);
   } catch (e) {

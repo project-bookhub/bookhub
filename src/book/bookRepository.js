@@ -114,18 +114,35 @@ exports.findTocContent = async (tocId) => {
 };
 
 exports.deleteByIdAndWriter = async (bookId, bookWriter) => {
+  let connection;
   try {
-    const sql =
-      "DELETE b " +
-      "FROM book b " +
-      "INNER JOIN user u ON b.book_writer = u.user_uid " +
-      "WHERE b.book_uid = ? AND u.user_id = ?;";
+    connection = await pool.getConnection();
 
-    const [result] = await pool.query(sql, [bookId, bookWriter]);
+    await connection.beginTransaction();
 
-    return result.affectedRows;
+    // 해당 책의 목차 정보 삭제
+    const deleteTOCsSQL = "DELETE FROM toc WHERE toc_book = ?";
+    await connection.query(deleteTOCsSQL, [bookId]);
+
+    // 해당 책 정보 삭제
+    const deleteBooksSQL =
+      "DELETE FROM book WHERE book_uid = ? AND book_writer = ?;";
+    const [result] = await connection.query(deleteBooksSQL, [
+      bookId,
+      bookWriter,
+    ]);
+
+    // bookId or bookWriter 다름
+    if (result.affectedRows === 0) throw new Error(4005);
+
+    await connection.commit();
+    return true;
   } catch (e) {
-    throw new Error(5000);
+    await connection.rollback();
+
+    throw e;
+  } finally {
+    connection.release();
   }
 };
 

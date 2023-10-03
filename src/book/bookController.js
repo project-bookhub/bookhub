@@ -54,15 +54,9 @@ exports.getBookView = async (req, res, next) => {
 exports.getBookDelete = async (req, res, next) => {
   try {
     const bookId = req.query.bookId;
-    const bookWriter = req.user.user_id;
+    const bookWriter = req.user.user_uid;
 
     const result = await bookService.getBookDelete(bookId, bookWriter);
-
-    if (result === 0) {
-      res.render("index.html", {
-        result: false,
-      });
-    }
 
     res.render("index.html", {
       result: true,
@@ -74,6 +68,7 @@ exports.getBookDelete = async (req, res, next) => {
 
 exports.getBookTocWrite = (req, res, next) => {
   try {
+    // 로그인 체크
     if (!req.user) throw new Error(4008);
 
     res.render("book/toc/write.html", {
