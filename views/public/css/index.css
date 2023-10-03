@@ -265,3 +265,15 @@ div.flex-direction-row.bottom-wrapper {
 .max-width .flex-direction-column {
   justify-content: start;
 }
+
+.page-button {
+  width: 32px;
+}
+.div-button {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+.highlight {
+  background-color: #eee;
+}
