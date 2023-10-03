@@ -44,6 +44,9 @@ textarea {
 textarea:focus {
   outline: none;
 }
+img {
+  display: inline;
+}
 
 .input {
   display: flex;
@@ -171,7 +174,11 @@ textarea:focus {
 .slide {
   width: 100vw;
   height: 600px;
-  background-color: #ccc;
+  background-color: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
 
 .content-wrapper {
@@ -277,4 +284,29 @@ div.flex-direction-row.bottom-wrapper {
 }
 .highlight {
   background-color: #eee;
+}
+.image-wrapper {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  pointer-events: none;
+}
+
+.circle-area {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  height: 32px;
+  bottom: 0;
+}
+
+.highlight-circle {
+  color: orange;
+}
+.circle {
+  color: rgba(224, 224, 224, 0.3);
 }
