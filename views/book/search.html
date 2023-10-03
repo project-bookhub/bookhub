@@ -84,7 +84,7 @@
         <div class="confirm-button"></div>
         <div class="page-wrapper">
           {% for page in pagination.paginationArray %} {% if page ===
-          currentPage %}
+          pagination.currentPage %}
           <a
             class="bold page-button"
             href="/books/search?bookSearch={{book_search}}&page={{page}}"
