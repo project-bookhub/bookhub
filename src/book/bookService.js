@@ -85,6 +85,7 @@ exports.postBookTocWrite = async (
   bookCategory,
   bookToc,
   bookSummary,
+  bookImage,
 ) => {
   try {
     const createCategory = await bookRepository.insertCategory(bookCategory);
@@ -95,6 +96,7 @@ exports.postBookTocWrite = async (
       bookCategory,
       bookToc,
       bookSummary,
+      bookImage,
     );
 
     // 책 생성 안됨.

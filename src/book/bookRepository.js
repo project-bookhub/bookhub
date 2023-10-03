@@ -169,17 +169,18 @@ exports.insertBook = async (
   bookCategory,
   bookToc,
   bookSummary,
+  bookImage,
 ) => {
   try {
     /**
      * 서브 쿼리 사용
      */
     const sql =
-      "INSERT INTO book (book_writer, book_category, book_title, book_toc, book_summary) " +
+      "INSERT INTO book (book_writer, book_category, book_title, book_toc, book_summary, book_image) " +
       "SELECT " +
       "(SELECT user_uid FROM user WHERE user_id = ?) AS book_writer, " +
       "(SELECT category_uid FROM category WHERE category_name = ?) AS book_category, " +
-      "?, ?, ?;";
+      "?, ?, ?, ?;";
 
     const [result] = await pool.query(sql, [
       userId,
@@ -187,6 +188,7 @@ exports.insertBook = async (
       bookTitle,
       bookToc,
       bookSummary,
+      bookImage,
     ]);
 
     return result.insertId;
