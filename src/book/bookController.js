@@ -111,6 +111,7 @@ exports.postBookTocWrite = async (req, res, next) => {
       bookCategory,
       bookToc,
       bookSummary,
+      req.file.location,
     );
 
     res.redirect(`/books/toc/view?bookId=${createdBookInsertId}`);
