@@ -378,3 +378,16 @@ exports.countAllBookByWriter = async (userId) => {
     throw new Error(5000);
   }
 };
+
+exports.findBookWriterById = async (bookId, userId) => {
+  try {
+    const sql =
+      "SELECT user_id AS book_writer FROM book JOIN user ON user_uid = book_writer WHERE user_id = ? AND book_uid = ?";
+
+    const [[result]] = await pool.query(sql, [userId, bookId]);
+
+    return result.book_writer;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
