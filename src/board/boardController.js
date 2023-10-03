@@ -87,6 +87,7 @@ exports.getBoardView = async (req, res, next) => {
 
     res.render("board/view.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
+      user_uid: req.user ? parseInt(req.user.user_uid) : undefined,
       ...result,
     });
   } catch (e) {
