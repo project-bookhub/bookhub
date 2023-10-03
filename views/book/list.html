@@ -88,13 +88,12 @@
       <div class="flex-direction-row list-bottom">
         <div class="confirm-button"></div>
         <div class="page-wrapper">
-          <form id="book-page-form" method="get" action="/books/list?page=1">
-            <input
-              id="book-page-input"
-              class="page input"
-              placeholder="이동할 페이지 입력"
-            />
-          </form>
+          {% for page in pagination.paginationArray %} {% if page ===
+          currentPage %}
+          <a class="bold page-button" href="/boards?page={{page}}">{{page}}</a>
+          {% else %}
+          <a class="page-button" href="/boards?page={{page}}">{{page}}</a>
+          {% endif %} {% endfor %}
         </div>
         <a href="/books/toc/write" class="main-button confirm-button"
           >새 책 쓰기</a

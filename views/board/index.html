@@ -16,6 +16,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <script defer src="../js/index.js"></script>
   </head>
   <body>
     <div class="top-wrapper">
@@ -73,30 +74,15 @@
       <div class="flex-direction-row list-bottom">
         <div class="confirm-button"></div>
         <div class="page-wrapper">
-          <form id="board-page-form" method="get" action="/boards?page=1">
-            <input
-              id="board-page-input"
-              class="page input"
-              placeholder="이동할 페이지 입력"
-            />
-          </form>
+          {% for page in pagination.paginationArray %} {% if page ===
+          currentPage %}
+          <a class="bold page-button" href="/boards?page={{page}}">{{page}}</a>
+          {% else %}
+          <a class="page-button" href="/boards?page={{page}}">{{page}}</a>
+          {% endif %} {% endfor %}
         </div>
         <a href="/boards/write" class="main-button confirm-button">글쓰기</a>
       </div>
     </div>
   </body>
-  <script>
-    function boardPageAction() {
-      const inputValue = document.getElementById("board-page-input").value;
-      const newAction = "/boards?page=" + inputValue;
-
-      location.href = newAction;
-    }
-    document
-      .getElementById("board-page-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        boardPageAction();
-      });
-  </script>
 </html>
