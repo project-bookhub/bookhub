@@ -25,6 +25,7 @@
   width: 336px;
   height: 460px;
   cursor: pointer;
+  border: 1px solid #ccc;
 }
 .medium-book {
   width: 252px;
@@ -35,6 +36,7 @@
   width: 252px;
   height: 345px;
   cursor: pointer;
+  border: 1px solid #ccc;
 }
 
 .small-book {
@@ -47,6 +49,7 @@
   height: 172px;
   cursor: pointer;
   position: relative;
+  border: 1px solid #ccc;
 }
 
 input.book-title {

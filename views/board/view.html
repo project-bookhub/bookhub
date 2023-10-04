@@ -54,7 +54,7 @@
         <div class="board-title content-1">{{board_title}}</div>
         <div class="content-2">{{board_content}}</div>
       </div>
-      {% if user_id === board_writer %}
+      {% if user_uid === board_writer %}
       <div class="flex-direction-row bottom-wrapper">
         <a
           href="/boards/modify?boardId={{board_uid}}"
