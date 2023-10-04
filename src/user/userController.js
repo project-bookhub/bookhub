@@ -10,6 +10,9 @@ exports.postLogin = async (req, res, next) => {
     const userId = req.body.userId;
     const userPw = req.body.userPw;
 
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([userId, userPw]);
+    if (!isDataCheck) throw new Error(4005);
+
     const result = await userService.postLogin(userId, userPw);
 
     if (!result.isLogin) return res.redirect("/");
