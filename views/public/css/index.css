@@ -94,7 +94,9 @@ img {
   cursor: pointer;
 }
 .simple-summary {
+  height: 72px;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .main-button {
@@ -172,6 +174,18 @@ img {
 }
 .top-wrapper .profile {
   font-size: 24px;
+}
+
+.tag {
+  min-width: 64px;
+  padding: 8px;
+  background-color: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 1px #eee;
 }
 
 .slide {
@@ -259,7 +273,7 @@ div.flex-direction-row.bottom-wrapper {
 .flex-direction-column .content-1 {
   font-size: 24px;
   font-weight: bold;
-  height: 64px;
+  min-height: 64px;
 }
 .flex-direction-column .content-2 {
   width: 904px;
@@ -274,7 +288,7 @@ div.flex-direction-row.bottom-wrapper {
 }
 .flex-direction-column .content-3 {
   width: 904px;
-  height: 128px;
+  min-height: 128px;
 }
 
 .max-width {
