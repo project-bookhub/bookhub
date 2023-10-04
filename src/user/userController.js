@@ -148,15 +148,7 @@ exports.getExit = async (req, res, next) => {
     const userId = req.user.user_uid;
     const result = await userService.getExit(userId);
 
-    if (result === 0) {
-      res.render("index.html", {
-        result: false,
-      });
-    }
-
-    res.render("index.html", {
-      result: true,
-    });
+    res.redirect("/");
   } catch (e) {
     next(e);
   }
