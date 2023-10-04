@@ -184,6 +184,36 @@ img {
   position: relative;
 }
 
+.slide-wrapper {
+  width: 100vw;
+  height: 600px;
+  position: absolute;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1),
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 1)
+  );
+}
+
+.image {
+  transform: translateX(0);
+  transition: all 0.2s linear;
+}
+.slide-right {
+  transform: translateX(-1067px);
+}
+.slide-left {
+  transform: translateX(1067px);
+}
+
 .content-wrapper {
   width: 904px;
   margin: 0 auto;

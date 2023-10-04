@@ -14,7 +14,7 @@ document
 
 const slide = document.querySelector(".slide");
 const img = new Image();
-const imageNameArr = ["1", "2", "3", "4", "5"];
+const imageNameArr = ["1", "2", "3", "4"];
 let imageIdx = 0;
 
 function createCircles() {
@@ -29,12 +29,42 @@ function createCircles() {
   }
 }
 
-function slideImage(idx) {
-  slide.innerHTML = `<div class="image-wrapper"><img class="slide-image-${idx}" src="image/${imageNameArr[idx]}.png" /></div>`;
+function runSlideImage(idx) {
+  slide.innerHTML = "";
+  slideImage(idx - 1);
+  slideImage(idx);
+  slideImage(idx + 1);
   createCircles();
+  slide.innerHTML += `<div class="slide-wrapper"></div>`;
+}
+function slideImage(idx) {
+  if (idx < 0) {
+    idx = imageNameArr.length - 1;
+  } else if (idx > imageNameArr.length - 1) {
+    idx = 0;
+  }
+  slide.innerHTML += `<img class="image" src="image/${imageNameArr[idx]}.png" />`;
+}
+function gotoRight() {
+  const images = document.querySelectorAll(".image");
+  for (let i = 0; i < imageNameArr.length; i++) {
+    setTimeout(() => {
+      images[i].classList.remove("slide-left");
+      images[i].classList.add("slide-right");
+    }, 10);
+  }
+}
+function gotoLeft() {
+  const images = document.querySelectorAll(".image");
+  for (let i = 0; i < imageNameArr.length; i++) {
+    setTimeout(() => {
+      images[i].classList.remove("slide-right");
+      images[i].classList.add("slide-left");
+    }, 10);
+  }
 }
 
-slideImage(imageIdx);
+runSlideImage(imageIdx);
 
 slide.onmouseover = () => {
   let befXPos = 0;
@@ -52,17 +82,23 @@ slide.onmouseover = () => {
       if (imageIdx < 0) {
         imageIdx = imageNameArr.length - 1;
       }
-      slideImage(imageIdx);
+      gotoLeft();
+      setTimeout(() => {
+        runSlideImage(imageIdx);
+      }, 200);
       befXPos = aftXPos = 0;
     } else if (befXPos > aftXPos) {
       imageIdx++;
       if (imageIdx > imageNameArr.length - 1) {
         imageIdx = 0;
       }
-      slideImage(imageIdx);
+      gotoRight();
+      setTimeout(() => {
+        runSlideImage(imageIdx);
+      }, 200);
       befXPos = aftXPos = 0;
     } else {
-      slideImage(imageIdx);
+      runSlideImage(imageIdx);
     }
   };
 };
@@ -76,5 +112,8 @@ setInterval(() => {
   if (imageIdx > imageNameArr.length - 1) {
     imageIdx = 0;
   }
-  slideImage(imageIdx);
+  gotoRight();
+  setTimeout(() => {
+    runSlideImage(imageIdx);
+  }, 200);
 }, 5000);
