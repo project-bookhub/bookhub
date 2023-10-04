@@ -52,7 +52,9 @@
       <div class="bold title">모든 도서</div>
       <div class="flex-direction-row tags">
         {%for tag in bookCategoryCount%}
-        <div class="tag">{{tag.category_name}} {{tag.category_count}}</div>
+        <a href="/books/list?category={{tag.category_name}}&page=1" class="tag"
+          >{{tag.category_name}} {{tag.category_count}}</a
+        >
         {% endfor %}
       </div>
       <div class="flex-direction-column">
