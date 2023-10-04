@@ -273,6 +273,10 @@ div.flex-direction-row.bottom-wrapper {
   justify-content: start;
 }
 
+.flex-direction-row.max-width.button-wrapper {
+  padding: 16px;
+}
+
 .page-button {
   width: 32px;
   display: inline;
