@@ -30,6 +30,18 @@ exports.postLogin = async (req, res, next) => {
   }
 };
 
+exports.getLogout = async (req, res, next) => {
+  try {
+    const userId = req.user ? req.user.user_uid : undefined;
+    if (!userId) throw new Error(4008);
+
+    res.clearCookie("authorization");
+    res.redirect("/");
+  } catch (e) {
+    next(e);
+  }
+};
+
 exports.getSignUp = (req, res) => {
   res.render("user/signup.html");
 };
