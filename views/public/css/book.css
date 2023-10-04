@@ -37,12 +37,15 @@
 
 .small-book {
   width: 126px;
+  z-index: 1;
+  overflow: hidden;
 }
 .small-book-image {
   width: 126px;
   height: 172px;
   background-color: #ccc;
   cursor: pointer;
+  position: relative;
 }
 
 input.book-title {

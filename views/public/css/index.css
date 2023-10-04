@@ -125,7 +125,7 @@ img {
   gap: 16px;
 }
 .flex-direction-column .flex-direction-row {
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .flex-direction-row .left-text {
   justify-content: left;
@@ -187,10 +187,10 @@ img {
 }
 .content-wrapper .title {
   text-align: left;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .content-wrapper .list-bottom {
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin: 64px 0;
 }
@@ -305,4 +305,19 @@ div.flex-direction-row.bottom-wrapper {
 .circle {
   color: rgba(224, 224, 224, 0.3);
   font-size: 8px;
+}
+
+.image-input {
+  width: 904px;
+}
+
+.input-file {
+  opacity: 0;
+}
+
+.add-image {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(12px, -12px);
 }
