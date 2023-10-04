@@ -41,15 +41,17 @@ exports.getBookView = async (req, res, next) => {
     const bookId = req.query.bookId;
     const tocId = req.query.tocId;
     const userId = req.user ? req.user.user_id : undefined;
+    const userUid = req.user ? req.user.user_uid : undefined;
 
     const isDataCheck = dataCheck.checkNullUndefinedSpace([
       bookId,
       tocId,
       userId,
+      userUid,
     ]);
     if (!isDataCheck) throw new Error(4005);
 
-    const result = await bookService.getBookView(bookId, tocId);
+    const result = await bookService.getBookView(bookId, tocId, userUid);
 
     res.render("book/view.html", {
       user_id: userId,

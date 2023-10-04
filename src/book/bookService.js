@@ -63,6 +63,18 @@ exports.getBookView = async (bookId, tocId) => {
 
     const bookData = await bookRepository.findBookByUserId(bookId);
 
+    const duplicationCheckResult = await bookRepository.findBookViewsList(
+      bookId,
+      userUid,
+    );
+
+    if (duplicationCheckResult === 0) {
+      const bookViews = await bookRepository.updateBookViewsByBookId(
+        bookId,
+        userUid,
+      );
+    }
+
     const result = [tocListResult, tocContentResult, bookData];
     return result;
   } catch (e) {

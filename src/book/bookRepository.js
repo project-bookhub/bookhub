@@ -393,3 +393,60 @@ exports.findBookByUserId = async (bookId) => {
     throw new Error(5000);
   }
 };
+
+exports.findBookLikesList = async (bookId, userUid) => {
+  try {
+    const sql =
+      "SELECT FIND_IN_SET(?, book_likes_list) AS result FROM book WHERE book_uid = ?;";
+
+    const [[result]] = await pool.query(sql, [userUid, bookId]);
+
+    return result.result ? result.result : 0;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.updateBookLikesByBookId = async (bookId, userUid) => {
+  try {
+    const sql =
+      "UPDATE book " +
+      "SET book_likes = book_likes + 1, " +
+      "book_likes_list = CONCAT(IFNULL(book_likes_list, ''), ?) " +
+      "WHERE book_uid = ? AND book_writer != ?;";
+
+    const [result] = await pool.query(sql, [userUid + ",", bookId, userUid]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.findBookViewsList = async (bookId, userUid) => {
+  try {
+    const sql =
+      "SELECT FIND_IN_SET(?, book_views_list) AS result FROM book WHERE book_uid = ?;";
+
+    const [[result]] = await pool.query(sql, [userUid, bookId]);
+
+    return result.result ? result.result : 0;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
+exports.updateBookViewsByBookId = async (bookId, userUid) => {
+  try {
+    const sql =
+      "UPDATE book SET book_views = book_views + 1, " +
+      "book_views_list = CONCAT(IFNULL(book_views_list, ''), ?) " +
+      "WHERE book_uid = ?;";
+
+    const [result] = await pool.query(sql, [userUid + ",", bookId]);
+
+    return result.affectedRows;
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
