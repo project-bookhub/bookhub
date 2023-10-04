@@ -73,9 +73,7 @@ exports.getBookDelete = async (req, res, next) => {
 
     const result = await bookService.getBookDelete(bookId, bookWriter);
 
-    res.render("index.html", {
-      result: true,
-    });
+    res.redirect("/");
   } catch (e) {
     next(e);
   }

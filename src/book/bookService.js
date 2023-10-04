@@ -56,11 +56,10 @@ exports.getBookListAndCategoryCount = async (page, category) => {
   }
 };
 
-exports.getBookView = async (bookId, tocId) => {
+exports.getBookView = async (bookId, tocId, userUid) => {
   try {
     const tocListResult = await bookRepository.findTocList(bookId);
     const tocContentResult = await bookRepository.findTocContent(tocId);
-
     const bookData = await bookRepository.findBookByUserId(bookId);
 
     const duplicationCheckResult = await bookRepository.findBookViewsList(
