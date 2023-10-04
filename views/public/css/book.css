@@ -20,18 +20,20 @@
   width: 336px;
 }
 .big-book-image {
+  display: flex;
+  align-items: center;
   width: 336px;
   height: 460px;
-  background-color: #ccc;
   cursor: pointer;
 }
 .medium-book {
   width: 252px;
 }
 .medium-book-image {
+  display: flex;
+  align-items: center;
   width: 252px;
   height: 345px;
-  background-color: #ccc;
   cursor: pointer;
 }
 
@@ -39,10 +41,12 @@
   width: 126px;
 }
 .small-book-image {
+  display: flex;
+  align-items: center;
   width: 126px;
   height: 172px;
-  background-color: #ccc;
   cursor: pointer;
+  position: relative;
 }
 
 input.book-title {

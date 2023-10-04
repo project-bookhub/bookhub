@@ -61,7 +61,9 @@
           href="/books/view?bookId={{book.book_uid}}&tocId={{book.first_toc_uid}}"
         >
           <div class="flex-direction-row content-wrapper">
-            <div class="big-book-image"></div>
+            <div class="big-book-image">
+              <img class="big-book" src="{{book.book_image}}" alt="" />
+            </div>
             <div class="flex-direction-column">
               <div class="flex-direction-row book-content-wrapper">
                 <div class="simple-title book-title">{{book.book_title}}</div>
