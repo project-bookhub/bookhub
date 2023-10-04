@@ -33,6 +33,10 @@ app.use((err, req, res, next) => {
     res.status(400).send("이미 존재하는 사용자입니다.");
   if (err.message === "4008") res.status(400).send("로그인 후 이용해 주세요.");
   if (err.message === "4020") res.redirect("/users/auth");
+
+  if (err.message === "4040") res.status(400).send("이미 추천한 유저 입니다.");
+  if (err.message === "4041") res.status(400).send("입력값을 확인해 주세요.");
+
   if (err === "4444") res.redirect("/");
 });
 

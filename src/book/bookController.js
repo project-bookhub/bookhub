@@ -240,3 +240,17 @@ exports.getBookSearch = async (req, res, next) => {
     next(e);
   }
 };
+
+exports.getBookLikes = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+    const tocId = req.query.tocId;
+
+    const userUid = req.user ? req.user.user_uid : undefined;
+    await bookService.getBookLikes(bookId, userUid);
+
+    res.redirect(`/books/view?bookId=${bookId}&tocId=${tocId}`);
+  } catch (e) {
+    next(e);
+  }
+};

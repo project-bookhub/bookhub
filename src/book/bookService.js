@@ -237,3 +237,22 @@ exports.getBookSearch = async (bookSearch, page) => {
     throw new Error(e.message);
   }
 };
+
+exports.getBookLikes = async (bookId, userUid) => {
+  try {
+    const duplicationCheckResult = await bookRepository.findBookLikesList(
+      bookId,
+      userUid,
+    );
+    if (duplicationCheckResult !== 0) throw new Error(4040);
+
+    const result = await bookRepository.updateBookLikesByBookId(
+      bookId,
+      userUid,
+    );
+
+    if (!result) throw new Error(4041);
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
