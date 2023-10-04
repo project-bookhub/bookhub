@@ -35,7 +35,8 @@ bookRouter.get("/delete", bookController.getBookDelete);
 bookRouter.get("/toc/write", bookController.getBookTocWrite);
 bookRouter.post(
   "/toc/write",
-  upload.single("image"),
+  // 컨트롤러로 빼기
+  upload.single("image"), //핸들러 함수
   bookController.postBookTocWrite,
 );
 

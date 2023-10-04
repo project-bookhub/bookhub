@@ -18,7 +18,8 @@ exports.getBoard = async (req, res, next) => {
 
 exports.getBoardWrite = (req, res, next) => {
   try {
-    if (!req.user) throw new Error(4008);
+    if (!req.user) throw new Error(4008); // 로그인 체크
+    if (req.user.user_role < 2) throw new Error(4006); // 관리자 권한 체크
     res.render("board/write.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
     });
@@ -29,6 +30,8 @@ exports.getBoardWrite = (req, res, next) => {
 
 exports.postBoardWrite = async (req, res, next) => {
   try {
+    if (!req.user) throw new Error(4008); // 로그인 체크
+    if (req.user.user_role < 2) throw new Error(4006); // 관리자 권한 체크
     const boardTitle = req.body.boardTitle;
     const boardContent = req.body.boardContent;
     const boardWriter = req.user.user_uid;
