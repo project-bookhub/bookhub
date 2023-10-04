@@ -62,6 +62,9 @@ img {
   border-radius: 0;
   padding: 8px;
 }
+.empty {
+  background-color: #eee;
+}
 
 .material-symbols-outlined {
   cursor: pointer;
