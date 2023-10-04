@@ -56,12 +56,23 @@ exports.getBookListAndCategoryCount = async (page, category) => {
   }
 };
 
-exports.getBookView = async (bookId, tocId) => {
+exports.getBookView = async (bookId, tocId, userUid) => {
   try {
     const tocListResult = await bookRepository.findTocList(bookId);
     const tocContentResult = await bookRepository.findTocContent(tocId);
-
     const bookData = await bookRepository.findBookByUserId(bookId);
+
+    const duplicationCheckResult = await bookRepository.findBookViewsList(
+      bookId,
+      userUid,
+    );
+
+    if (duplicationCheckResult === 0) {
+      const bookViews = await bookRepository.updateBookViewsByBookId(
+        bookId,
+        userUid,
+      );
+    }
 
     const result = [tocListResult, tocContentResult, bookData];
     return result;
@@ -233,6 +244,25 @@ exports.getBookSearch = async (bookSearch, page) => {
     );
 
     return [paginationObject, result];
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+exports.getBookLikes = async (bookId, userUid) => {
+  try {
+    const duplicationCheckResult = await bookRepository.findBookLikesList(
+      bookId,
+      userUid,
+    );
+    if (duplicationCheckResult !== 0) throw new Error(4040);
+
+    const result = await bookRepository.updateBookLikesByBookId(
+      bookId,
+      userUid,
+    );
+
+    if (!result) throw new Error(4041);
   } catch (e) {
     throw new Error(e.message);
   }

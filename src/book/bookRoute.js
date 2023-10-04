@@ -31,6 +31,7 @@ const upload = multer({
 bookRouter.get("/list", bookController.getBookListAndCategoryCount);
 bookRouter.get("/view", bookController.getBookView);
 bookRouter.get("/delete", bookController.getBookDelete);
+bookRouter.get("/likes", bookController.getBookLikes);
 
 bookRouter.get("/toc/write", bookController.getBookTocWrite);
 bookRouter.post(

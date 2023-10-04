@@ -41,15 +41,17 @@ exports.getBookView = async (req, res, next) => {
     const bookId = req.query.bookId;
     const tocId = req.query.tocId;
     const userId = req.user ? req.user.user_id : undefined;
+    const userUid = req.user ? req.user.user_uid : undefined;
 
     const isDataCheck = dataCheck.checkNullUndefinedSpace([
       bookId,
       tocId,
       userId,
+      userUid,
     ]);
     if (!isDataCheck) throw new Error(4005);
 
-    const result = await bookService.getBookView(bookId, tocId);
+    const result = await bookService.getBookView(bookId, tocId, userUid);
 
     res.render("book/view.html", {
       user_id: userId,
@@ -71,9 +73,7 @@ exports.getBookDelete = async (req, res, next) => {
 
     const result = await bookService.getBookDelete(bookId, bookWriter);
 
-    res.render("index.html", {
-      result: true,
-    });
+    res.redirect("/");
   } catch (e) {
     next(e);
   }
@@ -236,6 +236,20 @@ exports.getBookSearch = async (req, res, next) => {
       result: result[1],
       pagination: result[0],
     });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.getBookLikes = async (req, res, next) => {
+  try {
+    const bookId = req.query.bookId;
+    const tocId = req.query.tocId;
+
+    const userUid = req.user ? req.user.user_uid : undefined;
+    await bookService.getBookLikes(bookId, userUid);
+
+    res.redirect(`/books/view?bookId=${bookId}&tocId=${tocId}`);
   } catch (e) {
     next(e);
   }

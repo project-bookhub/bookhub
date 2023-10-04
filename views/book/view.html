@@ -1,74 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>{{book_title}}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
+            rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/index.css"/>
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
     <script defer src="../js/index.js"></script>
-  </head>
-  <body>
-    <div class="top-wrapper">
-      <div class="top-left bold simple-title">{{book_title}}</div>
-      <div class="top-right">
+</head>
+<body>
+<div class="top-wrapper">
+    <div class="top-left bold simple-title">{{book_title}}</div>
+    <div class="top-right">
         <a href="/" class="close"
-          ><span class="material-symbols-outlined"> close </span></a
+        ><span class="material-symbols-outlined"> close </span></a
         >
-      </div>
     </div>
-    <div class="flex-direction-column">
-      <div class="flex-direction-row max-width max-height">
+</div>
+<div class="flex-direction-column">
+    <div class="flex-direction-row max-width max-height">
         <div class="flex-direction-column toc-list">
-          <div class="bold simple-title">목차</div>
-          {% for toc in tocList %}
-          <a href="/books/view?bookId={{toc.toc_book}}&tocId={{toc.toc_uid}}">
-            {% if toc.toc_uid === toc_uid %}
-            <div class="highlight div-button"><pre>{{toc.toc_title}}</pre></div>
-            {% else %}
-            <div class="div-button"><pre>{{toc.toc_title}}</pre></div>
-            {% endif %}
-          </a>
-          {% endfor %}
+            <div class="bold simple-title">목차</div>
+            {% for toc in tocList %}
+            <a href="/books/view?bookId={{toc.toc_book}}&tocId={{toc.toc_uid}}">
+                {% if toc.toc_uid === toc_uid %}
+                <div class="highlight div-button">
+                    <pre>{{toc.toc_title}}</pre>
+                </div>
+                {% else %}
+                <div class="div-button">
+                    <pre>{{toc.toc_title}}</pre>
+                </div>
+                {% endif %}
+            </a>
+            {% endfor %}
         </div>
         <div class="flex-direction-column book-content-area">
-          <div class="bold simple-title">{{tocContent.toc_title}}</div>
-          <div class="book-content">{{tocContent.toc_content}}</div>
+            <div class="bold simple-title">{{tocContent.toc_title}}</div>
+            <div class="book-content">{{tocContent.toc_content}}</div>
         </div>
-      </div>
-      <div class="flex-direction-row max-width button-wrapper">
+    </div>
+    <div class="flex-direction-row max-width button-wrapper">
         {% if user_id !== book_writer %}
-        <a class="main-button confirm-button">추천하기</a>
+        <a class="main-button confirm-button"
+           href="/books/likes?bookId={{tocList[0].toc_book}}&tocId={{toc_uid}}">추천하기</a>
         {% else %}
         <a class="confirm-button"></a>
         {% endif %}
         <div class="flex-direction-row">
-          {% if user_id === book_writer %}
-          <a
-            href="/books/toc/view?bookId={{tocList[0].toc_book}}"
-            class="main-button confirm-button"
-            >책 수정하기</a
-          >
-          <a
-            href="/books/delete?bookId={{tocList[0].toc_book}}"
-            class="main-button confirm-button"
+            {% if user_id === book_writer %}
+            <a
+                    href="/books/toc/view?bookId={{tocList[0].toc_book}}"
+                    class="main-button confirm-button"
+            >책 수정하기
+            </a
+            >
+            <a
+                    href="/books/delete?bookId={{tocList[0].toc_book}}"
+                    class="main-button confirm-button"
             >삭제하기</a
-          >
-          {% else %}
-          <a class="confirm-button"></a>
-          <a class="confirm-button"></a>
-          {% endif %}
+            >
+            {% else %}
+            <a class="confirm-button"></a>
+            <a class="confirm-button"></a>
+            {% endif %}
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
