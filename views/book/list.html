@@ -51,11 +51,18 @@
     <div class="content-wrapper">
       <div class="bold title">모든 도서</div>
       <div class="flex-direction-row tags">
-        {%for tag in bookCategoryCount%}
+        {%for tag in bookCategoryCount%} {% if
+        bookListOrderByPage[0].book_category === tag.category_name %}
+        <a
+          href="/books/list?category={{tag.category_name}}&page=1"
+          class="tag tag-highlight"
+          >{{tag.category_name}} {{tag.category_count}}</a
+        >
+        {% else %}
         <a href="/books/list?category={{tag.category_name}}&page=1" class="tag"
           >{{tag.category_name}} {{tag.category_count}}</a
         >
-        {% endfor %}
+        {% endif %} {% endfor %}
       </div>
       <div class="flex-direction-column">
         {%for book in bookListOrderByPage%}
