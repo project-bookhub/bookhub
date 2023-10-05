@@ -182,13 +182,31 @@ exports.postBookTocModify = async (bookId, bookToc, bookSummary) => {
       bookSummary,
     );
 
-    const deleteResult = await bookRepository.deleteTocById(bookId);
-    if (deleteResult === 0) throw new Error(4004);
+    const oldTocList = await bookRepository.findTocList(bookId);
+    const newTocList = bookToc.split("\r\n");
+    let tocList = [];
 
-    const tocArr = bookToc.split("\r\n");
+    newTocList.forEach((newRow) => {
+      let sw = false;
 
-    const updatedToc = await bookRepository.insertToc(bookId, tocArr);
-    if (updatedToc === 0) throw new Error(4004);
+      oldTocList.forEach((oldRow) => {
+        if (newRow === oldRow.toc_title) {
+          delete oldRow.toc_uid;
+          tocList.push(oldRow);
+          sw = true;
+        }
+      });
+      if (sw === false) {
+        const toc = {
+          toc_book: parseInt(bookId),
+          toc_title: newRow,
+          toc_content: "",
+        };
+        tocList.push(toc);
+      }
+    });
+
+    await bookRepository.deleteAndInsertToc(bookId, tocList);
   } catch (e) {
     throw new Error(e.message);
   }
