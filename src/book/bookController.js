@@ -30,6 +30,7 @@ exports.getBookListAndCategoryCount = async (req, res, next) => {
       pagination: result[0],
       bookListOrderByPage: result[1],
       bookCategoryCount: result[2],
+      category: category,
     });
   } catch (e) {
     next(e);
@@ -43,12 +44,9 @@ exports.getBookView = async (req, res, next) => {
     const userId = req.user ? req.user.user_id : undefined;
     const userUid = req.user ? req.user.user_uid : undefined;
 
-    const isDataCheck = dataCheck.checkNullUndefinedSpace([
-      bookId,
-      tocId,
-      userId,
-      userUid,
-    ]);
+    if (userId === undefined || userUid === undefined) throw new Error(4008);
+
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([bookId, tocId]);
     if (!isDataCheck) throw new Error(4005);
 
     const result = await bookService.getBookView(bookId, tocId, userUid);
