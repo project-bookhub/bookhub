@@ -1,55 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>비밀번호 재설정</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
-      rel="stylesheet"
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
+          rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/user.css" />
-  </head>
-  <body>
-    <div class="content-wrapper">
-      <div class="window">
+    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" href="../css/user.css"/>
+</head>
+<body>
+<div class="content-wrapper">
+    <div class="window">
         <div class="bold title">비밀번호 재설정</div>
-        <form
-          class="flex-direction-column"
-          method="post"
-          action="/users/signup"
+        <form class="flex-direction-column"
+              method="post"
+              action="/users/reset"
         >
-          <div class="input">
-            <input
-              type="text"
-              name="userNickname"
-              placeholder="닉네임을 입력해주세요"
-            />
-          </div>
-          <div class="input">
-            <input
-              type="text"
-              name="userId"
-              placeholder="아이디를 입력해주세요"
-            />
-          </div>
-          <div class="input">
-            <input
-              type="password"
-              name="targetPw"
-              placeholder="새로운 비밀번호를 입력해주세요"
-            />
-          </div>
-          <div class="button-wrapper">
-            <button class="main-button button" type="submit">
-              재설정 완료
-            </button>
-          </div>
+            <div class="input">
+                <input
+                        type="text"
+                        name="userNickname"
+                        placeholder="닉네임을 입력해주세요"
+                />
+            </div>
+            <div class="input">
+                <input
+                        type="text"
+                        name="userId"
+                        placeholder="아이디를 입력해주세요"
+                />
+            </div>
+            <div class="input">
+                <input
+                        type="password"
+                        name="targetPw"
+                        placeholder="새로운 비밀번호를 입력해주세요"
+                />
+            </div>
+            <div class="button-wrapper">
+                <button class="main-button button" type="submit">
+                    재설정 완료
+                </button>
+            </div>
         </form>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
