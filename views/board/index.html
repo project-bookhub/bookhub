@@ -60,7 +60,7 @@
               </div>
             </div>
             <div class="flex-direction-row board-bottom content-wrapper">
-              <div class="simple-title">{{board.board_writer}}</div>
+              <div>{{board.board_writer}}</div>
               <div class="flex-direction-row">
                 <div class="board-left">작성일: {{board.board_created_at}}</div>
                 <div class="board-right">조회수: {{board.board_views}}</div>
@@ -81,7 +81,11 @@
           <a class="page-button" href="/boards?page={{page}}">{{page}}</a>
           {% endif %} {% endfor %}
         </div>
+        {% if role === 2 %}
         <a href="/boards/write" class="main-button confirm-button">글쓰기</a>
+        {% else %}
+        <a class="confirm-button"></a>
+        {% endif %}
       </div>
     </div>
   </body>
