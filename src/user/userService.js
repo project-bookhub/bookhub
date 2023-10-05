@@ -97,14 +97,15 @@ exports.postAuth = async (userUid, userId, userPw) => {
   }
 };
 
-exports.postInfo = async (userId, targetPw) => {
+exports.postInfo = async (userNickname, userPw, userId) => {
   try {
     const hashedUserPw = Crypto.createHash("sha512")
-      .update(targetPw)
+      .update(userPw)
       .digest("base64");
 
-    const result = await userRepository.updateUserPasswordByUserId(
+    const result = await userRepository.updateUserPasswordByUserNickname(
       hashedUserPw,
+      userNickname,
       userId,
     );
 

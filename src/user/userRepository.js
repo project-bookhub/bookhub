@@ -54,11 +54,16 @@ exports.updateUserPasswordByUserIdAndUserNickname = async (
   }
 };
 
-exports.updateUserPasswordByUserId = async (password, userId) => {
+exports.updateUserPasswordByUserNickname = async (
+  password,
+  userNickname,
+  userId,
+) => {
   try {
-    const sql = "UPDATE user SET user_pw=? WHERE user_id=?";
+    const sql =
+      "UPDATE user SET user_pw=?, user_nickname =? WHERE user_uid = ?";
 
-    const [result] = await pool.query(sql, [password, userId]);
+    const [result] = await pool.query(sql, [password, userNickname, userId]);
 
     return result.affectedRows;
   } catch (e) {

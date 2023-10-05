@@ -79,15 +79,7 @@ exports.postReset = async (req, res, next) => {
 
     const result = await userService.postReset(userNickname, userId, targetPw);
 
-    if (result === 0) {
-      res.render("index.html", {
-        result: false,
-      });
-    }
-
-    res.render("index.html", {
-      result: true,
-    });
+    res.redirect("/");
   } catch (e) {
     next(e);
   }
@@ -124,20 +116,13 @@ exports.postAuth = async (req, res, next) => {
 
 exports.postInfo = async (req, res, next) => {
   try {
-    const userId = req.body.userId;
-    const targetPw = req.body.targetPw;
+    const userNickname = req.body.userNickname;
+    const userPw = req.body.userPw;
+    const userId = req.user.user_uid;
 
-    const result = await userService.postInfo(userId, targetPw);
+    const result = await userService.postInfo(userNickname, userPw, userId);
 
-    if (result === 0) {
-      res.render("index.html", {
-        result: false,
-      });
-    }
-
-    res.render("index.html", {
-      result: true,
-    });
+    res.redirect("/");
   } catch (e) {
     next(e);
   }

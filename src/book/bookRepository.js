@@ -217,6 +217,27 @@ exports.insertToc = async (createdBookInsertId, tocArr) => {
   }
 };
 
+exports.deleteAndInsertToc = async (bookId, tocArr) => {
+  try {
+    const placeholders = tocArr.map(() => "(?, ?, ?)").join(", ");
+
+    const values = [];
+    tocArr.forEach((toc) => {
+      values.push(bookId, toc.toc_title, toc.toc_content);
+    });
+
+    const deleteSql = "DELETE FROM toc WHERE toc_book = ?";
+    await pool.query(deleteSql, [bookId]);
+
+    const insertSql = `INSERT INTO toc(toc_book, toc_title, toc_content)
+                           VALUES ${placeholders}`;
+
+    await pool.query(insertSql, values);
+  } catch (e) {
+    throw new Error(5000);
+  }
+};
+
 exports.findBookAndToc = async (bookId) => {
   try {
     const sql =
@@ -261,17 +282,6 @@ exports.updateBookAndToc = async (bookId, bookToc, bookSummary) => {
       "UPDATE book SET book_toc = ?, book_summary = ? WHERE book_uid = ?";
 
     await pool.query(sql, [bookToc, bookSummary, bookId]);
-  } catch (e) {
-    throw new Error(5000);
-  }
-};
-
-exports.deleteTocById = async (bookId) => {
-  try {
-    const sql = "DELETE FROM toc WHERE toc_book = ?";
-    const [result] = await pool.query(sql, [bookId]);
-
-    return result.affectedRows;
   } catch (e) {
     throw new Error(5000);
   }

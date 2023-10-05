@@ -14,7 +14,7 @@ document
 
 const slide = document.querySelector(".slide");
 const img = new Image();
-const imageNameArr = ["1", "2", "3", "4"];
+const imageNameArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 let imageIdx = 0;
 
 function createCircles() {
@@ -37,6 +37,7 @@ function runSlideImage(idx) {
   createCircles();
   slide.innerHTML += `<div class="slide-wrapper"></div>`;
 }
+
 function slideImage(idx) {
   if (idx < 0) {
     idx = imageNameArr.length - 1;
@@ -45,6 +46,7 @@ function slideImage(idx) {
   }
   slide.innerHTML += `<img class="image" src="image/${imageNameArr[idx]}.png" />`;
 }
+
 function gotoRight() {
   const images = document.querySelectorAll(".image");
   for (let i = 0; i < imageNameArr.length; i++) {
@@ -54,6 +56,7 @@ function gotoRight() {
     }, 10);
   }
 }
+
 function gotoLeft() {
   const images = document.querySelectorAll(".image");
   for (let i = 0; i < imageNameArr.length; i++) {
