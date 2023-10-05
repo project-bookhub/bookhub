@@ -1,5 +1,6 @@
 const userService = require("./userService");
 const dataCheck = require("../lib/dataCheck");
+require("dotenv").config();
 
 exports.getLogin = (req, res) => {
   res.render("user/login.html");
@@ -17,13 +18,12 @@ exports.postLogin = async (req, res, next) => {
 
     if (!result.isLogin) return res.redirect("/");
 
-    res.cookie(
-      "authorization",
-      result.data,
-      (maxAge = 60 * 10),
-      (domain = "127.0.0.1"),
-      (path = "/"),
-    );
+    res.cookie("authorization", result.data, {
+      maxAge: 60 * 60 * 1000,
+      httpOnly: true,
+      domain: process.env.serverIp,
+      path: "/",
+    });
     res.redirect("/");
   } catch (e) {
     next(e);

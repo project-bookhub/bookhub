@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="../css/index.css"/>
     <link rel="stylesheet" href="../css/user.css"/>
     <script defer>
-      {% if error %}
-      alert("입력 값을 확인해 주세요.")
+      {% if error === 4005 %}
+        alert("입력 값을 확인해 주세요.")
+      {% elif error === 4008 %}
+        alert("로그인 후 이용해 주세요.")
       {% endif %}
     </script>
 </head>
