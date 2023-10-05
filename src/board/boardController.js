@@ -3,6 +3,7 @@ const boardService = require("./boardService");
 exports.getBoard = async (req, res, next) => {
   try {
     const page = req.query.page;
+    const userRole = req.user ? req.user.user_role : undefined;
 
     const result = await boardService.getBoard(page);
 
@@ -10,6 +11,7 @@ exports.getBoard = async (req, res, next) => {
       user_nickname: req.user ? req.user.user_nickname : undefined,
       result: result[1],
       pagination: result[0],
+      role: userRole,
     });
   } catch (e) {
     next(e);
@@ -19,6 +21,7 @@ exports.getBoard = async (req, res, next) => {
 exports.getBoardWrite = (req, res, next) => {
   try {
     if (!req.user) throw new Error(4008); // 로그인 체크
+
     if (req.user.user_role < 2) throw new Error(4006); // 관리자 권한 체크
     res.render("board/write.html", {
       user_nickname: req.user ? req.user.user_nickname : undefined,
