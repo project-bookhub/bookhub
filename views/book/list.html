@@ -49,10 +49,13 @@
       </div>
     </div>
     <div class="content-wrapper">
+      {% if category %}
+      <div class="bold title">{{category}}</div>
+      {% else %}
       <div class="bold title">모든 도서</div>
+      {% endif %}
       <div class="flex-direction-row tags">
-        {%for tag in bookCategoryCount%} {% if
-        bookListOrderByPage[0].book_category === tag.category_name %}
+        {%for tag in bookCategoryCount%} {% if category === tag.category_name %}
         <a
           href="/books/list?category={{tag.category_name}}&page=1"
           class="tag tag-highlight"
