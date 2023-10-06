@@ -100,7 +100,7 @@ exports.postAuth = async (req, res, next) => {
       userId,
       userPw,
     ]);
-    if (!isDataCheck) throw new Error(4005);
+    if (!isDataCheck) throw new Error(4050);
 
     const bookWriterCount = await userService.postAuth(userUid, userId, userPw);
 
@@ -117,10 +117,12 @@ exports.postAuth = async (req, res, next) => {
 exports.postInfo = async (req, res, next) => {
   try {
     const userNickname = req.body.userNickname;
-    const userPw = req.body.userPw;
     const userId = req.user.user_uid;
 
-    const result = await userService.postInfo(userNickname, userPw, userId);
+    const isDataCheck = dataCheck.checkNullUndefinedSpace([userNickname]);
+    if (!isDataCheck) throw new Error(4060);
+
+    const result = await userService.postInfo(userNickname, userId);
 
     res.redirect("/");
   } catch (e) {

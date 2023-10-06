@@ -1,43 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>회원정보</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap"
+            rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/user.css" />
-  </head>
-  <body>
-    <div class="content-wrapper">
-      <div class="window">
+    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" href="../css/user.css"/>
+
+    <script defer>
+        const url = location.href.split("?")[1].split("=")[1]
+        if (url) {
+            if (parseInt(url) === 4050) {
+                alert("비밀번호를 입력해주세요.")
+            } else if (parseInt(url) === 4020) {
+                alert("비밀번호가 틀립니다.")
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="content-wrapper">
+    <div class="window">
         <div class="bold title">회원정보</div>
         <form class="flex-direction-column" method="post" action="/users/auth">
-          <div class="bold title">{{user_id}}</div>
-          <div class="input">
-            <input
-              type="password"
-              name="userPw"
-              placeholder="비밀번호를 입력해주세요"
-            />
-          </div>
-          <div class="button-wrapper">
-            <a href="/users/logout" class="sub-button button">로그아웃</a>
-            <button class="main-button button" type="submit">
-              회원정보 설정
-            </button>
-          </div>
+            <div class="bold title">{{user_id}}</div>
+            <div class="input">
+                <input
+                        type="password"
+                        name="userPw"
+                        placeholder="비밀번호를 입력해주세요"
+                />
+            </div>
+            <div class="button-wrapper">
+                <a href="/users/logout" class="sub-button button">로그아웃</a>
+                <button class="main-button button" type="submit">
+                    회원정보 설정
+                </button>
+            </div>
         </form>
         <div class="reset-password">
-          <div class="ask">비밀번호가 기억나지 않는다면?</div>
-          <a href="/users/reset" class="link">비밀번호 재설정</a>
+            <div class="ask">비밀번호가 기억나지 않는다면?</div>
+            <a href="/users/reset" class="link">비밀번호 재설정</a>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>
