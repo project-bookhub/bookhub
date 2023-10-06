@@ -9,6 +9,7 @@ exports.insertOneByUserInfo = async (userId, userPw, userNickname) => {
 
     return result;
   } catch (e) {
+    console.log(e.message);
     throw new Error(5000);
   }
 };
@@ -54,16 +55,11 @@ exports.updateUserPasswordByUserIdAndUserNickname = async (
   }
 };
 
-exports.updateUserPasswordByUserNickname = async (
-  password,
-  userNickname,
-  userId,
-) => {
+exports.updateUserPasswordByUserNickname = async (userNickname, userId) => {
   try {
-    const sql =
-      "UPDATE user SET user_pw=?, user_nickname =? WHERE user_uid = ?";
+    const sql = "UPDATE user SET user_nickname =? WHERE user_uid = ?";
 
-    const [result] = await pool.query(sql, [password, userNickname, userId]);
+    const [result] = await pool.query(sql, [userNickname, userId]);
 
     return result.affectedRows;
   } catch (e) {

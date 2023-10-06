@@ -17,7 +17,7 @@ AWS.config.update({
 const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
-    bucket: "project-bookhub",
+    bucket: process.env.BUCKET_NAME,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key(req, file, cb) {
       cb(null, `${Date.now()}_${path.basename(file.originalname)}`);
