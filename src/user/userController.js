@@ -35,7 +35,7 @@ exports.getLogout = async (req, res, next) => {
     const userId = req.user ? req.user.user_uid : undefined;
     if (!userId) throw new Error(4008);
 
-    res.clearCookie("authorization");
+    res.clearCookie("authorization", { domain: process.env.serverIp });
     res.redirect("/");
   } catch (e) {
     next(e);
@@ -134,6 +134,8 @@ exports.getExit = async (req, res, next) => {
   try {
     const userId = req.user.user_uid;
     const result = await userService.getExit(userId);
+
+    res.clearCookie("authorization", { domain: process.env.serverIp });
 
     res.redirect("/");
   } catch (e) {
