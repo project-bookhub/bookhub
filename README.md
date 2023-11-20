@@ -9,7 +9,7 @@
 
 
 ## ERD
-![image](https://github.com/project-bookhub/bookhub/assets/54355780/4c014ad6-9393-4f61-805e-078c17d5651a)
+<img width="959" alt="image" src="https://github.com/project-bookhub/bookhub/assets/54355780/a243b994-3091-41ff-996c-2efe4f749197">
 
 
 
