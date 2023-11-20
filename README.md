@@ -4,6 +4,9 @@
 - 전자책을 이용할 수 있는 서비스입니다.
 
 
+## 화면 구성
+<img width="1239" alt="image" src="https://github.com/project-bookhub/bookhub/assets/54355780/1e4dcd65-b56e-461d-9656-5690e118bb55">
+
 
 ## ERD
 ![image](https://github.com/project-bookhub/bookhub/assets/54355780/4c014ad6-9393-4f61-805e-078c17d5651a)
