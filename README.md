@@ -6,7 +6,8 @@
 
 
 ## ERD
-![Untitled (1).png](https://prod-files-secure.s3.us-west-2.amazonaws.com/00cfdf0c-c31d-49b9-9a71-a7996dfdb700/9b8e27e2-85dc-4e09-bb49-1a6f8208c779/Untitled_(1).png)
+![image](https://github.com/project-bookhub/bookhub/assets/54355780/4c014ad6-9393-4f61-805e-078c17d5651a)
+
 
 
 ## 칸반보드
