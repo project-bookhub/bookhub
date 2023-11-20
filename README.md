@@ -17,3 +17,9 @@
 - 칸반보드를 통해 효율적인 작업
 ![image](https://github.com/project-bookhub/bookhub/assets/54355780/50638cbd-51ad-41a1-b56a-7d8c7c675f07)
 
+
+## S3 이미지 관리
+- multer-s3, aws-sdk 사용
+- Multer-s3 미들웨어를 사용하여 multipart/form-data로 전송되는 파일에대한 처리.
+- S3에 저장된 이미지 객체는 파일을 업로드한 시간_파일명.확장자로 관리
+<img width="964" alt="image" src="https://github.com/project-bookhub/bookhub/assets/54355780/f2d7d498-14d9-4555-83db-91a27eae6f30">
