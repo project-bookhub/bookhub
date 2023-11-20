@@ -21,7 +21,7 @@ exports.auth = async (req, res, next) => {
 
     next();
   } catch (e) {
-    res.clearCookie("authorization");
+    res.clearCookie("authorization", { path: "/", domain: ".hyunjun.kr" });
     next("4444");
   }
 };
